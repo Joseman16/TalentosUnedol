@@ -217,6 +217,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 30px;
+    padding-top: 100px;
 }
 
 #logoPrincipal {
@@ -391,4 +392,7 @@ body {
         width: 400px;
         height: 400px;
     }
+}
+.contenedor_logo{
+    padding-top: auto 100px;
 }

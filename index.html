@@ -1,11 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Telón de Teatro</title>
+    <link rel="stylesheet" href="Estilos/estilo.css">
 </head>
 <body>
-    
+    <section class="header">
+        <div class="logo-text">
+            <img
+                height="50px"
+                width="50px"
+                src="img/logo_unedol.jpg"
+            > 
+        </div>
+        <nav class="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#galeria">Galería</a>
+            <a href="#articulos">Artículos</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </section>
+
+    <section class="stage">
+        <!-- Video de fondo -->
+        <video autoplay muted loop playsinline id="background-video">
+            <source src="video/3191109-uhd_4096_2160_25fps.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        
+        <div class="valance"></div>
+        
+        <div class="curtain-container">
+            <div class="curtain curtain-left">
+                <div class="wave"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+                <div class="fold"></div>
+            </div>
+        </div>
+        
+        <div class="spotlight"></div>
+        
+        <div class="logo-container">
+            <div>   
+                <img 
+                    id="logoPrincipal"  
+                    src="img/logo.jpeg"
+                    alt="Logo de la revista"
+                >
+            </div>
+            <div>
+                <button class="btn-ver-mas">Ver más</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="Scripts/video.js"></script>
 </body>
 </html>

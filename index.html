@@ -8,11 +8,14 @@
 </head>
 <body>
     <section class="header">
+        <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
+        
         <div class="logo-text">
             <img
                 height="50px"
                 width="50px"
                 src="img/logo_unedol.png"
+                alt="Logo UNEDOL"
             > 
         </div>
         <nav class="nav">
@@ -23,6 +26,8 @@
         </nav>
     </section>
 
+    <script src="Scripts/burbuja.js"></script>
+    
     <section class="stage">
         <!-- Video de fondo -->
         <video autoplay muted loop playsinline id="background-video">
@@ -96,6 +101,135 @@
             </div>
         </div>
     </section>
+
+    <!-- Sección de Talentos - Agregar después de la sección .stage -->
+    <section class="talentos-section" id="talentos">
+        <div class="talentos-header">
+            <h2 class="talentos-title">Nuestros Talentos</h2>
+            <p class="talentos-subtitle">Descubre las habilidades artísticas que cultivamos</p>
+        </div>
+
+        <div class="carrusel-container">
+            <button class="carrusel-btn btn-prev" id="btnPrev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
+            <div class="carrusel-wrapper">
+                <div class="carrusel-track" id="carruselTrack">
+                    
+                    <!-- Tarjeta 1: Artes Plásticas -->
+                    <div class="talento-card">
+                        <div class="card-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Artes Plásticas</h3>
+                        <p class="card-description">
+                            Expresión visual a través de pintura, escultura y diversas técnicas artísticas que despiertan la creatividad.
+                        </p>
+                        <div class="card-shine"></div>
+                    </div>
+
+                    <!-- Tarjeta 2: Canto -->
+                    <div class="talento-card">
+                        <div class="card-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 18V5l12-2v13"/>
+                                <circle cx="6" cy="18" r="3"/>
+                                <circle cx="18" cy="16" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Canto</h3>
+                        <p class="card-description">
+                            Desarrollo de la voz y técnicas vocales para interpretar melodías que emocionan y transmiten sentimientos.
+                        </p>
+                        <div class="card-shine"></div>
+                    </div>
+
+                    <!-- Tarjeta 3: Baile -->
+                    <div class="talento-card">
+                        <div class="card-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2c-1.5 0-2.5 1.5-2.5 3.5S10.5 9 12 9s2.5-1.5 2.5-3.5S13.5 2 12 2z"/>
+                                <path d="M8 9c-2 0-3 2-3 4s1 4 3 4 3-2 3-4-1-4-3-4zm8 0c2 0 3 2 3 4s-1 4-3 4-3-2-3-4 1-4 3-4z"/>
+                                <path d="M12 9v13"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Baile</h3>
+                        <p class="card-description">
+                            Movimiento corporal coordinado que combina ritmo, expresión y pasión en diferentes estilos de danza.
+                        </p>
+                        <div class="card-shine"></div>
+                    </div>
+
+                    <!-- Tarjeta 4: Deportes -->
+                    <div class="talento-card">
+                        <div class="card-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 2a10 10 0 0 0 0 20"/>
+                                <path d="M2 12h20"/>
+                                <path d="M12 2c2.5 2.5 4 6.5 4 10s-1.5 7.5-4 10"/>
+                                <path d="M12 2c-2.5 2.5-4 6.5-4 10s1.5 7.5 4 10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Deportes</h3>
+                        <p class="card-description">
+                            Actividad física que fortalece el cuerpo, desarrolla disciplina y fomenta el trabajo en equipo.
+                        </p>
+                        <div class="card-shine"></div>
+                    </div>
+
+                    <!-- Tarjeta 5: Teatro -->
+                    <div class="talento-card">
+                        <div class="card-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M2 12c0 3 1 5 3 7 2 2 4 3 7 3s5-1 7-3c2-2 3-4 3-7"/>
+                                <path d="M9 9c0-1.5-1-3-2.5-3S4 7.5 4 9"/>
+                                <path d="M20 9c0-1.5-1-3-2.5-3S15 7.5 15 9"/>
+                                <path d="M9 9v2m6-2v2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Teatro</h3>
+                        <p class="card-description">
+                            Arte escénico donde la interpretación, expresión corporal y emocional dan vida a historias cautivadoras.
+                        </p>
+                        <div class="card-shine"></div>
+                    </div>
+
+                    <!-- Tarjeta 6: Literatura -->
+                    <div class="talento-card">
+                        <div class="card-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                <path d="M8 7h8M8 11h8M8 15h6"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Literatura</h3>
+                        <p class="card-description">
+                            Creación y apreciación de textos escritos que narran historias, poemas y obras que enriquecen el alma.
+                        </p>
+                        <div class="card-shine"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <button class="carrusel-btn btn-next" id="btnNext">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <div class="carrusel-dots" id="carruselDots"></div>
+    </section>
+    <script src="Scripts/carrusel.js"></script>
 
 </body>
 </html>

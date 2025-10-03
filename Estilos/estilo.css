@@ -27,19 +27,45 @@ body {
     padding: 0 50px;
     z-index: 100;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Canvas para las burbujas */
+.bubble-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .logo-text {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     font-size: 1.8rem;
     color: #BAA634;
     font-weight: bold;
     letter-spacing: 2px;
     text-shadow: 0 2px 10px rgba(186, 166, 52, 0.5);
+    z-index: 10;
+    position: relative;
+}
+
+.logo-text img {
+    height: 50px;
+    width: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(186, 166, 52, 0.3);
 }
 
 .nav {
     display: flex;
     gap: 40px;
+    z-index: 10;
+    position: relative;
 }
 
 .nav a {
@@ -83,6 +109,8 @@ body {
     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #d4d4d4 100%);
 }
 
+
+/******Aqui va luego el codigo del escenario******/
 /* Video de fondo */
 #background-video {
     position: absolute;
@@ -407,7 +435,7 @@ body {
 /********************* Sección Sobre Nosotros *********************/
 #sobre-nosotros {
     padding: 120px 50px;
-    background: linear-gradient(135deg, #0e3e75 0%, #1a5490 100%);
+    background: linear-gradient(360deg, #0e3e75 10%, #ffffff 90%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -467,7 +495,7 @@ body {
 }
 
 .sobre-contenido {
-    color: #F5F4F0;
+    color: #000000;
     animation: fadeInRight 1.2s ease-out;
 }
 
@@ -592,5 +620,287 @@ body {
     
     .gif-animado {
         max-width: 350px;
+    }
+}
+
+/* Sección de Talentos */
+.talentos-section {
+    position: relative;
+    padding: 100px 50px;
+    background: linear-gradient(120deg, #0a1628 0%, #0e3e75 50%, #1a5490 100%);
+    overflow: hidden;
+}
+
+.talentos-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(186, 166, 52, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(186, 166, 52, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.talentos-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.talentos-title {
+    font-size: 3rem;
+    color: #BAA634;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 20px rgba(186, 166, 52, 0.4);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.talentos-subtitle {
+    font-size: 1.3rem;
+    color: #F5F4F0;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* Carrusel Container */
+.carrusel-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 80px;
+}
+
+.carrusel-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.carrusel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+    gap: 30px;
+}
+
+/* Tarjetas de Talento */
+.talento-card {
+    position: relative;
+    min-width: calc(33.333% - 20px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(186, 166, 52, 0.3);
+    border-radius: 20px;
+    padding: 40px 30px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.talento-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(186, 166, 52, 0.1) 0%, 
+        transparent 50%, 
+        rgba(186, 166, 52, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.talento-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(186, 166, 52, 0.8);
+    box-shadow: 0 20px 60px rgba(186, 166, 52, 0.3);
+}
+
+.talento-card:hover::before {
+    opacity: 1;
+}
+
+.card-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.talento-card:hover .card-shine {
+    left: 100%;
+}
+
+.card-icon {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #BAA634;
+    transition: all 0.4s ease;
+}
+
+.talento-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 20px rgba(186, 166, 52, 0.6));
+}
+
+.card-icon svg {
+    stroke: #BAA634;
+    filter: drop-shadow(0 4px 10px rgba(186, 166, 52, 0.3));
+}
+
+.card-title {
+    font-size: 1.8rem;
+    color: #BAA634;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: #F5F4F0;
+    line-height: 1.7;
+    text-align: center;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Botones del Carrusel */
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(186, 166, 52, 0.9);
+    border: 2px solid #BAA634;
+    border-radius: 50%;
+    color: #0E3E75;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(186, 166, 52, 0.4);
+}
+
+.carrusel-btn:hover {
+    background: #BAA634;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 30px rgba(186, 166, 52, 0.6);
+}
+
+.carrusel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.btn-prev {
+    left: 10px;
+}
+
+.btn-next {
+    right: 10px;
+}
+
+/* Indicadores de Puntos */
+.carrusel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(186, 166, 52, 0.3);
+    border: 2px solid rgba(186, 166, 52, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background: rgba(186, 166, 52, 0.6);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: #BAA634;
+    border-color: #BAA634;
+    box-shadow: 0 0 15px rgba(186, 166, 52, 0.6);
+    transform: scale(1.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .talento-card {
+        min-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .talentos-section {
+        padding: 60px 20px;
+    }
+
+    .talentos-title {
+        font-size: 2rem;
+    }
+
+    .talentos-subtitle {
+        font-size: 1rem;
+    }
+
+    .carrusel-container {
+        padding: 0 60px;
+    }
+
+    .talento-card {
+        min-width: 100%;
+        padding: 30px 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card-description {
+        font-size: 0.95rem;
+    }
+
+    .carrusel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-prev {
+        left: 5px;
+    }
+
+    .btn-next {
+        right: 5px;
     }
 }

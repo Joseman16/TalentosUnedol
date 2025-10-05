@@ -44,7 +44,7 @@ body {
 .logo-text {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
     font-size: 1.8rem;
     color: #BAA634;
     font-weight: bold;
@@ -56,7 +56,7 @@ body {
 
 .logo-text img {
     height: 50px;
-    width: 50px;
+    width: 110px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(186, 166, 52, 0.3);
 }
@@ -98,29 +98,33 @@ body {
 
 .stage {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;        /* mejor que 100vw para evitar scroll horizontal */
+    height: 100vh;      /* ocupa todo el alto de la ventana */
     background: transparent;
-    overflow: hidden;
+    overflow: hidden;   /* nada se sale del contenedor */
     transition: background 1s ease;
 }
 
 .stage.open {
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #d4d4d4 100%);
+    background: linear-gradient(
+        135deg, 
+        #f5f5f5 0%, 
+        #e8e8e8 50%, 
+        #d4d4d4 100%
+    );
 }
 
-
-/******Aqui va luego el codigo del escenario******/
-/* Video de fondo */
+/* Video de fondo ajustado */
 #background-video {
-    position: relative;
+    position: absolute; /* fijado al contenedor */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    z-index: -1;
+    object-fit: cover;  /* mantiene proporciones */
+    z-index: -1;        /* queda detrás de todo */
 }
+
 
 .curtain-container {
     position: absolute;
@@ -236,8 +240,8 @@ body {
 }
 
 .logo-container {
-    position: relative;
-    top: 50%;
+    position: absolute;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation: logoCycle 60s ease-in-out infinite;
@@ -248,8 +252,6 @@ body {
     justify-content: center;
     gap: 30px;
 }
-
-
 
 
 
@@ -267,6 +269,7 @@ body {
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
+    margin-bottom: 60px;
 }
 
 .btn-ver-mas:hover {

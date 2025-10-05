@@ -1,15 +1,13 @@
 .gallery {
   --g: 8px; /* the gap */
-  z-index: 1;
-  
   display: grid;
   clip-path: inset(1px); /* to avoid visual glitchs */
-  z-index: 5;
+  z-index: 3;
 }
 .gallery > img {
   --_p: calc(-1*var(--g));
   grid-area: 1/1;
-  width: 500px; /* control the size */
+  width: 450px; /* control the size */
   aspect-ratio: 1;
   cursor: pointer;
   transition: .4s .1s;

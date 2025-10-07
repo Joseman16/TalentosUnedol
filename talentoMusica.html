@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talentos Musicales - UNEDOL</title>
+    <link rel="stylesheet" href="Estilos/talentoMusica.css" />
+    <link rel="stylesheet" href="Estilos/estilo.css">
+  </head>
+  <body>
+    <section class="header">
+      <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
+
+      <div class="logo-text">
+        <img
+          height="50px"
+          width="100px"
+          src="img/logo.jpeg"
+          alt="Logo UNEDOL"
+        />
+      </div>
+      <nav class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="#galeria">Galería</a>
+        <div class="submenu">
+          <a href="#talentos">Talentos ▾</a>
+          <ul class="submenu-list">
+            <li><a href="talentoMusica.html">Música</a></li>
+            <li><a href="#deporte">Deporte</a></li>
+            <li><a href="#arte">Arte</a></li>
+            <li><a href="#tecnologia">Tecnología</a></li>
+          </ul>
+        </div>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </section>
+
+    <script src="Scripts/burbuja.js"></script>
+
+    <div class="main-content">
+      <h1 class="page-title">🎵 Talentos Musicales</h1>
+      <p class="page-subtitle">Descubre el talento musical de nuestra comunidad</p>
+
+      <div class="music-player">
+        <div class="vinyl-container">
+          <div class="vinyl-disc" id="vinylDisc">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-center">
+              <img src="https://via.placeholder.com/120" alt="Artista" class="artist-image" id="artistImage">
+            </div>
+          </div>
+        </div>
+
+        <div class="song-info">
+          <div class="song-title" id="currentTitle">Selecciona una canción</div>
+          <div class="artist-name" id="currentArtist">Artista</div>
+        </div>
+
+        <div class="controls">
+          <button class="control-btn" id="prevBtn">⏮</button>
+          <button class="control-btn play-btn" id="playBtn">▶</button>
+          <button class="control-btn" id="nextBtn">⏭</button>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="time-info">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+
+        <audio id="audioPlayer"></audio>
+      </div>
+
+      <div class="playlist">
+        <h2 class="playlist-title">Lista de Reproducción</h2>
+        <div id="playlistContainer"></div>
+      </div>
+    </div>
+     <script src="Scripts/musicPlayer.js"></script>
+  </body>
+</html>

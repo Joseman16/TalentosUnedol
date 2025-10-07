@@ -1,360 +1,479 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Telón de Teatro</title>
-    <link rel="stylesheet" href="Estilos/estilo.css">
-    <link rel="stylesheet" href="Estilos/gallery.css">
-</head>
-<body>
+    <link rel="stylesheet" href="Estilos/estilo.css" />
+    <link rel="stylesheet" href="Estilos/gallery.css" />
+  </head>
+  <body>
     <section class="header">
-        <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
-        
-        <div class="logo-text">
-            <img
-                height="50px"
-                width="100px"
-                src="img/logo.jpeg"
-                alt="Logo UNEDOL"
-            > 
+      <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
+
+      <div class="logo-text">
+        <img
+          height="50px"
+          width="100px"
+          src="img/logo.jpeg"
+          alt="Logo UNEDOL"
+        />
+      </div>
+      <nav class="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#galeria">Galería</a>
+        <div class="submenu">
+          <a href="#talentos">Talentos ▾</a>
+          <ul class="submenu-list">
+            <li><a href="talentoMusica.html">Música</a></li>
+            <li><a href="#deporte">Deporte</a></li>
+            <li><a href="#arte">Arte</a></li>
+            <li><a href="#tecnologia">Tecnología</a></li>
+          </ul>
         </div>
-        <nav class="nav">
-            <a href="#inicio">Inicio</a>
-            <a href="#galeria">Galería</a>
-            <a href="#articulos">Artículos</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+        <a href="#contacto">Contacto</a>
+      </nav>
     </section>
 
     <script src="Scripts/burbuja.js"></script>
-    
+
     <section class="stage">
-        <!-- Video de fondo -->
-        <video autoplay muted loop playsinline id="background-video">
-            <source src="video/3191109-uhd_4096_2160_25fps.mp4" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
-        </video>
-        
-        <div class="valance"></div>
-        
-        <div class="curtain-container">
-            <div class="curtain curtain-left">
-                <div class="wave"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-            </div>
+      <!-- Video de fondo -->
+      <video autoplay muted loop playsinline id="background-video">
+        <source src="video/3191109-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+        Tu navegador no soporta el elemento de video.
+      </video>
+
+      <div class="valance"></div>
+
+      <div class="curtain-container">
+        <div class="curtain curtain-left">
+          <div class="wave"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
+          <div class="fold"></div>
         </div>
-        
-        <div class="spotlight"></div>
-        
-        <div class="logo-container">
-            <div class="gallery">
-                <img
-                    src="img/imgPrincipal.png"
-                    alt="Frase principal"
-                />
-                <img
-                    src="img/logo_unedol.png"
-                    alt="Escudo del colegio"
-                />
-            </div>
-            <div>
-                <button class="btn-ver-mas">Ver más</button>
-            </div>
+      </div>
+
+      <div class="spotlight"></div>
+
+      <div class="logo-container">
+        <div class="gallery">
+          <img src="img/imgPrincipal.png" alt="Frase principal" />
+          <img src="img/logo_unedol.png" alt="Escudo del colegio" />
         </div>
+        <div>
+          <button class="btn-ver-mas">Ver más</button>
+        </div>
+      </div>
     </section>
     <script src="Scripts/video.js"></script>
-    
-     <!-- Sección Sobre Nosotros -->
+
+    <!-- Sección Sobre Nosotros -->
     <section id="sobre-nosotros">
-        <div class="sobre-container">
-            <div class="sobre-gif">
-                <img src="img/sobre nosotros.gif" alt="Estudiantes trabajando" class="gif-animado">
-            </div>
-            <div class="sobre-contenido">
-                <h2 class="sobre-titulo">SOBRE NOSOTROS</h2>
-                <div class="linea-dorada"></div>
-                <p class="sobre-texto">
-                    Somos estudiantes de <strong>2do Bachillerato en la especialidad de Informática</strong> 
-                    de la <strong>Unidad Educativa Olmedo (UNEDOL)</strong>.
-                </p>
-                <p class="sobre-texto">
-                    Con pasión y dedicación, hemos creado esta plataforma digital para <strong>conmemorar 
-                    y destacar los increíbles talentos Olmedinos</strong> de nuestra querida institución.
-                </p>
-                <p class="sobre-texto">
-                    Nuestro objetivo es dar visibilidad a los logros académicos, artísticos, deportivos 
-                    y culturales de nuestros compañeros, creando un espacio donde el talento se encuentra 
-                    con la tecnología.
-                </p>
-                <div class="sobre-badges">
-                    <span class="badge">💻 Informática</span>
-                    <span class="badge">🎓 2do Bachillerato</span>
-                    <span class="badge">🏫 UNEDOL</span>
-                </div>
-            </div>
+      <div class="sobre-container">
+        <div class="sobre-gif">
+          <img
+            src="img/sobre nosotros.gif"
+            alt="Estudiantes trabajando"
+            class="gif-animado"
+          />
         </div>
+        <div class="sobre-contenido">
+          <h2 class="sobre-titulo">SOBRE NOSOTROS</h2>
+          <div class="linea-dorada"></div>
+          <p class="sobre-texto">
+            Somos estudiantes de
+            <strong>2do Bachillerato en la especialidad de Informática</strong>
+            de la <strong>Unidad Educativa Olmedo (UNEDOL)</strong>.
+          </p>
+          <p class="sobre-texto">
+            Con pasión y dedicación, hemos creado esta plataforma digital para
+            <strong
+              >conmemorar y destacar los increíbles talentos Olmedinos</strong
+            >
+            de nuestra querida institución.
+          </p>
+          <p class="sobre-texto">
+            Nuestro objetivo es dar visibilidad a los logros académicos,
+            artísticos, deportivos y culturales de nuestros compañeros, creando
+            un espacio donde el talento se encuentra con la tecnología.
+          </p>
+          <div class="sobre-badges">
+            <span class="badge">💻 Informática</span>
+            <span class="badge">🎓 2do Bachillerato</span>
+            <span class="badge">🏫 UNEDOL</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Sección de Talentos - Agregar después de la sección .stage -->
     <section class="talentos-section" id="talentos">
-        <div class="talentos-header">
-            <h2 class="talentos-title">Nuestros Talentos</h2>
-            <p class="talentos-subtitle">Descubre las habilidades artísticas que cultivamos</p>
-        </div>
+      <div class="talentos-header">
+        <h2 class="talentos-title">Nuestros Talentos</h2>
+        <p class="talentos-subtitle">
+          Descubre las habilidades artísticas que cultivamos
+        </p>
+      </div>
 
-        <div class="carrusel-container">
-            <button class="carrusel-btn btn-prev" id="btnPrev">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 18 9 12 15 6"></polyline>
+      <div class="carrusel-container">
+        <button class="carrusel-btn btn-prev" id="btnPrev">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="carrusel-wrapper">
+          <div class="carrusel-track" id="carruselTrack">
+            <!-- Tarjeta 1: Artes Plásticas -->
+            <div class="talento-card">
+              <div class="card-icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
                 </svg>
-            </button>
-
-            <div class="carrusel-wrapper">
-                <div class="carrusel-track" id="carruselTrack">
-                    
-                    <!-- Tarjeta 1: Artes Plásticas -->
-                    <div class="talento-card">
-                        <div class="card-icon">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                            </svg>
-                        </div>
-                        <h3 class="card-title">Artes Plásticas</h3>
-                        <p class="card-description">
-                            Expresión visual a través de pintura, escultura y diversas técnicas artísticas que despiertan la creatividad.
-                        </p>
-                        <div class="card-shine"></div>
-                    </div>
-
-                    <!-- Tarjeta 2: Canto -->
-                    <div class="talento-card">
-                        <div class="card-icon">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M9 18V5l12-2v13"/>
-                                <circle cx="6" cy="18" r="3"/>
-                                <circle cx="18" cy="16" r="3"/>
-                            </svg>
-                        </div>
-                        <h3 class="card-title">Canto</h3>
-                        <p class="card-description">
-                            Desarrollo de la voz y técnicas vocales para interpretar melodías que emocionan y transmiten sentimientos.
-                        </p>
-                        <div class="card-shine"></div>
-                    </div>
-
-                    <!-- Tarjeta 3: Baile -->
-                    <div class="talento-card">
-                        <div class="card-icon">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 2c-1.5 0-2.5 1.5-2.5 3.5S10.5 9 12 9s2.5-1.5 2.5-3.5S13.5 2 12 2z"/>
-                                <path d="M8 9c-2 0-3 2-3 4s1 4 3 4 3-2 3-4-1-4-3-4zm8 0c2 0 3 2 3 4s-1 4-3 4-3-2-3-4 1-4 3-4z"/>
-                                <path d="M12 9v13"/>
-                            </svg>
-                        </div>
-                        <h3 class="card-title">Baile</h3>
-                        <p class="card-description">
-                            Movimiento corporal coordinado que combina ritmo, expresión y pasión en diferentes estilos de danza.
-                        </p>
-                        <div class="card-shine"></div>
-                    </div>
-
-                    <!-- Tarjeta 4: Deportes -->
-                    <div class="talento-card">
-                        <div class="card-icon">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 2a10 10 0 0 0 0 20"/>
-                                <path d="M2 12h20"/>
-                                <path d="M12 2c2.5 2.5 4 6.5 4 10s-1.5 7.5-4 10"/>
-                                <path d="M12 2c-2.5 2.5-4 6.5-4 10s1.5 7.5 4 10"/>
-                            </svg>
-                        </div>
-                        <h3 class="card-title">Deportes</h3>
-                        <p class="card-description">
-                            Actividad física que fortalece el cuerpo, desarrolla disciplina y fomenta el trabajo en equipo.
-                        </p>
-                        <div class="card-shine"></div>
-                    </div>
-
-                    <!-- Tarjeta 5: Teatro -->
-                    <div class="talento-card">
-                        <div class="card-icon">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M2 12c0 3 1 5 3 7 2 2 4 3 7 3s5-1 7-3c2-2 3-4 3-7"/>
-                                <path d="M9 9c0-1.5-1-3-2.5-3S4 7.5 4 9"/>
-                                <path d="M20 9c0-1.5-1-3-2.5-3S15 7.5 15 9"/>
-                                <path d="M9 9v2m6-2v2"/>
-                            </svg>
-                        </div>
-                        <h3 class="card-title">Teatro</h3>
-                        <p class="card-description">
-                            Arte escénico donde la interpretación, expresión corporal y emocional dan vida a historias cautivadoras.
-                        </p>
-                        <div class="card-shine"></div>
-                    </div>
-
-                    <!-- Tarjeta 6: Literatura -->
-                    <div class="talento-card">
-                        <div class="card-icon">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                                <path d="M8 7h8M8 11h8M8 15h6"/>
-                            </svg>
-                        </div>
-                        <h3 class="card-title">Letras</h3>
-                        <p class="card-description">
-                            Creación y apreciación de textos escritos que narran historias, poemas y obras que enriquecen el alma.
-                        </p>
-                        <div class="card-shine"></div>
-                    </div>
-
-                </div>
+              </div>
+              <h3 class="card-title">Artes Plásticas</h3>
+              <p class="card-description">
+                Expresión visual a través de pintura, escultura y diversas
+                técnicas artísticas que despiertan la creatividad.
+              </p>
+              <div class="card-shine"></div>
             </div>
 
-            <button class="carrusel-btn btn-next" id="btnNext">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
+            <!-- Tarjeta 2: Canto -->
+            <div class="talento-card">
+              <div class="card-icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
                 </svg>
-            </button>
+              </div>
+              <h3 class="card-title">Canto</h3>
+              <p class="card-description">
+                Desarrollo de la voz y técnicas vocales para interpretar
+                melodías que emocionan y transmiten sentimientos.
+              </p>
+              <div class="card-shine"></div>
+            </div>
+
+            <!-- Tarjeta 3: Baile -->
+            <div class="talento-card">
+              <div class="card-icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    d="M12 2c-1.5 0-2.5 1.5-2.5 3.5S10.5 9 12 9s2.5-1.5 2.5-3.5S13.5 2 12 2z"
+                  />
+                  <path
+                    d="M8 9c-2 0-3 2-3 4s1 4 3 4 3-2 3-4-1-4-3-4zm8 0c2 0 3 2 3 4s-1 4-3 4-3-2-3-4 1-4 3-4z"
+                  />
+                  <path d="M12 9v13" />
+                </svg>
+              </div>
+              <h3 class="card-title">Baile</h3>
+              <p class="card-description">
+                Movimiento corporal coordinado que combina ritmo, expresión y
+                pasión en diferentes estilos de danza.
+              </p>
+              <div class="card-shine"></div>
+            </div>
+
+            <!-- Tarjeta 4: Deportes -->
+            <div class="talento-card">
+              <div class="card-icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a10 10 0 0 0 0 20" />
+                  <path d="M2 12h20" />
+                  <path d="M12 2c2.5 2.5 4 6.5 4 10s-1.5 7.5-4 10" />
+                  <path d="M12 2c-2.5 2.5-4 6.5-4 10s1.5 7.5 4 10" />
+                </svg>
+              </div>
+              <h3 class="card-title">Deportes</h3>
+              <p class="card-description">
+                Actividad física que fortalece el cuerpo, desarrolla disciplina
+                y fomenta el trabajo en equipo.
+              </p>
+              <div class="card-shine"></div>
+            </div>
+
+            <!-- Tarjeta 5: Teatro -->
+            <div class="talento-card">
+              <div class="card-icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M2 12c0 3 1 5 3 7 2 2 4 3 7 3s5-1 7-3c2-2 3-4 3-7" />
+                  <path d="M9 9c0-1.5-1-3-2.5-3S4 7.5 4 9" />
+                  <path d="M20 9c0-1.5-1-3-2.5-3S15 7.5 15 9" />
+                  <path d="M9 9v2m6-2v2" />
+                </svg>
+              </div>
+              <h3 class="card-title">Teatro</h3>
+              <p class="card-description">
+                Arte escénico donde la interpretación, expresión corporal y
+                emocional dan vida a historias cautivadoras.
+              </p>
+              <div class="card-shine"></div>
+            </div>
+
+            <!-- Tarjeta 6: Literatura -->
+            <div class="talento-card">
+              <div class="card-icon">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path
+                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  />
+                  <path d="M8 7h8M8 11h8M8 15h6" />
+                </svg>
+              </div>
+              <h3 class="card-title">Letras</h3>
+              <p class="card-description">
+                Creación y apreciación de textos escritos que narran historias,
+                poemas y obras que enriquecen el alma.
+              </p>
+              <div class="card-shine"></div>
+            </div>
+          </div>
         </div>
 
-        <div class="carrusel-dots" id="carruselDots"></div>
+        <button class="carrusel-btn btn-next" id="btnNext">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="carrusel-dots" id="carruselDots"></div>
     </section>
     <script src="Scripts/carrusel.js"></script>
-    
+
     <section class="mision-vision-section">
-        <h2 class="section-title">Misión y Visión</h2>
-        
-        <div class="cards-container">
-            <!-- Card Misión -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86-1-7-5.35-7-10V8.5l7-3.5 7 3.5V10c0 4.65-3.14 9-7 10zm-1-8h2v2h-2v-2zm0-6h2v5h-2V6z"/>
-                    </svg>
-                </div>
-                <h3 class="card-title">Misión</h3>
-                <p class="card-content">
-                    Formar estudiantes íntegros con excelencia académica y valores sólidos, comprometidos con el desarrollo de su comunidad. Brindamos una educación de calidad que potencia las habilidades intelectuales, emocionales y sociales de nuestros estudiantes, preparándolos para enfrentar los desafíos del mundo actual con responsabilidad, creatividad e innovación constante.
-                </p>
-            </div>
+      <h2 class="section-title">Misión y Visión</h2>
 
-            <!-- Card Visión -->
-            <div class="card">
-                <div class="card-icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                    </svg>
-                </div>
-                <h3 class="card-title">Visión</h3>
-                <p class="card-content">
-                    Ser reconocidos como una institución educativa líder en excelencia académica y formación integral, referente en innovación pedagógica y desarrollo humano. Aspiramos a formar ciudadanos competentes, éticos y comprometidos que transformen positivamente su entorno, contribuyendo al progreso social y al desarrollo sostenible de nuestra nación y del mundo entero.
-                </p>
-            </div>
+      <div class="cards-container">
+        <!-- Card Misión -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86-1-7-5.35-7-10V8.5l7-3.5 7 3.5V10c0 4.65-3.14 9-7 10zm-1-8h2v2h-2v-2zm0-6h2v5h-2V6z"
+              />
+            </svg>
+          </div>
+          <h3 class="card-title">Misión</h3>
+          <p class="card-content">
+            Formar estudiantes íntegros con excelencia académica y valores
+            sólidos, comprometidos con el desarrollo de su comunidad. Brindamos
+            una educación de calidad que potencia las habilidades intelectuales,
+            emocionales y sociales de nuestros estudiantes, preparándolos para
+            enfrentar los desafíos del mundo actual con responsabilidad,
+            creatividad e innovación constante.
+          </p>
         </div>
+
+        <!-- Card Visión -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+              />
+            </svg>
+          </div>
+          <h3 class="card-title">Visión</h3>
+          <p class="card-content">
+            Ser reconocidos como una institución educativa líder en excelencia
+            académica y formación integral, referente en innovación pedagógica y
+            desarrollo humano. Aspiramos a formar ciudadanos competentes, éticos
+            y comprometidos que transformen positivamente su entorno,
+            contribuyendo al progreso social y al desarrollo sostenible de
+            nuestra nación y del mundo entero.
+          </p>
+        </div>
+      </div>
     </section>
-    
+
     <section class="destacados-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Estudiantes Destacados</h2>
-                <p class="section-subtitle">Celebrando la excelencia, el esfuerzo y el talento de nuestros estudiantes</p>
-            </div>
-
-            <div class="reconocimiento-intro">
-                <p>En nuestra institución, reconocemos y valoramos el esfuerzo, dedicación y talento excepcional de nuestros estudiantes que se destacan en diferentes áreas académicas, deportivas, culturales y de liderazgo.</p>
-                <p class="destacados-intro">✨ Estos son algunos de nuestros estudiantes que han brillado con luz propia ✨</p>
-            </div>
-
-            <div class="collage-container">
-                <!-- Ejemplo con imagen -->
-                <div class="collage-item">
-                    <img src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?w=500&h=500&fit=crop" alt="Estudiante destacado">
-                    <div class="collage-overlay">
-                        <div class="overlay-nombre">María González</div>
-                        <div class="overlay-detalle">Excelencia Académica</div>
-                    </div>
-                </div>
-
-                <!-- Más ejemplos de placeholders -->
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-
-                <div class="collage-item placeholder-collage">
-                    <div class="placeholder-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                    </div>
-                    <div class="placeholder-text">Agregar foto</div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Estudiantes Destacados</h2>
+          <p class="section-subtitle">
+            Celebrando la excelencia, el esfuerzo y el talento de nuestros
+            estudiantes
+          </p>
         </div>
-    </section>
 
-</body>
+        <div class="reconocimiento-intro">
+          <p>
+            En nuestra institución, reconocemos y valoramos el esfuerzo,
+            dedicación y talento excepcional de nuestros estudiantes que se
+            destacan en diferentes áreas académicas, deportivas, culturales y de
+            liderazgo.
+          </p>
+          <p class="destacados-intro">
+            ✨ Estos son algunos de nuestros estudiantes que han brillado con
+            luz propia ✨
+          </p>
+        </div>
+
+        <div class="collage-container">
+          <!-- Ejemplo con imagen -->
+          <div class="collage-item">
+            <img
+              src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?w=500&h=500&fit=crop"
+              alt="Estudiante destacado"
+            />
+            <div class="collage-overlay">
+              <div class="overlay-nombre">María González</div>
+              <div class="overlay-detalle">Excelencia Académica</div>
+            </div>
+          </div>
+
+          <!-- Más ejemplos de placeholders -->
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+
+          <div class="collage-item placeholder-collage">
+            <div class="placeholder-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                />
+              </svg>
+            </div>
+            <div class="placeholder-text">Agregar foto</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

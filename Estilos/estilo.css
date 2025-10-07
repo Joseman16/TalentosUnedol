@@ -1204,196 +1204,237 @@ body {
 
 
 
-/* ********************************estudiante-destacado ******************************/
-
-.destacado-section {
+/******************* DESTACADOS DE LA INSTITUCIÓN***********************/
+.destacados-section {
     width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 60px 20px;
-    background-color: #0a1628;
-}
-
-.section-title {
-    text-align: center;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: #BAA634;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 10px rgba(186, 166, 52, 0.5);
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-.section-subtitle {
-    text-align: center;
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    color: #F5F4F0;
-    margin-bottom: 50px;
-    opacity: 0.9;
-}
-
-.estudiante-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(175, 166, 166, 0.3);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.estudiante-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
-}
-
-.estudiante-foto {
+    min-height: 100vh;
+    padding: 80px 20px;
+    background-color: #0a1628    ; 
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #1a5490 0%, #0e3e75 100%);
 }
 
-.estudiante-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.estudiante-foto::before {
+.destacados-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../img/Saray\ Pone\ \ \(2\).png') center/cover;
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
     z-index: 1;
 }
 
-.estudiante-foto:hover::before {
-    opacity: 1;
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #BAA634;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 20px rgba(186, 166, 52, 0.5);
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #BAA634, transparent);
+    margin: 20px auto 0;
+}
+
+.section-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: #F5F4F0;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 30px auto 0;
+}
+
+.reconocimiento-intro {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid rgba(186, 166, 52, 0.2);
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.reconocimiento-intro p {
+    color: #F5F4F0;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.reconocimiento-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.destacados-intro {
+    color: #BAA634;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    margin-top: 25px;
+}
+
+.collage-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.collage-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #1a5490 0%, #0e3e75 100%);
+}
+
+.collage-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(186, 166, 52, 0.4);
+    z-index: 10;
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.collage-item:hover img {
     transform: scale(1.1);
 }
 
-.estudiante-foto:hover img {
-    transform: scale(1.1);
-}
-
-.foto-overlay {
+.collage-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    padding: 30px;
-    color: #BAA634;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    z-index: 2;
-}
-
-.estudiante-info {
-    padding: 50px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #ffffff;
-}
-
-.estudiante-nombre {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    color: #1a5490;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.estudiante-grado {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: #4a7ba7;
-    margin-bottom: 30px;
-    font-style: italic;
-}
-
-.logros-title {
-    font-size: 1.3rem;
-    color: #BAA634;
-    margin-bottom: 15px;
-    font-weight: bold;
-    border-bottom: 2px solid #BAA634;
-    padding-bottom: 10px;
-}
-
-.logros-list {
-    list-style: none;
-    padding: 0;
-}
-
-.logros-list li {
-    padding: 12px 0 12px 30px;
-    position: relative;
-    color: #333;
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-.logros-list li::before {
-    content: '★';
-    position: absolute;
-    left: 0;
-    color: #BAA634;
-    font-size: 1.3rem;
-}
-
-.cita-estudiante {
-    margin-top: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     padding: 20px;
-    background: linear-gradient(135deg, rgba(186, 166, 52, 0.1), rgba(26, 84, 144, 0.1));
-    border-left: 4px solid #BAA634;
-    border-radius: 8px;
-    font-style: italic;
-    color: #333;
-    font-size: 1.05rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
 
-.cita-estudiante::before {
-    content: '"';
-    font-size: 3rem;
+.collage-item:hover .collage-overlay {
+    transform: translateY(0);
+}
+
+.overlay-nombre {
     color: #BAA634;
-    line-height: 0;
-    margin-right: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-@media (max-width: 968px) {
-    .estudiante-card {
-        grid-template-columns: 1fr;
+.overlay-detalle {
+    color: #F5F4F0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.placeholder-collage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px dashed rgba(186, 166, 52, 0.3);
+}
+
+.placeholder-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.placeholder-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: #BAA634;
+    opacity: 0.5;
+}
+
+.placeholder-text {
+    color: #BAA634;
+    font-size: 0.95rem;
+    opacity: 0.7;
+    text-align: center;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .destacados-section {
+        padding: 60px 15px;
     }
 
-    .estudiante-foto {
-        min-height: 400px;
+    .reconocimiento-intro {
+        padding: 30px 25px;
     }
 
-    .estudiante-info {
-        padding: 40px 30px;
+    .collage-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .estudiante-foto {
-        min-height: 300px;
+    .destacados-section {
+        padding: 50px 15px;
     }
 
-    .estudiante-info {
-        padding: 30px 20px;
+    .reconocimiento-intro {
+        padding: 25px 20px;
     }
 
-    .logros-list li {
-        font-size: 0.95rem;
+    .collage-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
 }

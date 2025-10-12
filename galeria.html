@@ -1,184 +1,185 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria</title>
-    <link rel="stylesheet" href="Estilos/estilo.css" />
+    <title>Galería 3D Parallax</title>
     <link rel="stylesheet" href="Estilos/galeria.css">
 </head>
 <body>
-    <!-- Tu header existente -->
+    <!-- HEADER CON BURBUJAS -->
     <section class="header">
-      <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
-
-      <div class="logo-text">
-        <img
-          height="50px"
-          width="100px"
-          src="img/logo.jpeg"
-          alt="Logo UNEDOL"
-        />
-      </div>
-      <nav class="nav">
-        <a href="index.html">Inicio</a>
-        <a href="galeria.html">Galería</a>
-        <div class="submenu">
-          <a href="#talentos">Talentos ▾</a>
-          <ul class="submenu-list">
-            <li><a href="talentoMusica.html">Música</a></li>
-            <li><a href="#deporte">Deporte</a></li>
-            <li><a href="#arte">Arte</a></li>
-            <li><a href="#tecnologia">Tecnología</a></li>
-          </ul>
+        <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
+        <div class="logo-text">
+            <img height="50px" width="100px" src="img/logo.jpeg" alt="Logo UNEDOL" />
         </div>
-        <a href="#contacto">Contacto</a>
-      </nav>
+        <nav class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="galeria.html">Galería</a>
+            <div class="submenu">
+                <a href="#talentos">Talentos ▾</a>
+                <ul class="submenu-list">
+                    <li><a href="talentoMusica.html">Música</a></li>
+                    <li><a href="#deporte">Deporte</a></li>
+                    <li><a href="#arte">Arte</a></li>
+                    <li><a href="#tecnologia">Tecnología</a></li>
+                </ul>
+            </div>
+            <a href="#contacto">Contacto</a>
+        </nav>
     </section>
+
+    <!-- GALERÍA 3D PARALLAX -->
+    <div class="gallery-wrapper">
+        <!-- Encabezado de la Galería -->
+        <div class="gallery-cabezera">
+            <h1>✨ Galería Parallax 3D ✨</h1>
+            <p>Experimenta la profundidad tridimensional</p>
+            <div class="scroll-info">
+                🖱️ Desplázate y mueve el mouse para explorar
+            </div>
+        </div>
+
+        <!-- Controles de Capas (Lateral Izquierdo) -->
+        <div class="layer-controls">
+            <h3>🎛️ Control de Capas</h3>
+            <div class="layer-btn active" data-layer="1">
+                <span class="layer-btn-label">Capa 1 al Frente</span>
+                <span class="layer-btn-depth">Front</span>
+            </div>
+            <div class="layer-btn" data-layer="2">
+                <span class="layer-btn-label">Capa 2 al Frente</span>
+                <span class="layer-btn-depth">Front</span>
+            </div>
+            <div class="layer-btn" data-layer="3">
+                <span class="layer-btn-label">Capa 3 al Frente</span>
+                <span class="layer-btn-depth">Front</span>
+            </div>
+            <button class="reset-btn" id="resetBtn">↺ Resetear Posición</button>
+        </div>
+
+        <!-- Indicador de Progreso (Lateral Derecho) -->
+        <div class="progress-indicator">
+            <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+        </div>
+
+        <!-- Contenedor de la Escena 3D -->
+        <div class="scene-container">
+            <div class="scene">
+                <div class="gallery-3d" id="gallery3d">
+                    
+                    <!-- CAPA 1 - FRONTAL -->
+                    <div class="layer layer-1">
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 1</div>
+                            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=600&fit=crop" alt="Cascada">
+                            <div class="item-info">
+                                <h3>Cascada Majestuosa</h3>
+                                <p>Capa frontal • 300px</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 1</div>
+                            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop" alt="Valle">
+                            <div class="item-info">
+                                <h3>Valle Infinito</h3>
+                                <p>Horizonte lejano</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 1</div>
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" alt="Sendero">
+                            <div class="item-info">
+                                <h3>Sendero Secreto</h3>
+                                <p>Camino de aventura</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAPA 2 - MEDIA -->
+                    <div class="layer layer-2">
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 2</div>
+                            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop" alt="Lago">
+                            <div class="item-info">
+                                <h3>Lago Sereno</h3>
+                                <p>Capa media • 0px</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 2</div>
+                            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop" alt="Desierto">
+                            <div class="item-info">
+                                <h3>Desierto Dorado</h3>
+                                <p>Dunas infinitas</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 2</div>
+                            <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&h=600&fit=crop" alt="Aurora">
+                            <div class="item-info">
+                                <h3>Aurora Boreal</h3>
+                                <p>Magia en el cielo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAPA 3 - TRASERA -->
+                    <div class="layer layer-3">
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 3</div>
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Montañas">
+                            <div class="item-info">
+                                <h3>Montañas Épicas</h3>
+                                <p>Capa profunda • -300px</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 3</div>
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Bosque">
+                            <div class="item-info">
+                                <h3>Bosque Místico</h3>
+                                <p>Naturaleza salvaje</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 3</div>
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Playa">
+                            <div class="item-info">
+                                <h3>Playa Paradisíaca</h3>
+                                <p>Arena y mar cristalino</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles Inferiores -->
+        <div class="controls">
+            <p>Controles Interactivos</p>
+            <div class="controls-icons">
+                <div class="control-item">
+                    <div class="icon">🖱️</div>
+                    <span class="control-label">Mouse</span>
+                </div>
+                <div class="control-item">
+                    <div class="icon">⬇️</div>
+                    <span class="control-label">Scroll</span>
+                </div>
+                <div class="control-item">
+                    <div class="icon">👆</div>
+                    <span class="control-label">Hover</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="Scripts/burbuja.js"></script>
-
-    <!-- INICIO GALERÍA 3D -->
-    <div class="gallery-header">
-        <h1>✨ Galería Parallax 3D ✨</h1>
-        <p>Experimenta la profundidad tridimensional</p>
-        <div class="scroll-info">
-            🖱️ Desplázate y mueve el mouse para explorar
-        </div>
-    </div>
-
-    <div class="layer-controls">
-        <h3>🎛️ Control de Capas</h3>
-        <div class="layer-btn active" data-layer="1">
-            <span class="layer-btn-label">Capa 1 al Frente</span>
-            <span class="layer-btn-depth">Front</span>
-        </div>
-        <div class="layer-btn" data-layer="2">
-            <span class="layer-btn-label">Capa 2 al Frente</span>
-            <span class="layer-btn-depth">Front</span>
-        </div>
-        <div class="layer-btn" data-layer="3">
-            <span class="layer-btn-label">Capa 3 al Frente</span>
-            <span class="layer-btn-depth">Front</span>
-        </div>
-        <button class="reset-btn" onclick="resetLayers()">↺ Resetear Posición</button>
-    </div>
-
-    <div class="progress-indicator">
-        <div class="progress-dot active"></div>
-        <div class="progress-dot"></div>
-        <div class="progress-dot"></div>
-    </div>
-
-    <div class="scene-container">
-        <div class="scene">
-            <div class="gallery-3d" id="gallery3d">
-                <!-- Capa 1 - Ahora al frente por defecto -->
-                <div class="layer layer-1">
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 1</div>
-                        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=600&fit=crop" alt="Cascada">
-                        <div class="item-info">
-                            <h3>Cascada Majestuosa</h3>
-                            <p>Capa frontal • 300px</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 1</div>
-                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop" alt="Valle">
-                        <div class="item-info">
-                            <h3>Valle Infinito</h3>
-                            <p>Horizonte lejano</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 1</div>
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" alt="Sendero">
-                        <div class="item-info">
-                            <h3>Sendero Secreto</h3>
-                            <p>Camino de aventura</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Capa 2 - Media -->
-                <div class="layer layer-2">
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 2</div>
-                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop" alt="Lago">
-                        <div class="item-info">
-                            <h3>Lago Sereno</h3>
-                            <p>Capa media • 0px</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 2</div>
-                        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop" alt="Desierto">
-                        <div class="item-info">
-                            <h3>Desierto Dorado</h3>
-                            <p>Dunas infinitas</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 2</div>
-                        <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=800&h=600&fit=crop" alt="Aurora">
-                        <div class="item-info">
-                            <h3>Aurora Boreal</h3>
-                            <p>Magia en el cielo</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Capa 3 - Trasera -->
-                <div class="layer layer-3">
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 3</div>
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Montañas">
-                        <div class="item-info">
-                            <h3>Montañas Épicas</h3>
-                            <p>Capa más profunda • -300px</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 3</div>
-                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Bosque">
-                        <div class="item-info">
-                            <h3>Bosque Místico</h3>
-                            <p>Naturaleza salvaje</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="depth-indicator">Capa 3</div>
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Playa">
-                        <div class="item-info">
-                            <h3>Playa Paradisíaca</h3>
-                            <p>Arena y mar cristalino</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="controls">
-        <p>Controles Interactivos</p>
-        <div class="controls-icons">
-            <div class="control-item">
-                <div class="icon">🖱️</div>
-                <span class="control-label">Mouse</span>
-            </div>
-            <div class="control-item">
-                <div class="icon">⬇️</div>
-                <span class="control-label">Scroll</span>
-            </div>
-            <div class="control-item">
-                <div class="icon">👆</div>
-                <span class="control-label">Hover</span>
-            </div>
-        </div>
-    </div>
-    <!-- FIN GALERÍA 3D -->
-
     <script src="Scripts/galeria.js"></script>
 </body>
 </html>

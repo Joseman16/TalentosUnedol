@@ -161,3 +161,52 @@ document.addEventListener('keydown', (e) => {
 // Inicializar
 renderPlaylist();
 loadSong(0);
+
+
+
+
+// Script para carrusel infinito de imágenes con loop continuo
+document.addEventListener('DOMContentLoaded', function() {
+    const strips = document.querySelectorAll('.image-strip');
+    
+    strips.forEach((strip, index) => {
+        const images = strip.innerHTML;
+        
+        // Duplicar imágenes varias veces para llenar toda la pantalla y más
+        strip.innerHTML = images + images + images + images;
+        
+        const allImages = strip.querySelectorAll('img');
+        const imageWidth = 300; // Ancho de cada imagen
+        const totalImages = allImages.length / 4; // Número original de imágenes
+        const totalWidth = totalImages * imageWidth;
+        
+        // Velocidades diferentes y direcciones alternadas (más lentas)
+        const speeds = [0.3, -0.25, 0.35, -0.28];
+        const speed = speeds[index];
+        
+        // Inicializar posición según la dirección
+        let position = speed > 0 ? -totalWidth : 0;
+        
+        function animate() {
+            position += speed;
+            
+            // Cuando se mueve a la derecha (speed positivo)
+            if (speed > 0) {
+                if (position >= 0) {
+                    position = -totalWidth;
+                }
+            }
+            // Cuando se mueve a la izquierda (speed negativo)  
+            else {
+                if (position <= -totalWidth) {
+                    position = 0;
+                }
+            }
+            
+            strip.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    });
+});

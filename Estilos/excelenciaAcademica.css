@@ -1,0 +1,343 @@
+/* ============================================
+   ESTILOS PARA GALERÍA JERÁRQUICA
+   Prefijo: galeria-
+   ============================================ */
+
+/* RESET Y BASE para la galería */
+.cuerpo {
+    background-color: #0e3e75 !important;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.galeria-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding-top: 80px;
+}
+
+/* ============================================
+   SECCIÓN SUPERIOR - EXCELENCIA Y LIDERAZGO
+   ============================================ */
+
+.galeria-seccion-superior {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.galeria-titulo-seccion {
+    font-size: 42px;
+    font-weight: 800;
+    color: #c9a826;
+    margin-bottom: 60px;
+    text-align: center;
+    text-shadow: 
+        0 2px 0 rgba(0, 0, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(186, 166, 52, 0.74);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.galeria-nivel-director {
+    margin-bottom: 50px;
+}
+
+.galeria-imagen-box {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(14, 62, 117, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(186, 166, 52, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(186, 166, 52, 0.2);
+}
+
+.galeria-imagen-box::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, #BAA634, #d4b850, #c9a826);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.galeria-imagen-box:hover::before {
+    opacity: 1;
+}
+
+.galeria-imagen-box:hover {
+    transform: translateY(-15px) scale(1.08);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9),
+                0 0 60px rgba(186, 166, 52, 0.6);
+    border-color: rgba(186, 166, 52, 0.8);
+}
+
+.galeria-director {
+    width: 320px;
+    height: 320px;
+}
+
+.galeria-gerente {
+    width: 240px;
+    height: 240px;
+}
+
+.galeria-equipo {
+    width: 200px;
+    height: 200px;
+}
+
+.galeria-imagen-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+.galeria-imagen-box .galeria-imagen-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+}
+
+.galeria-imagen-box:hover .galeria-imagen-hover {
+    opacity: 1;
+}
+
+.galeria-imagen-box:hover .galeria-imagen-principal {
+    opacity: 0;
+}
+
+.galeria-nombre {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(14, 62, 117, 0.95), transparent);
+    color: #F5F4F0;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 5;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Distribución en triángulo */
+.galeria-nivel-gerentes {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+/* ============================================
+   SECCIÓN INFERIOR - PABELLONES
+   ============================================ */
+
+.galeria-seccion-inferior {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 120px;
+    margin-top: 80px;
+    flex-wrap: nowrap;
+}
+
+.galeria-pabellon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.galeria-pabellon .galeria-titulo-seccion {
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
+/* ============================================
+   CUADRITOS INFERIORES
+   ============================================ */
+
+.galeria-cuadritos-inferiores {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 100px;
+    flex-wrap: wrap;
+}
+
+.galeria-cuadrito {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: rgba(14, 62, 117, 0.3);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(186, 166, 52, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(186, 166, 52, 0.2);
+}
+
+.galeria-cuadrito::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, #c9a826, #d4b850, #BAA634);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.galeria-cuadrito:hover::before {
+    opacity: 1;
+}
+
+.galeria-cuadrito:hover {
+    transform: translateY(-20px) scale(1.1) rotate(3deg);
+    box-shadow: 0 30px 90px rgba(186, 166, 52, 0.5),
+                0 0 60px rgba(186, 166, 52, 0.4);
+}
+
+.galeria-cuadrito img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+
+@keyframes galeriaFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.galeria-imagen-box, .galeria-cuadrito {
+    animation: galeriaFadeInUp 0.8s ease backwards;
+}
+
+.galeria-nivel-director .galeria-imagen-box {
+    animation-delay: 0.1s;
+}
+
+.galeria-nivel-gerentes .galeria-imagen-box:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.galeria-nivel-gerentes .galeria-imagen-box:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .galeria-seccion-inferior {
+        gap: 60px;
+        flex-wrap: wrap;
+    }
+    
+    .galeria-pabellon {
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 768px) {
+    .galeria-titulo-seccion {
+        font-size: 32px;
+    }
+
+    .galeria-pabellon .galeria-titulo-seccion {
+        font-size: 28px;
+    }
+
+    .galeria-director {
+        width: 260px;
+        height: 260px;
+    }
+
+    .galeria-gerente {
+        width: 200px;
+        height: 200px;
+    }
+
+    .galeria-equipo {
+        width: 160px;
+        height: 160px;
+    }
+
+    .galeria-cuadrito {
+        width: 200px;
+        height: 200px;
+    }
+
+    .galeria-nivel-gerentes {
+        gap: 30px;
+    }
+
+    .galeria-seccion-inferior {
+        gap: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .galeria-director {
+        width: 220px;
+        height: 220px;
+    }
+
+    .galeria-gerente {
+        width: 160px;
+        height: 160px;
+    }
+
+    .galeria-equipo {
+        width: 130px;
+        height: 130px;
+    }
+
+    .galeria-cuadrito {
+        width: 160px;
+        height: 160px;
+    }
+
+    .galeria-nivel-equipos {
+        flex-wrap: wrap;
+    }
+}

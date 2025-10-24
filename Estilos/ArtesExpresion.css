@@ -1,0 +1,368 @@
+@import url(https://fonts.bunny.net/css?family=jura:300,500);
+
+/* ===========================
+   FONDO DE LA PÁGINA
+   =========================== */
+body {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #1e3c72 50%, #2a5298 75%, #1e3c72 100%);
+    background-attachment: fixed;
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===========================
+   CONTENEDOR PRINCIPAL
+   =========================== */
+.main-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 120px 20px 60px 20px;
+    margin-top: 80px;
+}
+
+.main-container .header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 10;
+}
+
+.main-container .header h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease;
+}
+
+.main-container .header p {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    animation: fadeInUp 1s ease;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.section-wrapper {
+    margin: 150px 0;
+    padding: 40px 0;
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+    position: relative;
+    z-index: 10;
+    font-family: 'Jura', sans-serif;
+}
+
+.section-title.dance {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-title.art {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===========================
+   ANIMACIONES BASE
+   =========================== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   CONFIGURACIÓN DEL CARRUSEL 3D
+   =========================== */
+:root {
+    --carousel-duration: 30s;
+    --carousel-depth: 180px;
+    --card-width: 80px;
+    --card-height: 120px;
+}
+
+@media (width > 600px) {
+    :root {
+        --carousel-depth: 330px;
+        --card-width: 120px;
+        --card-height: 180px;
+    }
+}
+
+.carousel-container {
+    position: relative;
+    height: 600px;
+    perspective: 1000px;
+    overflow: visible;
+    margin: 80px auto;
+    z-index: 1;
+    width: 100%;
+    max-width: 800px;
+}
+
+.carousel {
+    --card-count: 9;
+    transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+/* Pausar carrusel al hacer hover */
+.carousel:has(.card:hover) .card {
+    animation-play-state: paused;
+}
+
+.carousel:has(.card:hover) .card:not(:hover) > * {
+    opacity: .25;
+}
+
+@property --reflect-distance {
+    syntax: "<length>";
+    initial-value: 5px;
+    inherits: false;
+}
+
+/* ===========================
+   TARJETAS DEL CARRUSEL
+   =========================== */
+.card {
+    --i: 1;
+    --angle: calc((360deg / var(--card-count)) * var(--i));
+    --delay: calc((-1 * var(--carousel-duration) / var(--card-count)) * var(--i));
+    --hover-duration: 300ms;
+    --hover-easing: linear(0, 0.708 15.2%, 0.927 23.6%, 1.067 33%, 1.12 41%, 1.13 50.2%, 1.019 83.2%, 1);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--card-width);
+    height: var(--card-height);
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--carousel-depth));
+    opacity: 1;
+    scale: 1;
+    display: grid;
+    place-content: end;
+    perspective: 500px;
+    pointer-events: all;
+
+    animation-name: orbit-x;
+    animation-duration: var(--carousel-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: var(--delay);
+
+    transition: var(--hover-duration) var(--hover-easing) var(--hover-duration);
+    -webkit-box-reflect: below var(--reflect-distance) linear-gradient(to top, rgba(0 0 0 / .15) 25%, transparent);
+}
+
+/* Índices de tarjetas para posicionamiento */
+.card:nth-child(1) { --i: 1; }
+.card:nth-child(2) { --i: 2; }
+.card:nth-child(3) { --i: 3; }
+.card:nth-child(4) { --i: 4; }
+.card:nth-child(5) { --i: 5; }
+.card:nth-child(6) { --i: 6; }
+.card:nth-child(7) { --i: 7; }
+.card:nth-child(8) { --i: 8; }
+.card:nth-child(9) { --i: 9; }
+.card:nth-child(10) { --i: 10; }
+
+.card:hover > img {
+    scale: 1.2;
+}
+
+.card > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale var(--hover-duration) var(--hover-easing);
+    border-radius: 8px;
+}
+
+/* ===========================
+   ESTILOS ESPECÍFICOS - BAILARINES
+   =========================== */
+.carousel-dance .card > img {
+    box-shadow: 0 10px 40px rgba(245, 87, 108, 0.6);
+    border: 2px solid rgba(245, 87, 108, 0.3);
+}
+
+.carousel-dance .card:hover > img {
+    box-shadow: 0 15px 60px rgba(245, 87, 108, 0.9);
+}
+
+.carousel-dance .card::after {
+    background: rgba(245, 87, 108, 0.3);
+    border-color: rgba(245, 87, 108, 0.7);
+}
+
+/* ===========================
+   ESTILOS ESPECÍFICOS - ARTISTAS
+   =========================== */
+.carousel-art .card > img {
+    box-shadow: 0 10px 40px rgba(67, 233, 123, 0.6);
+    border: 2px solid rgba(67, 233, 123, 0.3);
+}
+
+.carousel-art .card:hover > img {
+    box-shadow: 0 15px 60px rgba(67, 233, 123, 0.9);
+}
+
+.carousel-art .card::after {
+    background: rgba(67, 233, 123, 0.3);
+    border-color: rgba(67, 233, 123, 0.7);
+}
+
+/* ===========================
+   ETIQUETAS CON NOMBRES
+   =========================== */
+.card::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: .7rem;
+    text-wrap: nowrap;
+    opacity: 0;
+    translate: 0 50px;
+    padding: .25em .75em;
+    background: rgba(255 255 255 / .15);
+    border: 1px solid rgba(255 255 255 / .5);
+    border-radius: 6px;
+    backdrop-filter: blur(10px);
+    font-family: 'Jura', sans-serif;
+
+    animation-name: orbit-x-labels;
+    animation-duration: var(--carousel-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: var(--delay);
+}
+
+/* ===========================
+   ANIMACIONES DEL CARRUSEL
+   =========================== */
+@keyframes orbit-x {
+    0% {
+        transform: translate(-50%, -50%) rotateY(0deg) translateZ(var(--carousel-depth));
+        opacity: 1;
+        scale: 1;
+    }
+    25%, 75% {
+        opacity: 0.75;
+        scale: 0.85;
+    }
+    50% {
+        opacity: 0.4;
+        scale: 0.75;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateY(360deg) translateZ(var(--carousel-depth));
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes orbit-x-labels {
+    25%, 75% {
+        opacity: 0;
+        translate: 0 20px;
+    }
+    100%, 0% {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+@media (max-width: 768px) {
+    .main-container {
+        padding-top: 100px;
+        margin-top: 60px;
+    }
+
+    .main-container .header h1 {
+        font-size: 3rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .carousel-container {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding-top: 80px;
+        margin-top: 40px;
+    }
+
+    .main-container .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .main-container .header p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .carousel-container {
+        height: 350px;
+    }
+}

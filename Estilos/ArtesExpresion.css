@@ -1,598 +1,551 @@
-@import url(https://fonts.bunny.net/css?family=jura:300,500);
+/* ============================================
+   ARTESEXPRESION.CSS - Estilos para carrusel vertical
+   ============================================ */
 
-/* ===========================
-   VARIABLES GLOBALES
-   =========================== */
-:root {
-    --carousel-duration: 35s;
-    --card-float-duration: 4s;
-    --card-width: 80px;
-    --card-height: 120px;
-    --primary-gradient: linear-gradient(135deg, #0a1828 0%, #1e3c72 25%, #132a4a 50%, #2a5298 75%, #0f2744 100%);
-    --dance-gradient: linear-gradient(135deg, #f093fb, #f5576c, #c471ed);
-    --art-gradient: linear-gradient(135deg, #43e97b, #38f9d7, #2dd4bf);
-    --title-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    --blue-dark-1: #0a1828;
-    --blue-dark-2: #132a4a;
-    --blue-dark-3: #0f2744;
-    --blue-medium: #1e3c72;
-}
-
-@media (width > 600px) {
-    :root {
-        --card-width: 120px;
-        --card-height: 180px;
-    }
-}
-
-/* ===========================
-   RESET Y ESTILOS BASE
-   =========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body - Compatible con estilo.css del header */
 body {
-    background: var(--primary-gradient);
-    background-attachment: fixed;
-    background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
-    min-height: 100vh;
-    font-family: 'Jura', sans-serif;
     overflow-x: hidden;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(42, 82, 152, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(15, 39, 68, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(19, 42, 74, 0.2) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    25% { background-position: 100% 50%; }
-    50% { background-position: 50% 100%; }
-    75% { background-position: 50% 0%; }
-}
-
-/* ===========================
-   CONTENEDOR PRINCIPAL
-   =========================== */
-.main-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 140px 40px 80px;
-    position: relative;
-    z-index: 1;
-}
-
-/* ===========================
-   HEADER DE CONTENIDO
-   =========================== */
-.content-header {
-    text-align: center;
-    margin-bottom: 100px;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, rgba(10, 24, 40, 0.4), rgba(19, 42, 74, 0.3));
-    backdrop-filter: blur(15px);
-    border-radius: 30px;
-    border: 2px solid rgba(66, 126, 234, 0.2);
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(42, 82, 152, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    animation: fadeInScale 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.content-header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-    animation: rotate 20s linear infinite;
-}
-
-.content-header h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    background: var(--title-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    position: relative;
-    z-index: 1;
-    text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
-}
-
-.content-header p {
-    font-size: 1.3rem;
-    color: #e0e0e0;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.8;
-    font-weight: 300;
-    position: relative;
-    z-index: 1;
-}
-
-/* ===========================
-   SECCIONES DE TALENTOS
-   =========================== */
-.section-wrapper {
-    margin: 120px 0;
-    padding: 60px 0;
-    position: relative;
-}
-
-.section-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        var(--blue-dark-2), 
-        rgba(42, 82, 152, 0.5), 
-        var(--blue-dark-2), 
-        transparent);
-    box-shadow: 0 0 20px rgba(42, 82, 152, 0.5);
-}
-
-.section-title {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 80px;
-    font-weight: 700;
-    position: relative;
-    z-index: 10;
+    overflow-y: auto;
+    background: #0a1628;
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    animation: slideInBounce 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    flex-direction: column;
 }
 
-.section-title.dance {
-    background: var(--dance-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(245, 87, 108, 0.4));
-}
+/* ============================================
+   CARRUSEL VERTICAL
+   ============================================ */
 
-.section-title.art {
-    background: var(--art-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 20px rgba(67, 233, 123, 0.4));
-}
-
-.section-description {
-    text-align: center;
-    color: #b8c5d6;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: -60px auto 60px;
-    line-height: 1.6;
-    font-weight: 300;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.3s forwards;
-}
-
-/* ===========================
-   ANIMACIONES BASE
-   =========================== */
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-@keyframes slideInBounce {
-    0% {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    60% {
-        opacity: 1;
-        transform: translateX(15px);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* ===========================
-   CARRUSEL CON ANIMACIÓN FLOTANTE
-   =========================== */
-.carousel-container {
-    position: relative;
-    height: 600px;
-    overflow: visible;
-    margin: 80px auto;
+.main-container {
+    display: flex;
     width: 100%;
     max-width: 1200px;
-    display: flex;
+    min-height: 100vh;
+    gap: 60px;
     align-items: center;
     justify-content: center;
+    margin: 80px auto 0;
+    padding: 40px 20px;
 }
 
-.carousel {
-    --card-count: 9;
-    position: relative;
+.carousel-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding-left: 40px;
+}
+
+.carousel-container {
     width: 100%;
+    max-width: 500px;
+    height: 70vh;
+    position: relative;
+    perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-container .nav-arrow {
+    display: none;
+}
+
+.carousel-track {
+    width: 450px;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card.center {
+    z-index: 10;
+    transform: scale(1.1) translateZ(0);
+}
+
+.card.center img {
+    filter: none;
+}
+
+.card.up-2 {
+    z-index: 1;
+    transform: translateY(-300px) scale(0.8) translateZ(-300px);
+    opacity: 0.7;
+}
+
+.card.up-2 img {
+    filter: grayscale(100%);
+}
+
+.card.up-1 {
+    z-index: 5;
+    transform: translateY(-150px) scale(0.9) translateZ(-100px);
+    opacity: 0.9;
+}
+
+.card.up-1 img {
+    filter: grayscale(100%);
+}
+
+.card.down-1 {
+    z-index: 5;
+    transform: translateY(150px) scale(0.9) translateZ(-100px);
+    opacity: 0.9;
+}
+
+.card.down-1 img {
+    filter: grayscale(100%);
+}
+
+.card.down-2 {
+    z-index: 1;
+    transform: translateY(300px) scale(0.8) translateZ(-300px);
+    opacity: 0.7;
+}
+
+.card.down-2 img {
+    filter: grayscale(100%);
+}
+
+.card.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Información del miembro/obra */
+.member-info {
+    text-align: center;
+    margin-top: 20px;
+    transition: all 0.5s ease-out;
+    min-height: 100px;
+}
+
+.member-name {
+    color: #BAA634;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 2px 10px rgba(186, 166, 52, 0.3);
+    transition: opacity 0.3s ease;
+}
+
+.member-name::before,
+.member-name::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 80px;
+    height: 2px;
+    background: #BAA634;
+    transition: all 0.3s ease;
+}
+
+.member-name::before {
+    left: -100px;
+}
+
+.member-name::after {
+    right: -100px;
+}
+
+.member-role {
+    color: #F5F4F0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 5px 0;
+    margin-top: -10px;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+/* Puntos de navegación */
+.dots {
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
-    padding: 40px;
+    gap: 10px;
+    margin-top: 30px;
+    max-width: 300px;
 }
 
-.carousel:has(.card:hover) .card:not(:hover) {
-    opacity: 0.4;
-    filter: blur(3px);
-    transform: scale(0.95);
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(186, 166, 52, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* ===========================
-   TARJETAS CON ANIMACIÓN FLOTANTE
-   =========================== */
-.card {
-    --i: 1;
-    --hover-duration: 500ms;
-    --hover-easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.dot.active {
+    background: #BAA634;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(186, 166, 52, 0.5);
+}
 
+/* Flechas de navegación */
+.nav-arrow {
     position: relative;
-    width: var(--card-width);
-    height: var(--card-height);
+    background: rgba(186, 166, 52, 0.1);
+    backdrop-filter: blur(10px);
+    color: #BAA634;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--hover-duration) var(--hover-easing);
-    animation: floatCard var(--card-float-duration) ease-in-out infinite;
-    animation-delay: calc(var(--i) * 0.2s);
-    opacity: 0;
-    animation-fill-mode: forwards;
+    z-index: 20;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(186, 166, 52, 0.3);
+    outline: none;
+    margin: 0;
+    padding: 0;
 }
 
-.card:nth-child(1) { --i: 1; animation-delay: 0.1s; }
-.card:nth-child(2) { --i: 2; animation-delay: 0.2s; }
-.card:nth-child(3) { --i: 3; animation-delay: 0.3s; }
-.card:nth-child(4) { --i: 4; animation-delay: 0.4s; }
-.card:nth-child(5) { --i: 5; animation-delay: 0.5s; }
-.card:nth-child(6) { --i: 6; animation-delay: 0.6s; }
-.card:nth-child(7) { --i: 7; animation-delay: 0.7s; }
-.card:nth-child(8) { --i: 8; animation-delay: 0.8s; }
-.card:nth-child(9) { --i: 9; animation-delay: 0.9s; }
-
-.card > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-    transition: all var(--hover-duration) var(--hover-easing);
-    filter: brightness(0.85) contrast(1.1);
+.nav-arrow:hover {
+    background: rgba(186, 166, 52, 0.2);
+    transform: scale(1.1);
+    border-color: rgba(186, 166, 52, 0.6);
+    box-shadow: 0 0 20px rgba(186, 166, 52, 0.4);
+    color: #F5F4F0;
 }
 
-.card:hover {
-    transform: translateY(-20px) scale(1.15);
-    z-index: 100;
-    animation-play-state: paused;
+.nav-arrow:active {
+    transform: scale(0.95);
 }
 
-.card:hover > img {
-    filter: brightness(1.1) contrast(1.2);
-    box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.5),
-        0 0 50px currentColor;
-}
-
-/* ===========================
-   ESTILOS - BAILARINES
-   =========================== */
-.carousel-dance .card > img {
-    box-shadow: 
-        0 15px 45px rgba(245, 87, 108, 0.6),
-        0 0 25px rgba(245, 87, 108, 0.4),
-        0 5px 15px rgba(10, 24, 40, 0.5),
-        inset 0 0 25px rgba(245, 87, 108, 0.15);
-    border: 2px solid rgba(245, 87, 108, 0.5);
-}
-
-.carousel-dance .card:hover > img {
-    box-shadow: 
-        0 30px 90px rgba(245, 87, 108, 0.9),
-        0 0 60px rgba(245, 87, 108, 0.7),
-        0 10px 30px rgba(10, 24, 40, 0.7),
-        inset 0 0 35px rgba(245, 87, 108, 0.25);
-    border-color: rgba(245, 87, 108, 0.9);
-}
-
-.carousel-dance .card::after {
-    background: linear-gradient(135deg, rgba(245, 87, 108, 0.95), rgba(240, 147, 251, 0.95));
-    border: 2px solid rgba(245, 87, 108, 0.9);
-    box-shadow: 0 10px 40px rgba(245, 87, 108, 0.6);
-}
-
-/* ===========================
-   ESTILOS - ARTISTAS
-   =========================== */
-.carousel-art .card > img {
-    box-shadow: 
-        0 15px 45px rgba(67, 233, 123, 0.6),
-        0 0 25px rgba(67, 233, 123, 0.4),
-        0 5px 15px rgba(10, 24, 40, 0.5),
-        inset 0 0 25px rgba(67, 233, 123, 0.15);
-    border: 2px solid rgba(67, 233, 123, 0.5);
-}
-
-.carousel-art .card:hover > img {
-    box-shadow: 
-        0 30px 90px rgba(67, 233, 123, 0.9),
-        0 0 60px rgba(67, 233, 123, 0.7),
-        0 10px 30px rgba(10, 24, 40, 0.7),
-        inset 0 0 35px rgba(67, 233, 123, 0.25);
-    border-color: rgba(67, 233, 123, 0.9);
-}
-
-.carousel-art .card::after {
-    background: linear-gradient(135deg, rgba(67, 233, 123, 0.95), rgba(56, 249, 215, 0.95));
-    border: 2px solid rgba(67, 233, 123, 0.9);
-    box-shadow: 0 10px 40px rgba(67, 233, 123, 0.6);
-}
-
-/* ===========================
-   ETIQUETAS CON NOMBRES
-   =========================== */
-.card::after {
-    content: attr(data-title);
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-wrap: nowrap;
-    opacity: 0;
+.nav-arrow svg {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
     pointer-events: none;
-    padding: 0.6em 1.4em;
-    border-radius: 10px;
-    backdrop-filter: blur(20px);
-    letter-spacing: 0.5px;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 1000;
 }
 
-.card:hover::after {
-    opacity: 1;
-    bottom: 115%;
+.nav-arrow:hover svg {
+    transform: scale(1.1);
 }
 
-/* ===========================
-   ANIMACIÓN DE FLOTACIÓN
-   =========================== */
-@keyframes floatCard {
-    0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.8);
-    }
-    10% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        transform: translateY(-15px) scale(1);
-    }
-    100% {
-        transform: translateY(0) scale(1);
-    }
+.nav-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
-/* ===========================
-   EFECTOS DE BRILLO AMBIENTAL
-   =========================== */
-.section-wrapper {
+/* ============================================
+   SECCIÓN DE CONTENIDO
+   ============================================ */
+
+.content-section {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 20px;
+    background: #0a1628;
     position: relative;
 }
 
-.section-wrapper::after {
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #BAA634;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 4px 20px rgba(186, 166, 52, 0.5);
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.section-title::after {
     content: '';
+    display: block;
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #BAA634, transparent);
+    margin: 20px auto 0;
+}
+
+.section-description {
+    color: #F5F4F0;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    opacity: 0.9;
+}
+
+/* ============================================
+   GALERÍA
+   ============================================ */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #1a5490 0%, #0e3e75 100%);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(186, 166, 52, 0.4);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle, rgba(42, 82, 152, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-    animation: pulse 8s ease-in-out infinite;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
 
-.carousel-dance .section-wrapper::after {
-    background: radial-gradient(circle, rgba(245, 87, 108, 0.08) 0%, transparent 70%);
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
 }
 
-.carousel-art .section-wrapper::after {
-    background: radial-gradient(circle, rgba(67, 233, 123, 0.08) 0%, transparent 70%);
+.gallery-title {
+    color: #BAA634;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translate(-50%, -50%) scale(1.1);
-    }
+.gallery-subtitle {
+    color: #F5F4F0;
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-/* ===========================
+/* ============================================
    RESPONSIVE DESIGN
-   =========================== */
-@media (max-width: 1024px) {
-    .main-container {
-        padding: 120px 30px 60px;
-    }
-
-    .content-header h1 {
-        font-size: 3.5rem;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-    }
-
-    .carousel {
-        gap: 25px;
-        padding: 30px;
-    }
-}
+   ============================================ */
 
 @media (max-width: 768px) {
     .main-container {
-        padding: 100px 20px 50px;
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        max-width: 100%;
+        margin-top: 70px;
+        padding: 20px 10px;
     }
 
-    .content-header {
-        padding: 40px 20px;
-        margin-bottom: 80px;
+    .carousel-section {
+        flex: none;
+        width: 100%;
     }
 
-    .content-header h1 {
-        font-size: 2.8rem;
-    }
-
-    .content-header p {
-        font-size: 1.1rem;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-        gap: 15px;
-    }
-
-    .section-description {
-        font-size: 1rem;
+    .controls-section {
+        flex: none;
+        width: 100%;
+        padding-left: 0;
+        gap: 20px;
     }
 
     .carousel-container {
-        height: 500px;
+        height: 60vh;
+        max-width: 350px;
     }
 
-    .carousel {
+    .carousel-container .nav-arrow {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 70px;
+        margin: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .carousel-container .nav-arrow:hover {
+        transform: translateX(-50%) scale(1.2);
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .carousel-container .nav-arrow.up {
+        top: 20px;
+        transform: translateX(-50%);
+    }
+
+    .carousel-container .nav-arrow.down {
+        bottom: 20px;
+        transform: translateX(-50%);
+    }
+
+    .carousel-container .nav-arrow.up img {
+        transform: rotate(-90deg);
+        width: 50px;
+        height: 50px;
+    }
+
+    .carousel-container .nav-arrow.down img {
+        transform: rotate(90deg);
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-controls {
+        display: none;
+    }
+
+    .card {
+        width: 320px;
+        height: 180px;
+    }
+
+    .carousel-track {
+        width: 350px;
+    }
+
+    .card.up-2 {
+        transform: translateY(-160px) scale(0.8) translateZ(-300px);
+    }
+
+    .card.up-1 {
+        transform: translateY(-80px) scale(0.9) translateZ(-100px);
+    }
+
+    .card.down-1 {
+        transform: translateY(80px) scale(0.9) translateZ(-100px);
+    }
+
+    .card.down-2 {
+        transform: translateY(160px) scale(0.8) translateZ(-300px);
+    }
+
+    .member-name {
+        font-size: 1.8rem;
+    }
+
+    .member-role {
+        font-size: 1rem;
+    }
+
+    .member-name::before,
+    .member-name::after {
+        width: 40px;
+    }
+
+    .member-name::before {
+        left: -60px;
+    }
+
+    .member-name::after {
+        right: -60px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
-        padding: 20px;
     }
 
-    .section-wrapper {
-        margin: 80px 0;
-        padding: 40px 0;
+    .dots {
+        max-width: 250px;
+        gap: 8px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .main-container {
-        padding: 80px 15px 40px;
+    .card {
+        width: 280px;
+        height: 160px;
     }
 
-    .content-header {
-        padding: 30px 15px;
-        margin-bottom: 60px;
+    .carousel-track {
+        width: 300px;
     }
 
-    .content-header h1 {
-        font-size: 2.2rem;
-        letter-spacing: 1px;
+    .member-name {
+        font-size: 1.5rem;
     }
 
-    .content-header p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        gap: 10px;
-    }
-
-    .section-description {
-        font-size: 0.95rem;
-        margin: -50px auto 50px;
-    }
-
-    .carousel-container {
-        height: 450px;
-    }
-
-    .carousel {
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .section-wrapper {
-        margin: 60px 0;
-        padding: 30px 0;
-    }
-}
-
-/* ===========================
-   ACCESIBILIDAD
-   =========================== */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    .member-role {
+        font-size: 0.9rem;
     }
 }

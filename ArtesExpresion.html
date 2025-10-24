@@ -3,139 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artes y Expresiones</title>
-    <link href="https://fonts.bunny.net/css?family=jura:300,500" rel="stylesheet">
+    <title>Artes y Expresión</title>
     <link rel="stylesheet" href="Estilos/estilo.css">
     <link rel="stylesheet" href="Estilos/ArtesExpresion.css">
 </head>
 <body>
+    <!-- Header -->
     <section class="header">
-      <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
-
-      <div class="logo-text">
-        <img
-          height="50px"
-          width="100px"
-          src="img/logo.jpeg"
-          alt="Logo UNEDOL"
-        />
-      </div>
-      <nav class="nav">
-        <a href="#inicio">Inicio</a>
-        <a href="galeria.html">Galería</a>
-        <div class="submenu">
-          <a href="#talentos">Talentos ▾</a>
-          <ul class="submenu-list">
-            <li><a href="talentoMusica.html">Música y Canto</a></li>
-            <li><a href="talentoDeporte.html">Deporte</a></li>
-            <li><a href="#arte">Arte y Expresión</a></li>
-          </ul>
+        <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
+        <div class="logo-text">
+            <img height="50px" width="100px" src="img/logo.jpeg" alt="Logo UNEDOL"/>
         </div>
-        <a href="ExcelenciaAcademica.html">Excelencia Académica</a>
-        <a href="creditos.html">Creditos</a>
-      </nav>
+        <nav class="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="galeria.html">Galería</a>
+            <div class="submenu">
+                <a href="#talentos">Talentos ▾</a>
+                <ul class="submenu-list">
+                    <li><a href="talentoMusica.html">Música y Canto</a></li>
+                    <li><a href="talentoDeporte.html">Deporte</a></li>
+                    <li><a href="ArtesExpresion.html">Arte y Expresión</a></li>
+                </ul>
+            </div>
+            <a href="ExcelenciaAcademica.html">Excelencia Académica</a>
+            <a href="creditos.html">Créditos</a>
+        </nav>
     </section>
-
     <script src="Scripts/burbuja.js"></script>
 
-    <section>
-        <div class="main-container">
-            <div class="header">
-                <h1>Artes y Expresiones</h1>
-                <p>Donde la creatividad cobra vida y las ideas se transforman en experiencias únicas</p>
-            </div>
-
-            <!-- Sección de Baile -->
-            <div class="section-wrapper">
-                <h2 class="section-title dance">💃 Los Mejores en Baile</h2>
-                
-                <div class="carousel-container">
-                    <div class="carousel carousel-dance">
-                        <div class="card" data-title="María González">
-                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&h=600&fit=crop" alt="bailarina-1">
-                        </div>
-                        
-                        <div class="card" data-title="Carlos Méndez">
-                            <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=400&h=600&fit=crop" alt="bailarin-2">
-                        </div>
-                        
-                        <div class="card" data-title="Ana Rodríguez">
-                            <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=400&h=600&fit=crop" alt="bailarina-3">
-                        </div>
-                        
-                        <div class="card" data-title="Luis Torres">
-                            <img src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=400&h=600&fit=crop" alt="bailarin-4">
-                        </div>
-                        
-                        <div class="card" data-title="Sofia Ramírez">
-                            <img src="https://images.unsplash.com/photo-1535525153412-5a42439a210d?w=400&h=600&fit=crop" alt="bailarina-5">
-                        </div>
-                        
-                        <div class="card" data-title="Diego Castro">
-                            <img src="https://images.unsplash.com/photo-1547355253-ff0740f6e8c1?w=400&h=600&fit=crop" alt="bailarin-6">
-                        </div>
-                        
-                        <div class="card" data-title="Valentina Ortiz">
-                            <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?w=400&h=600&fit=crop" alt="bailarina-7">
-                        </div>
-                        
-                        <div class="card" data-title="Miguel Ángel">
-                            <img src="https://images.unsplash.com/photo-1483918793747-5adbf82956c4?w=400&h=600&fit=crop" alt="bailarin-8">
-                        </div>
-                        
-                        <div class="card" data-title="Isabella Cruz">
-                            <img src="https://images.unsplash.com/photo-1470259078422-826894b933aa?w=400&h=600&fit=crop" alt="bailarina-9">
-                        </div>
+    <!-- Sección de Carrusel de Artes -->
+    <div class="main-container">
+        <div class="carousel-section">
+            <div class="carousel-container">
+                <button class="nav-arrow up" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="carousel-track">
+                    <div class="card" data-index="0" data-title="Expresión Abstracta" data-subtitle="Pintura Moderna">
+                        <img src="img/imgArteExpresion/img  (1).jpg" alt="Arte 1">
+                    </div>
+                    <div class="card" data-index="1" data-title="Colores Vibrantes" data-subtitle="Arte Contemporáneo">
+                        <img src="img/imgArteExpresion/img  (2).jpg" alt="Arte 2">
+                    </div>
+                    <div class="card" data-index="2" data-title="Texturas Urbanas" data-subtitle="Fotografía Artística">
+                        <img src="img/imgArteExpresion/img  (3).jpg" alt="Arte 3">
+                    </div>
+                    <div class="card" data-index="3" data-title="Naturaleza Viva" data-subtitle="Óleo sobre Lienzo">
+                        <img src="img/imgArteExpresion/img  (4).jpg" alt="Arte 4">
+                    </div>
+                    <div class="card" data-index="4" data-title="Geometría Sagrada" data-subtitle="Arte Digital">
+                        <img src="img/imgArteExpresion/img  (5).jpg" alt="Arte 5">
+                    </div>
+                    <div class="card" data-index="5" data-title="Luz y Sombra" data-subtitle="Claroscuro Moderno">
+                        <img src="img/imgArteExpresion/img  (6).jpg" alt="Arte 6">
+                    </div>
+                    <div class="card" data-index="6" data-title="Movimiento Fluido" data-subtitle="Acuarela Abstracta">
+                        <img src="img/imgArteExpresion/img  (7).jpg" alt="Arte 7">
+                    </div>
+                    <div class="card" data-index="7" data-title="Perspectiva Única" data-subtitle="Instalación Artística">
+                        <img src="img/imgArteExpresion/img  (8).jpg" alt="Arte 8">
+                    </div>
+                    <div class="card" data-index="8" data-title="Formas Orgánicas" data-subtitle="Escultura Moderna">
+                        <img src="img/imgArteExpresion/img (9).jpg" alt="Arte 9">
+                    </div>
+                    <div class="card" data-index="9" data-title="Armonía Visual" data-subtitle="Arte Mixto">
+                        <img src="img/imgArteExpresion/img (10).jpeg" alt="Arte 10">
                     </div>
                 </div>
+                <button class="nav-arrow down" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
+        </div>
+        <div class="controls-section">
+            <div class="nav-controls">
+                <button class="nav-arrow up" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="nav-arrow down" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="member-info">
+                <h2 class="member-name" id="art-title">Expresión Abstracta</h2>
+                <p class="member-role" id="art-subtitle">Pintura Moderna</p>
+            </div>
+            <div class="dots">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+                <div class="dot" data-index="3"></div>
+                <div class="dot" data-index="4"></div>
+                <div class="dot" data-index="5"></div>
+                <div class="dot" data-index="6"></div>
+                <div class="dot" data-index="7"></div>
+                <div class="dot" data-index="8"></div>
+                <div class="dot" data-index="9"></div>
+            </div>
+        </div>
+    </div>
 
-            <!-- Sección de Artes (Pintura y Dibujo) -->
-            <div class="section-wrapper">
-                <h2 class="section-title art">🎨 Los Mejores en Artes Visuales</h2>
-                
-                <div class="carousel-container">
-                    <div class="carousel carousel-art">
-                        <div class="card" data-title="Andrea Salazar">
-                            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=600&fit=crop" alt="artista-1">
-                        </div>
-                        
-                        <div class="card" data-title="Sebastián Flores">
-                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=600&fit=crop" alt="artista-2">
-                        </div>
-                        
-                        <div class="card" data-title="Camila Moreno">
-                            <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=400&h=600&fit=crop" alt="artista-3">
-                        </div>
-                        
-                        <div class="card" data-title="Roberto Guzmán">
-                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=600&fit=crop" alt="artista-4">
-                        </div>
-                        
-                        <div class="card" data-title="Laura Vargas">
-                            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=600&fit=crop" alt="artista-5">
-                        </div>
-                        
-                        <div class="card" data-title="Andrés Vega">
-                            <img src="https://images.unsplash.com/photo-1577083552431-6e5fd01d3e15?w=400&h=600&fit=crop" alt="artista-6">
-                        </div>
-                        
-                        <div class="card" data-title="Daniela Ruiz">
-                            <img src="https://images.unsplash.com/photo-1578926314433-e2789279f4aa?w=400&h=600&fit=crop" alt="artista-7">
-                        </div>
-                        
-                        <div class="card" data-title="Gabriel Soto">
-                            <img src="https://images.unsplash.com/photo-1596548438137-d51ea5c83ca5?w=400&h=600&fit=crop" alt="artista-8">
-                        </div>
-                        
-                        <div class="card" data-title="Martina López">
-                            <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=400&h=600&fit=crop" alt="artista-9">
-                        </div>
+    <script src="Scripts/ArteExpresion.js"></script>
+
+    <!-- Sección de contenido adicional -->
+    <div class="content-section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Galería</h2>
+            <p class="section-description">
+                Descubre el poder de la expresión artística a través de obras que inspiran, 
+                emocionan y transforman. Cada pieza cuenta una historia única.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1070274/pexels-photo-1070274.jpeg" alt="Pintura">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Pintura</div>
+                        <div class="gallery-subtitle">Expresión en colores</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg" alt="Escultura">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Escultura</div>
+                        <div class="gallery-subtitle">Formas tridimensionales</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1988681/pexels-photo-1988681.jpeg" alt="Fotografía">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Fotografía</div>
+                        <div class="gallery-subtitle">Capturando momentos</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1047540/pexels-photo-1047540.jpeg" alt="Arte Digital">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Arte Digital</div>
+                        <div class="gallery-subtitle">Creatividad moderna</div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    
+    </div>
 </body>
 </html>

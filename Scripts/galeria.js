@@ -1,5 +1,5 @@
 // ============================================
-// GALERÍA 3D - SISTEMA DE PARALLAX
+// GALERÍA 3D - SISTEMA DE PARALLAX CON 5 CAPAS
 // ============================================
 
 (function() {
@@ -14,6 +14,8 @@
     const layer1 = document.querySelector('.layer-1');
     const layer2 = document.querySelector('.layer-2');
     const layer3 = document.querySelector('.layer-3');
+    const layer4 = document.querySelector('.layer-4');
+    const layer5 = document.querySelector('.layer-5');
 
     // Verificar que los elementos existen
     if (!gallery3d || !sceneContainer) {
@@ -28,11 +30,13 @@
     let currentMouseY = 0;
     let rafId = null;
 
-    // Posiciones originales de las capas
+    // Posiciones originales de las 5 capas - MÁS PEQUEÑAS
     const originalPositions = {
-        layer1: 300,
-        layer2: 0,
-        layer3: -300
+        layer1: 320,
+        layer2: 160,
+        layer3: 0,
+        layer4: -160,
+        layer5: -320
     };
 
     let currentPositions = { ...originalPositions };
@@ -52,13 +56,19 @@
             // Configurar nuevas posiciones según la capa seleccionada
             switch(layerNum) {
                 case '1':
-                    currentPositions = { layer1: 300, layer2: 0, layer3: -300 };
+                    currentPositions = { layer1: 320, layer2: 160, layer3: 0, layer4: -160, layer5: -320 };
                     break;
                 case '2':
-                    currentPositions = { layer1: -200, layer2: 300, layer3: 0 };
+                    currentPositions = { layer1: 160, layer2: 320, layer3: 160, layer4: 0, layer5: -160 };
                     break;
                 case '3':
-                    currentPositions = { layer1: -300, layer2: 0, layer3: 300 };
+                    currentPositions = { layer1: 0, layer2: 160, layer3: 320, layer4: 160, layer5: 0 };
+                    break;
+                case '4':
+                    currentPositions = { layer1: -160, layer2: 0, layer3: 160, layer4: 320, layer5: 160 };
+                    break;
+                case '5':
+                    currentPositions = { layer1: -320, layer2: -160, layer3: 0, layer4: 160, layer5: 320 };
                     break;
             }
 
@@ -71,11 +81,13 @@
     // ============================================
 
     function updateLayerPositions() {
-        if (!layer1 || !layer2 || !layer3) return;
+        if (!layer1 || !layer2 || !layer3 || !layer4 || !layer5) return;
 
         layer1.style.transform = `translateZ(${currentPositions.layer1}px)`;
         layer2.style.transform = `translateZ(${currentPositions.layer2}px)`;
         layer3.style.transform = `translateZ(${currentPositions.layer3}px)`;
+        layer4.style.transform = `translateZ(${currentPositions.layer4}px)`;
+        layer5.style.transform = `translateZ(${currentPositions.layer5}px)`;
     }
 
     // ============================================
@@ -108,9 +120,9 @@
                 const maxScroll = sceneContainer.offsetHeight - window.innerHeight;
                 scrollProgress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
 
-                // Actualizar indicador de progreso
+                // Actualizar indicador de progreso (ahora con 5 puntos)
                 progressDots.forEach((dot, index) => {
-                    if (scrollProgress > index / 3) {
+                    if (scrollProgress > index / 5) {
                         dot.classList.add('active');
                     } else {
                         dot.classList.remove('active');
@@ -178,6 +190,6 @@
     // LOG DE INICIALIZACIÓN
     // ============================================
 
-    console.log('✅ Galería 3D inicializada correctamente');
+    console.log('✅ Galería 3D con 5 capas inicializada correctamente');
 
 })();

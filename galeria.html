@@ -34,33 +34,47 @@
         <!-- Encabezado de la Galería -->
         <div class="gallery-cabezera">
             <h1>✨ Galería Parallax 3D ✨</h1>
-            <p>Experimenta la profundidad tridimensional</p>
+            <p>Experimenta la profundidad tridimensional con 5 capas</p>
             <div class="scroll-info">
                 🖱️ Desplázate y mueve el mouse para explorar
             </div>
         </div>
 
-        <!-- Controles de Capas (Lateral Izquierdo) -->
-        <div class="layer-controls">
-            <h3>🎛️ Control de Capas</h3>
-            <div class="layer-btn active" data-layer="1">
-                <span class="layer-btn-label">Capa 1 al Frente</span>
-                <span class="layer-btn-depth">Front</span>
+        <!-- Controles Inferiores Combinados -->
+        <div class="controls-wrapper">
+            <!-- Controles de Capas -->
+            <div class="layer-controls">
+                <h3>🎛️ Control de Capas</h3>
+                <div class="layer-btn active" data-layer="1">
+                    <span class="layer-btn-label">Capa 1 al Frente</span>
+                    <span class="layer-btn-depth">Front</span>
+                </div>
+                <div class="layer-btn" data-layer="2">
+                    <span class="layer-btn-label">Capa 2 al Frente</span>
+                    <span class="layer-btn-depth">Front</span>
+                </div>
+                <div class="layer-btn" data-layer="3">
+                    <span class="layer-btn-label">Capa 3 al Frente</span>
+                    <span class="layer-btn-depth">Front</span>
+                </div>
+                <div class="layer-btn" data-layer="4">
+                    <span class="layer-btn-label">Capa 4 al Frente</span>
+                    <span class="layer-btn-depth">Front</span>
+                </div>
+                <div class="layer-btn" data-layer="5">
+                    <span class="layer-btn-label">Capa 5 al Frente</span>
+                    <span class="layer-btn-depth">Front</span>
+                </div>
+                <button class="reset-btn" id="resetBtn">↺ Resetear Posición</button>
             </div>
-            <div class="layer-btn" data-layer="2">
-                <span class="layer-btn-label">Capa 2 al Frente</span>
-                <span class="layer-btn-depth">Front</span>
-            </div>
-            <div class="layer-btn" data-layer="3">
-                <span class="layer-btn-label">Capa 3 al Frente</span>
-                <span class="layer-btn-depth">Front</span>
-            </div>
-            <button class="reset-btn" id="resetBtn">↺ Resetear Posición</button>
+
         </div>
 
         <!-- Indicador de Progreso (Lateral Derecho) -->
         <div class="progress-indicator">
             <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
             <div class="progress-dot"></div>
             <div class="progress-dot"></div>
         </div>
@@ -70,19 +84,19 @@
             <div class="scene">
                 <div class="gallery-3d" id="gallery3d">
                     
-                    <!-- CAPA 1 - FRONTAL -->
+                    <!-- CAPA 1 - MÁS FRONTAL -->
                     <div class="layer layer-1">
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 1</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.32 PM.jpeg" alt="Cascada">
+                            <img src="./img/Galeria/img01.jpg" alt="Imagen 1">
                             <div class="item-info">
                                 <h3>Cascada Majestuosa</h3>
-                                <p>Capa frontal • 300px</p>
+                                <p>Capa frontal • 400px</p>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 1</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.33 PM (1).jpeg" alt="Valle">
+                            <img src="./img/Galeria/img02.jpg" alt="Imagen 2">
                             <div class="item-info">
                                 <h3>Valle Infinito</h3>
                                 <p>Horizonte lejano</p>
@@ -90,7 +104,7 @@
                         </div>
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 1</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.33 PM.jpeg" alt="Sendero">
+                            <img src="./img/Galeria/img03.jpg" alt="Imagen 3">
                             <div class="item-info">
                                 <h3>Sendero Secreto</h3>
                                 <p>Camino de aventura</p>
@@ -98,19 +112,19 @@
                         </div>
                     </div>
 
-                    <!-- CAPA 2 - MEDIA -->
+                    <!-- CAPA 2 -->
                     <div class="layer layer-2">
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 2</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.34 PM (1).jpeg" alt="Lago">
+                            <img src="./img/Galeria/img04.jpg" alt="Imagen 4">
                             <div class="item-info">
                                 <h3>Lago Sereno</h3>
-                                <p>Capa media • 0px</p>
+                                <p>Capa 2 • 200px</p>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 2</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.34 PM (2).jpeg" alt="Desierto">
+                            <img src="./img/Galeria/img05.jpg" alt="Imagen 5">
                             <div class="item-info">
                                 <h3>Desierto Dorado</h3>
                                 <p>Dunas infinitas</p>
@@ -118,7 +132,7 @@
                         </div>
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 2</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.34 PM.jpeg" alt="Aurora">
+                            <img src="./img/Galeria/img06.jpg" alt="Imagen 6">
                             <div class="item-info">
                                 <h3>Aurora Boreal</h3>
                                 <p>Magia en el cielo</p>
@@ -126,19 +140,19 @@
                         </div>
                     </div>
 
-                    <!-- CAPA 3 - TRASERA -->
+                    <!-- CAPA 3 - CENTRAL -->
                     <div class="layer layer-3">
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 3</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.35 PM (1).jpeg" alt="Montañas">
+                            <img src="./img/Galeria/img07.jpg" alt="Imagen 7">
                             <div class="item-info">
                                 <h3>Montañas Épicas</h3>
-                                <p>Capa profunda • -300px</p>
+                                <p>Capa central • 0px</p>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 3</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.35 PM (2).jpeg" alt="Bosque">
+                            <img src="./img/Galeria/img08.jpg" alt="Imagen 8">
                             <div class="item-info">
                                 <h3>Bosque Místico</h3>
                                 <p>Naturaleza salvaje</p>
@@ -146,7 +160,7 @@
                         </div>
                         <div class="gallery-item">
                             <div class="depth-indicator">Capa 3</div>
-                            <img src="./img/Galeria/WhatsApp Image 2025-10-13 at 5.52.35 PM (3).jpeg" alt="Playa">
+                            <img src="./img/Galeria/img09.jpg" alt="Imagen 9">
                             <div class="item-info">
                                 <h3>Playa Paradisíaca</h3>
                                 <p>Arena y mar cristalino</p>
@@ -154,25 +168,62 @@
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
+                    <!-- CAPA 4 - NUEVA -->
+                    <div class="layer layer-4">
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 4</div>
+                            <img src="./img/Galeria/img10.jpg" alt="Imagen 10">
+                            <div class="item-info">
+                                <h3>Atardecer Dorado</h3>
+                                <p>Capa 4 • -200px</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 4</div>
+                            <img src="./img/Galeria/img11.jpg" alt="Imagen 11">
+                            <div class="item-info">
+                                <h3>Cielo Estrellado</h3>
+                                <p>Noche mágica</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 4</div>
+                            <img src="./img/Galeria/img12.jpg" alt="Imagen 12">
+                            <div class="item-info">
+                                <h3>Río Cristalino</h3>
+                                <p>Agua transparente</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Controles Inferiores -->
-        <div class="controls">
-            <p>Controles Interactivos</p>
-            <div class="controls-icons">
-                <div class="control-item">
-                    <div class="icon">🖱️</div>
-                    <span class="control-label">Mouse</span>
-                </div>
-                <div class="control-item">
-                    <div class="icon">⬇️</div>
-                    <span class="control-label">Scroll</span>
-                </div>
-                <div class="control-item">
-                    <div class="icon">👆</div>
-                    <span class="control-label">Hover</span>
+                    <!-- CAPA 5 - MÁS PROFUNDA -->
+                    <div class="layer layer-5">
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 5</div>
+                            <img src="./img/Galeria/img13.jpg" alt="Imagen 13">
+                            <div class="item-info">
+                                <h3>Profundidad Azul</h3>
+                                <p>Capa profunda • -400px</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 5</div>
+                            <img src="./img/Galeria/img14.jpg" alt="Imagen 14">
+                            <div class="item-info">
+                                <h3>Horizonte Infinito</h3>
+                                <p>Más allá del tiempo</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="depth-indicator">Capa 5</div>
+                            <img src="./img/Galeria/img15.jpg" alt="Imagen 15">
+                            <div class="item-info">
+                                <h3>Espacio Profundo</h3>
+                                <p>La última frontera</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

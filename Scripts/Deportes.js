@@ -240,7 +240,10 @@ const players = [
     { dorsal: 22, name: "Fernando Ortega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+22" }
 ];
 
-// 🎨 Función para crear una carta
+// URL del logo del colegio
+const colegioLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHR8mvOqRlNmLHn0IQ5N0Udd0SBdkno4g5qw&s";
+
+// 🎨 Función para crear una carta - VERSIÓN CORREGIDA
 function createCard(player) {
     const wrapper = document.createElement('div');
     wrapper.className = 'card-wrapper';
@@ -248,19 +251,27 @@ function createCard(player) {
     const flip = document.createElement('div');
     flip.className = 'card-flip';
     
-    // Front face
+    // Front face - CON LOGO DEL COLEGIO
     const front = document.createElement('div');
     front.className = 'card-face card-front';
     front.innerHTML = `
-        <div class="dorsal-number">${player.dorsal}</div>
-        <div class="jersey-icon">👕</div>
+        <div class="dorsal-container">
+            <div class="logo-container">
+                <img src="${colegioLogo}" alt="Logo UNEDOL" onerror="this.style.display='none'">
+            </div>
+            <div class="dorsal-number">${player.dorsal}</div>
+            <div class="jersey-icon">👕</div>
+        </div>
     `;
     
-    // Back face
+    // Back face - CORREGIDO: Estructura más robusta
     const back = document.createElement('div');
     back.className = 'card-face card-back';
     back.innerHTML = `
-        <img src="${player.photo}" alt="${player.name}" class="player-photo">
+        <div class="photo-container">
+            <img src="${player.photo}" alt="${player.name}" class="player-photo" 
+                 onerror="this.src='https://via.placeholder.com/300x400/0a1628/BAA634?text=UNEDOL'">
+        </div>
         <div class="player-info">
             <div class="player-name">${player.name}</div>
             <div class="player-position">${player.position}</div>
@@ -271,11 +282,21 @@ function createCard(player) {
     flip.appendChild(back);
     wrapper.appendChild(flip);
     
-    // Event listener SIMPLE y DIRECTO
+    // Event listener - VERSIÓN MEJORADA
     wrapper.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        
+        // Agregar clase para debugging
+        this.classList.add('animating');
+        
+        // Toggle simple
         this.classList.toggle('flipped');
+        
+        // Remover clase de debugging después de la animación
+        setTimeout(() => {
+            this.classList.remove('animating');
+        }, 800);
     }, false);
     
     return wrapper;
@@ -306,7 +327,6 @@ function initCards() {
 }
 
 // 🎮 FUNCIONES ÚTILES PARA LA CONSOLA
-
 window.flipAll = function() {
     const cards = document.querySelectorAll('.card-wrapper');
     cards.forEach(card => card.classList.add('flipped'));
@@ -356,13 +376,53 @@ window.showAllPlayers = function() {
     console.table(players);
 };
 
-// Inicializar INMEDIATAMENTE
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCards);
-} else {
-    // Si el DOM ya está listo, ejecutar inmediatamente
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
     initCards();
-}
+    
+    // ANIMACIÓN DE LA GALERÍA 3D
+    const images = document.querySelectorAll('.gallery-container img');
+    
+    images.forEach((image, index) => {
+        const spreadFactor = 3.5;
+        const maxLeft = (window.innerWidth * 0.5 / 16) * spreadFactor;
+        const left = -Math.random() * maxLeft + 'rem';
+        const maxRight = (window.innerWidth * 0.5 / 16) * spreadFactor;
+        const right = -Math.random() * maxRight + 'rem';
+        const verticalOffset = (Math.random() - 0.5) * 4;
+        
+        image.style.setProperty('--left', left);
+        image.style.setProperty('--right', right);
+        image.style.setProperty('--vertical-offset', `${verticalOffset}rem`);
+    });
+
+    const galleryContainer = document.querySelector('.gallery-container');
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    function animateGallery() {
+        currentX += (mouseX - currentX) * 0.02;
+        currentY += (mouseY - currentY) * 0.02;
+
+        if (galleryContainer) {
+            galleryContainer.style.transform = `
+                rotateY(${currentX * 2}deg) 
+                rotateX(${-currentY * 2}deg)
+            `;
+        }
+
+        requestAnimationFrame(animateGallery);
+    }
+
+    animateGallery();
+});
 
 console.log(`
 🎮 COMANDOS DISPONIBLES:
@@ -375,3 +435,68 @@ changePlayerPosition(dorsal, pos) - Cambia posición
 showAllPlayers()               - Muestra tabla
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `);
+
+// Agrega esto al final de tu Scripts/Deportes.js
+
+// 🐛 SISTEMA DE DEBUGGING
+function initDebugging() {
+    // Crear controles de debugging
+    const debugControls = document.createElement('div');
+    debugControls.className = 'debug-controls';
+    debugControls.innerHTML = `
+        <h3>🐛 DEBUG CONTROLS</h3>
+        <button onclick="toggleDebug()">Toggle Debug</button>
+        <button onclick="showCardSizes()">Mostrar Tamaños</button>
+        <button onclick="checkGridLayout()">Verificar Grid</button>
+        <button onclick="logCardPositions()">Posiciones</button>
+    `;
+    document.body.appendChild(debugControls);
+}
+
+// Funciones de debugging
+window.toggleDebug = function() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    cards.forEach(card => {
+        card.classList.toggle('debug');
+    });
+    console.log('🔧 Debug mode toggled');
+};
+
+window.showCardSizes = function() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        console.log(`📏 Carta ${index + 1}: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}px`);
+    });
+};
+
+window.checkGridLayout = function() {
+    const container = document.querySelector('.cards-container');
+    const cards = document.querySelectorAll('.card-wrapper');
+    
+    console.log('🔍 Verificación del Grid:');
+    console.log(`- Columnas CSS: ${getComputedStyle(container).gridTemplateColumns}`);
+    console.log(`- Número de cartas: ${cards.length}`);
+    console.log(`- Gap: ${getComputedStyle(container).gap}`);
+    
+    cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        console.log(`  Carta ${index + 1}: (${rect.left.toFixed(1)}, ${rect.top.toFixed(1)})`);
+    });
+};
+
+window.logCardPositions = function() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    console.log('🎯 Posiciones de las cartas:');
+    
+    cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const isFlipped = card.classList.contains('flipped');
+        console.log(`  ${index + 1}. ${isFlipped ? '🔄 VOLTEADA' : '📄 NORMAL'} | Pos: (${rect.left.toFixed(0)}, ${rect.top.toFixed(0)}) | Tamaño: ${rect.width.toFixed(0)}x${rect.height.toFixed(0)}`);
+    });
+};
+
+// Inicializar debugging cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initDebugging, 1000);
+});

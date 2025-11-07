@@ -206,277 +206,169 @@ function animateBubbles() {
 
 animateBubbles();
 
-/******************* ANIMACIÓN CARRUSEL *******************/
 
-class MzaCarousel {
-    constructor(root, opts = {}) {
-        this.root = root;
-        this.viewport = root.querySelector(".mzaCarousel-viewport");
-        this.track = root.querySelector(".mzaCarousel-track");
-        this.slides = Array.from(root.querySelectorAll(".mzaCarousel-slide"));
-        this.prevBtn = root.querySelector(".mzaCarousel-prev");
-        this.nextBtn = root.querySelector(".mzaCarousel-next");
-        this.pagination = root.querySelector(".mzaCarousel-pagination");
-        this.progressBar = root.querySelector(".mzaCarousel-progressBar");
-        this.n = this.slides.length;
-        
-        this.state = {
-            index: 0,
-            pos: 0,
-            width: 0,
-            height: 0,
-            gap: 28,
-            dragging: false,
-            pointerId: null,
-            x0: 0,
-            v: 0,
-            t0: 0,
-            animating: false,
-            hovering: false,
-            startTime: 0,
-            pausedAt: 0
-        };
-        
-        this.opts = Object.assign({
-            gap: 28,
-            peek: 0.15,
-            rotateY: 34,
-            zDepth: 150,
-            scaleDrop: 0.09,
-            blurMax: 2.0,
-            activeLeftBias: 0.12,
-            interval: 4500,
-            transitionMs: 900,
-            keyboard: true
-        }, opts);
-        
-        this._init();
-    }
+// 🎮 CONFIGURACIÓN DE JUGADORES
+const players = [
+    // Fila 1 (Dorsales 1-7)
+    { dorsal: 1, name: "Juan Pérez", position: "Portero", photo: "https://via.placeholder.com/300x400/4CAF50/ffffff?text=Jugador+1" },
+    { dorsal: 2, name: "Carlos López", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+2" },
+    { dorsal: 3, name: "Miguel Sánchez", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+3" },
+    { dorsal: 4, name: "David Martínez", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+4" },
+    { dorsal: 5, name: "Roberto García", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+5" },
+    { dorsal: 6, name: "Antonio Ruiz", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+6" },
+    { dorsal: 7, name: "Luis Fernández", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+7" },
     
-    _init() {
-        this._setupDots();
-        this._bind();
-        this._measure();
-        this.goTo(0, false);
-        this._startCycle();
-        this._loop();
-    }
+    // Fila 2 (Dorsales 8-14)
+    { dorsal: 8, name: "José Torres", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+8" },
+    { dorsal: 9, name: "Manuel Díaz", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+9" },
+    { dorsal: 10, name: "Francisco Moreno", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+10" },
+    { dorsal: 11, name: "Javier Álvarez", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+11" },
+    { dorsal: 12, name: "Pedro Romero", position: "Portero", photo: "https://via.placeholder.com/300x400/4CAF50/ffffff?text=Jugador+12" },
+    { dorsal: 13, name: "Sergio Jiménez", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+13" },
+    { dorsal: 14, name: "Rafael Muñoz", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+14" },
     
-    _setupDots() {
-        this.pagination.innerHTML = "";
-        this.dots = this.slides.map((_, i) => {
-            const b = document.createElement("button");
-            b.type = "button";
-            b.className = "mzaCarousel-dot";
-            b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-            b.addEventListener("click", () => this.goTo(i));
-            this.pagination.appendChild(b);
-            return b;
-        });
-    }
+    // Fila 3 (Dorsales 15-21)
+    { dorsal: 15, name: "Daniel Castro", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+15" },
+    { dorsal: 16, name: "Pablo Ortiz", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+16" },
+    { dorsal: 17, name: "Andrés Navarro", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+17" },
+    { dorsal: 18, name: "Marcos Delgado", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+18" },
+    { dorsal: 19, name: "Alberto Vega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+19" },
+    { dorsal: 20, name: "Hugo Ramos", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+20" },
+    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+21" }
+];
+
+// 🎨 Función para crear una carta
+function createCard(player) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'card-wrapper';
     
-    _bind() {
-        this.prevBtn.addEventListener("click", () => this.prev());
-        this.nextBtn.addEventListener("click", () => this.next());
-        
-        if (this.opts.keyboard) {
-            this.root.addEventListener("keydown", (e) => {
-                if (e.key === "ArrowLeft") this.prev();
-                if (e.key === "ArrowRight") this.next();
-            });
-        }
-        
-        const pe = this.viewport;
-        pe.addEventListener("pointerdown", (e) => this._onDragStart(e));
-        pe.addEventListener("pointermove", (e) => this._onDragMove(e));
-        pe.addEventListener("pointerup", (e) => this._onDragEnd(e));
-        pe.addEventListener("pointercancel", (e) => this._onDragEnd(e));
-        
-        this.root.addEventListener("mouseenter", () => {
-            this.state.hovering = true;
-            this.state.pausedAt = performance.now();
-        });
-        
-        this.root.addEventListener("mouseleave", () => {
-            if (this.state.pausedAt) {
-                this.state.startTime += performance.now() - this.state.pausedAt;
-                this.state.pausedAt = 0;
-            }
-            this.state.hovering = false;
-        });
-        
-        this.ro = new ResizeObserver(() => this._measure());
-        this.ro.observe(this.viewport);
-        
-        this.viewport.addEventListener("pointermove", (e) => this._onTilt(e));
-    }
+    const flip = document.createElement('div');
+    flip.className = 'card-flip';
     
-    _measure() {
-        const viewRect = this.viewport.getBoundingClientRect();
-        this.state.width = viewRect.width;
-        this.state.height = viewRect.height;
-        this.slideW = Math.min(880, this.state.width * 0.7);
-    }
+    // Front face
+    const front = document.createElement('div');
+    front.className = 'card-face card-front';
+    front.innerHTML = `
+        <div class="dorsal-number">${player.dorsal}</div>
+        <div class="jersey-icon">👕</div>
+    `;
     
-    _onTilt(e) {
-        const r = this.viewport.getBoundingClientRect();
-        const mx = (e.clientX - r.left) / r.width - 0.5;
-        const my = (e.clientY - r.top) / r.height - 0.5;
-        this.root.style.setProperty("--mzaTiltX", (my * -6).toFixed(3));
-        this.root.style.setProperty("--mzaTiltY", (mx * 6).toFixed(3));
-    }
+    // Back face
+    const back = document.createElement('div');
+    back.className = 'card-face card-back';
+    back.innerHTML = `
+        <img src="${player.photo}" alt="${player.name}" class="player-photo">
+        <div class="player-info">
+            <div class="player-name">${player.name}</div>
+            <div class="player-position">${player.position}</div>
+        </div>
+    `;
     
-    _onDragStart(e) {
-        if (e.pointerType === "mouse" && e.button !== 0) return;
+    flip.appendChild(front);
+    flip.appendChild(back);
+    wrapper.appendChild(flip);
+    
+    // Event listener SIMPLE y DIRECTO
+    wrapper.addEventListener('click', function(e) {
         e.preventDefault();
-        this.state.dragging = true;
-        this.state.pointerId = e.pointerId;
-        this.viewport.setPointerCapture(e.pointerId);
-        this.state.x0 = e.clientX;
-        this.state.t0 = performance.now();
-        this.state.v = 0;
-        this.state.pausedAt = performance.now();
-    }
+        e.stopPropagation();
+        this.classList.toggle('flipped');
+    }, false);
     
-    _onDragMove(e) {
-        if (!this.state.dragging || e.pointerId !== this.state.pointerId) return;
-        const dx = e.clientX - this.state.x0;
-        const dt = Math.max(16, performance.now() - this.state.t0);
-        this.state.v = dx / dt;
-        const slideSpan = this.slideW + this.state.gap;
-        this.state.pos = this._mod(this.state.index - dx / slideSpan, this.n);
-        this._render();
-    }
-    
-    _onDragEnd(e) {
-        if (!this.state.dragging || (e && e.pointerId !== this.state.pointerId)) return;
-        this.state.dragging = false;
-        try {
-            if (this.state.pointerId != null) this.viewport.releasePointerCapture(this.state.pointerId);
-        } catch {}
-        this.state.pointerId = null;
-        if (this.state.pausedAt) {
-            this.state.startTime += performance.now() - this.state.pausedAt;
-            this.state.pausedAt = 0;
-        }
-        const v = this.state.v;
-        const threshold = 0.18;
-        let target = Math.round(this.state.pos - Math.sign(v) * (Math.abs(v) > threshold ? 0.5 : 0));
-        this.goTo(this._mod(target, this.n));
-    }
-    
-    _startCycle() {
-        this.state.startTime = performance.now();
-        this._renderProgress(0);
-    }
-    
-    _loop() {
-        const step = (t) => {
-            if (!this.state.dragging && !this.state.hovering && !this.state.animating) {
-                const elapsed = t - this.state.startTime;
-                const p = Math.min(1, elapsed / this.opts.interval);
-                this._renderProgress(p);
-                if (elapsed >= this.opts.interval) this.next();
-            }
-            requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-    }
-    
-    _renderProgress(p) {
-        this.progressBar.style.transform = `scaleX(${p})`;
-    }
-    
-    prev() {
-        this.goTo(this._mod(this.state.index - 1, this.n));
-    }
-    
-    next() {
-        this.goTo(this._mod(this.state.index + 1, this.n));
-    }
-    
-    goTo(i, animate = true) {
-        const start = this.state.pos || this.state.index;
-        const end = this._nearest(start, i);
-        const dur = animate ? this.opts.transitionMs : 0;
-        const t0 = performance.now();
-        const ease = (x) => 1 - Math.pow(1 - x, 4);
-        this.state.animating = true;
-        
-        const step = (now) => {
-            const t = Math.min(1, (now - t0) / dur);
-            const p = dur ? ease(t) : 1;
-            this.state.pos = start + (end - start) * p;
-            this._render();
-            if (t < 1) requestAnimationFrame(step);
-            else this._afterSnap(i);
-        };
-        requestAnimationFrame(step);
-    }
-    
-    _afterSnap(i) {
-        this.state.index = this._mod(Math.round(this.state.pos), this.n);
-        this.state.pos = this.state.index;
-        this.state.animating = false;
-        this._render(true);
-        this._startCycle();
-    }
-    
-    _nearest(from, target) {
-        let d = target - Math.round(from);
-        if (d > this.n / 2) d -= this.n;
-        if (d < -this.n / 2) d += this.n;
-        return Math.round(from) + d;
-    }
-    
-    _mod(i, n) {
-        return ((i % n) + n) % n;
-    }
-    
-    _render(markActive = false) {
-        const span = this.slideW + this.state.gap;
-        const tiltX = parseFloat(this.root.style.getPropertyValue("--mzaTiltX") || 0);
-        const tiltY = parseFloat(this.root.style.getPropertyValue("--mzaTiltY") || 0);
-        
-        for (let i = 0; i < this.n; i++) {
-            let d = i - this.state.pos;
-            if (d > this.n / 2) d -= this.n;
-            if (d < -this.n / 2) d += this.n;
-            
-            const weight = Math.max(0, 1 - Math.abs(d) * 2);
-            const biasActive = -this.slideW * this.opts.activeLeftBias * weight;
-            const tx = d * span + biasActive;
-            const depth = -Math.abs(d) * this.opts.zDepth;
-            const rot = -d * this.opts.rotateY;
-            const scale = 1 - Math.min(Math.abs(d) * this.opts.scaleDrop, 0.42);
-            const blur = Math.min(Math.abs(d) * this.opts.blurMax, this.opts.blurMax);
-            const z = Math.round(1000 - Math.abs(d) * 10);
-            
-            const s = this.slides[i];
-            s.style.transform = `translate3d(${tx}px,-50%,${depth}px) rotateY(${rot}deg) scale(${scale})`;
-            s.style.filter = `blur(${blur}px)`;
-            s.style.zIndex = z;
-            
-            if (markActive) s.dataset.state = Math.round(this.state.index) === i ? "active" : "rest";
-            
-            const card = s.querySelector(".mzaCard");
-            const parBase = Math.max(-1, Math.min(1, -d));
-            const parX = parBase * 48 + tiltY * 2.0;
-            const parY = tiltX * -1.5;
-            const bgX = parBase * -64 + tiltY * -2.4;
-            
-            card.style.setProperty("--mzaParX", `${parX.toFixed(2)}px`);
-            card.style.setProperty("--mzaParY", `${parY.toFixed(2)}px`);
-            card.style.setProperty("--mzaParBgX", `${bgX.toFixed(2)}px`);
-            card.style.setProperty("--mzaParBgY", `${(parY * 0.35).toFixed(2)}px`);
-        }
-        
-        const active = this._mod(Math.round(this.state.pos), this.n);
-        this.dots.forEach((d, i) => d.setAttribute("aria-selected", i === active ? "true" : "false"));
-    }
+    return wrapper;
 }
 
-// Inicializar el carrusel
-const carousel = new MzaCarousel(document.getElementById("mzaCarousel"), {
-    transitionMs: 900
-});
+// 🚀 Inicializar las cartas
+function initCards() {
+    const container = document.getElementById('cardsContainer');
+    if (!container) {
+        console.error('❌ No se encontró el contenedor #cardsContainer');
+        return;
+    }
+    
+    // Limpiar
+    container.innerHTML = '';
+    
+    // Crear fragment para mejor performance
+    const fragment = document.createDocumentFragment();
+    
+    players.forEach(player => {
+        const card = createCard(player);
+        fragment.appendChild(card);
+    });
+    
+    container.appendChild(fragment);
+    
+    console.log(`✅ ${players.length} cartas creadas exitosamente`);
+}
+
+// 🎮 FUNCIONES ÚTILES PARA LA CONSOLA
+
+window.flipAll = function() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    cards.forEach(card => card.classList.add('flipped'));
+    console.log(`✅ ${cards.length} cartas volteadas`);
+};
+
+window.flipAllBack = function() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    cards.forEach(card => card.classList.remove('flipped'));
+    console.log(`✅ ${cards.length} cartas volteadas de vuelta`);
+};
+
+window.changePlayerPhoto = function(dorsal, newPhotoUrl) {
+    const player = players.find(p => p.dorsal === dorsal);
+    if (player) {
+        player.photo = newPhotoUrl;
+        initCards();
+        console.log(`✅ Foto del jugador ${dorsal} actualizada`);
+    } else {
+        console.log(`❌ Jugador con dorsal ${dorsal} no encontrado`);
+    }
+};
+
+window.changePlayerName = function(dorsal, newName) {
+    const player = players.find(p => p.dorsal === dorsal);
+    if (player) {
+        player.name = newName;
+        initCards();
+        console.log(`✅ Nombre del jugador ${dorsal} actualizado a "${newName}"`);
+    } else {
+        console.log(`❌ Jugador con dorsal ${dorsal} no encontrado`);
+    }
+};
+
+window.changePlayerPosition = function(dorsal, newPosition) {
+    const player = players.find(p => p.dorsal === dorsal);
+    if (player) {
+        player.position = newPosition;
+        initCards();
+        console.log(`✅ Posición del jugador ${dorsal} actualizada a "${newPosition}"`);
+    } else {
+        console.log(`❌ Jugador con dorsal ${dorsal} no encontrado`);
+    }
+};
+
+window.showAllPlayers = function() {
+    console.table(players);
+};
+
+// Inicializar INMEDIATAMENTE
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCards);
+} else {
+    // Si el DOM ya está listo, ejecutar inmediatamente
+    initCards();
+}
+
+console.log(`
+🎮 COMANDOS DISPONIBLES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+flipAll()                      - Voltea todas las cartas
+flipAllBack()                  - Voltea todas de vuelta
+changePlayerPhoto(dorsal, url) - Cambia foto
+changePlayerName(dorsal, name) - Cambia nombre
+changePlayerPosition(dorsal, pos) - Cambia posición
+showAllPlayers()               - Muestra tabla
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`);

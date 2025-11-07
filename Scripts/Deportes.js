@@ -207,7 +207,7 @@ function animateBubbles() {
 animateBubbles();
 
 
-// 🎮 CONFIGURACIÓN DE JUGADORES
+// 🎮 CONFIGURACIÓN DE JUGADORES - 22 jugadores
 const players = [
     // Fila 1 (Dorsales 1-7)
     { dorsal: 1, name: "Juan Pérez", position: "Portero", photo: "https://via.placeholder.com/300x400/4CAF50/ffffff?text=Jugador+1" },
@@ -234,7 +234,10 @@ const players = [
     { dorsal: 18, name: "Marcos Delgado", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+18" },
     { dorsal: 19, name: "Alberto Vega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+19" },
     { dorsal: 20, name: "Hugo Ramos", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+20" },
-    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+21" }
+    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+21" },
+    
+    // Fila 4 (Dorsal 22)
+    { dorsal: 22, name: "Fernando Ortega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+22" }
 ];
 
 // 🎨 Función para crear una carta

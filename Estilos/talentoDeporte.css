@@ -221,80 +221,6 @@ body {
     SECCIÓN DE CARTAS DE JUGADORES - UNEDOL
     ============================================ */
 
-/* Sección contenedora principal */
-.players-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f1e 50%, #0a1628 100%);
-    padding: 100px 40px 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* Efecto de fondo con partículas doradas */
-.players-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(186, 166, 52, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(186, 166, 52, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Título de la sección */
-.players-section h1 {
-    position: relative;
-    z-index: 10;
-    font-family: 'Orbitron', 'Georgia', serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 700;
-    color: #F5F4F0;
-    text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 
-        0 0 20px rgba(186, 166, 52, 0.6),
-        0 0 40px rgba(186, 166, 52, 0.3),
-        2px 2px 4px rgba(0, 0, 0, 0.8);
-    letter-spacing: 0.1em;
-    animation: titleGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes titleGlow {
-    0% {
-        text-shadow: 
-            0 0 20px rgba(186, 166, 52, 0.6),
-            0 0 40px rgba(186, 166, 52, 0.3),
-            2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-    100% {
-        text-shadow: 
-            0 0 30px rgba(186, 166, 52, 0.8),
-            0 0 60px rgba(186, 166, 52, 0.5),
-            2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-}
-
-/* Instrucciones */
-.instructions {
-    position: relative;
-    z-index: 10;
-    color: rgba(245, 244, 240, 0.7);
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 1.1em;
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
 /* Contenedor de cartas */
 .cards-container {
     position: relative;
@@ -307,33 +233,41 @@ body {
     padding: 20px;
 }
 
-/* Card Flip Container - CRÍTICO: Aquí estaba el problema */
+/* Card Flip Container - CORREGIDO */
 .card-wrapper {
     perspective: 1200px;
     width: 100%;
     aspect-ratio: 2.5/3.5;
     filter: drop-shadow(0 0 15px rgba(186, 166, 52, 0.2));
-    transition: filter 0.3s ease;
+    transition: filter 0.3s ease, transform 0.3s ease;
     cursor: pointer;
-    /* AÑADIDO: Prevenir colapso de margen */
     position: relative;
+    /* NUEVO: Asegurar que el contenedor mantenga su posición */
+    transform-style: preserve-3d;
 }
 
 .card-wrapper:hover {
     filter: drop-shadow(0 0 30px rgba(186, 166, 52, 0.5));
+    /* NUEVO: Solo aplicar transformación al contenedor en hover */
+    transform: scale(1.05) translateY(-5px);
 }
 
 .card-flip {
     position: relative;
     width: 100%;
     height: 100%;
-    /* CRÍTICO: Solo rotación, SIN scale ni translateY en el estado base */
+    /* CORREGIDO: Solo rotación, sin otras transformaciones */
     transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
     transform-style: preserve-3d;
 }
 
-/* CRÍTICO: Rotación limpia sin otras transformaciones */
+/* CORREGIDO: Rotación limpia sin otras transformaciones */
 .card-wrapper.flipped .card-flip {
+    transform: rotateY(180deg);
+}
+
+/* CORREGIDO: Cuando está volteada Y en hover, NO aplicar transformación adicional */
+.card-wrapper.flipped:hover .card-flip {
     transform: rotateY(180deg);
 }
 
@@ -522,17 +456,6 @@ body {
     font-family: 'Georgia', serif;
     font-style: italic;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* CRÍTICO: Hover effect SEPARADO de la rotación */
-.card-wrapper:hover .card-flip {
-    /* Solo aplicar scale y translateY en hover, NO afectar la rotación */
-    transform: scale(1.05) translateY(-5px);
-}
-
-/* Cuando está volteada Y en hover, combinar ambas transformaciones */
-.card-wrapper.flipped:hover .card-flip {
-    transform: rotateY(180deg) scale(1.05) translateY(-5px);
 }
 
 /* Efecto de brillo en hover */

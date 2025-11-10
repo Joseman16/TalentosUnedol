@@ -207,7 +207,8 @@ function animateBubbles() {
 animateBubbles();
 
 
-// 🎮 CONFIGURACIÓN DE JUGADORES - 22 jugadores
+// 🎮 CONFIGURACIÓN DE JUGADORES
+// Aquí defines tus 21 jugadores con dorsal, nombre, posición y foto
 const players = [
     // Fila 1 (Dorsales 1-7)
     { dorsal: 1, name: "Juan Pérez", position: "Portero", photo: "https://via.placeholder.com/300x400/4CAF50/ffffff?text=Jugador+1" },
@@ -234,111 +235,62 @@ const players = [
     { dorsal: 18, name: "Marcos Delgado", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+18" },
     { dorsal: 19, name: "Alberto Vega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+19" },
     { dorsal: 20, name: "Hugo Ramos", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+20" },
-    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+21" },
-    
-    // Fila 4 (Dorsal 22)
-    { dorsal: 22, name: "Fernando Ortega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+22" }
+    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+21" }
 ];
 
-// URL del logo del colegio
-const colegioLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHR8mvOqRlNmLHn0IQ5N0Udd0SBdkno4g5qw&s";
-
-// 🎨 Función para crear una carta - VERSIÓN CORREGIDA
+// 🎨 Función para crear una carta
 function createCard(player) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'card-wrapper';
-    
-    const flip = document.createElement('div');
-    flip.className = 'card-flip';
-    
-    // Front face - CON LOGO DEL COLEGIO
-    const front = document.createElement('div');
-    front.className = 'card-face card-front';
-    front.innerHTML = `
-        <div class="dorsal-container">
-            <div class="logo-container">
-                <img src="${colegioLogo}" alt="Logo UNEDOL" onerror="this.style.display='none'">
+    return `
+        <div class="card-wrapper" onclick="this.classList.toggle('flipped')">
+            <div class="card-flip">
+                <!-- Front: Dorsal -->
+                <div class="card-face card-front">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjY2At-krBPlY6tZY_pJjhLdP84SxRPeT3bXz6inmLuDWNgMt_c18NSSHIKtaHj-un_088EYJNl84nQoOAr_SISSYN1U8D_P3R75DRh4Hq-ucJP3DQX-CAwHqJFEQPNuVbuqJKe3GH74C4/s1600/27935292_10212115175129067_1206392255_n.png" 
+                         alt="Logo UNEDOL" 
+                         class="college-logo">
+                    <div class="dorsal-number">${player.dorsal}</div>
+                    <div class="jersey-icon">⚽</div>
+                </div>
+                
+                <!-- Back: Player Info -->
+                <div class="card-face card-back">
+                    <img src="${player.photo}" alt="${player.name}" class="player-photo">
+                    <div class="player-info">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-position">${player.position}</div>
+                    </div>
+                </div>
             </div>
-            <div class="dorsal-number">${player.dorsal}</div>
-            <div class="jersey-icon">👕</div>
         </div>
     `;
-    
-    // Back face - CORREGIDO: Estructura más robusta
-    const back = document.createElement('div');
-    back.className = 'card-face card-back';
-    back.innerHTML = `
-        <div class="photo-container">
-            <img src="${player.photo}" alt="${player.name}" class="player-photo" 
-                 onerror="this.src='https://via.placeholder.com/300x400/0a1628/BAA634?text=UNEDOL'">
-        </div>
-        <div class="player-info">
-            <div class="player-name">${player.name}</div>
-            <div class="player-position">${player.position}</div>
-        </div>
-    `;
-    
-    flip.appendChild(front);
-    flip.appendChild(back);
-    wrapper.appendChild(flip);
-    
-    // Event listener - VERSIÓN MEJORADA
-    wrapper.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Agregar clase para debugging
-        this.classList.add('animating');
-        
-        // Toggle simple
-        this.classList.toggle('flipped');
-        
-        // Remover clase de debugging después de la animación
-        setTimeout(() => {
-            this.classList.remove('animating');
-        }, 800);
-    }, false);
-    
-    return wrapper;
 }
 
 // 🚀 Inicializar las cartas
 function initCards() {
     const container = document.getElementById('cardsContainer');
-    if (!container) {
-        console.error('❌ No se encontró el contenedor #cardsContainer');
-        return;
-    }
-    
-    // Limpiar
-    container.innerHTML = '';
-    
-    // Crear fragment para mejor performance
-    const fragment = document.createDocumentFragment();
-    
-    players.forEach(player => {
-        const card = createCard(player);
-        fragment.appendChild(card);
-    });
-    
-    container.appendChild(fragment);
-    
-    console.log(`✅ ${players.length} cartas creadas exitosamente`);
+    container.innerHTML = players.map(player => createCard(player)).join('');
 }
 
+// Inicializar al cargar la página
+initCards();
+
 // 🎮 FUNCIONES ÚTILES PARA LA CONSOLA
+
+// Voltear todas las cartas
 window.flipAll = function() {
-    const cards = document.querySelectorAll('.card-wrapper');
-    cards.forEach(card => card.classList.add('flipped'));
-    console.log(`✅ ${cards.length} cartas volteadas`);
+    document.querySelectorAll('.card-wrapper').forEach(card => {
+        card.classList.add('flipped');
+    });
 };
 
+// Voltear todas de vuelta
 window.flipAllBack = function() {
-    const cards = document.querySelectorAll('.card-wrapper');
-    cards.forEach(card => card.classList.remove('flipped'));
-    console.log(`✅ ${cards.length} cartas volteadas de vuelta`);
+    document.querySelectorAll('.card-wrapper').forEach(card => {
+        card.classList.remove('flipped');
+    });
 };
 
+// Cambiar foto de un jugador
 window.changePlayerPhoto = function(dorsal, newPhotoUrl) {
     const player = players.find(p => p.dorsal === dorsal);
     if (player) {
@@ -350,153 +302,10 @@ window.changePlayerPhoto = function(dorsal, newPhotoUrl) {
     }
 };
 
-window.changePlayerName = function(dorsal, newName) {
-    const player = players.find(p => p.dorsal === dorsal);
-    if (player) {
-        player.name = newName;
-        initCards();
-        console.log(`✅ Nombre del jugador ${dorsal} actualizado a "${newName}"`);
-    } else {
-        console.log(`❌ Jugador con dorsal ${dorsal} no encontrado`);
-    }
-};
-
-window.changePlayerPosition = function(dorsal, newPosition) {
-    const player = players.find(p => p.dorsal === dorsal);
-    if (player) {
-        player.position = newPosition;
-        initCards();
-        console.log(`✅ Posición del jugador ${dorsal} actualizada a "${newPosition}"`);
-    } else {
-        console.log(`❌ Jugador con dorsal ${dorsal} no encontrado`);
-    }
-};
-
-window.showAllPlayers = function() {
-    console.table(players);
-};
-
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    initCards();
-    
-    // ANIMACIÓN DE LA GALERÍA 3D
-    const images = document.querySelectorAll('.gallery-container img');
-    
-    images.forEach((image, index) => {
-        const spreadFactor = 3.5;
-        const maxLeft = (window.innerWidth * 0.5 / 16) * spreadFactor;
-        const left = -Math.random() * maxLeft + 'rem';
-        const maxRight = (window.innerWidth * 0.5 / 16) * spreadFactor;
-        const right = -Math.random() * maxRight + 'rem';
-        const verticalOffset = (Math.random() - 0.5) * 4;
-        
-        image.style.setProperty('--left', left);
-        image.style.setProperty('--right', right);
-        image.style.setProperty('--vertical-offset', `${verticalOffset}rem`);
-    });
-
-    const galleryContainer = document.querySelector('.gallery-container');
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
-
-    function animateGallery() {
-        currentX += (mouseX - currentX) * 0.02;
-        currentY += (mouseY - currentY) * 0.02;
-
-        if (galleryContainer) {
-            galleryContainer.style.transform = `
-                rotateY(${currentX * 2}deg) 
-                rotateX(${-currentY * 2}deg)
-            `;
-        }
-
-        requestAnimationFrame(animateGallery);
-    }
-
-    animateGallery();
-});
-
-console.log(`
-🎮 COMANDOS DISPONIBLES:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-flipAll()                      - Voltea todas las cartas
-flipAllBack()                  - Voltea todas de vuelta
-changePlayerPhoto(dorsal, url) - Cambia foto
-changePlayerName(dorsal, name) - Cambia nombre
-changePlayerPosition(dorsal, pos) - Cambia posición
-showAllPlayers()               - Muestra tabla
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-`);
-
-// Agrega esto al final de tu Scripts/Deportes.js
-
-// 🐛 SISTEMA DE DEBUGGING
-function initDebugging() {
-    // Crear controles de debugging
-    const debugControls = document.createElement('div');
-    debugControls.className = 'debug-controls';
-    debugControls.innerHTML = `
-        <h3>🐛 DEBUG CONTROLS</h3>
-        <button onclick="toggleDebug()">Toggle Debug</button>
-        <button onclick="showCardSizes()">Mostrar Tamaños</button>
-        <button onclick="checkGridLayout()">Verificar Grid</button>
-        <button onclick="logCardPositions()">Posiciones</button>
-    `;
-    document.body.appendChild(debugControls);
-}
-
-// Funciones de debugging
-window.toggleDebug = function() {
-    const cards = document.querySelectorAll('.card-wrapper');
-    cards.forEach(card => {
-        card.classList.toggle('debug');
-    });
-    console.log('🔧 Debug mode toggled');
-};
-
-window.showCardSizes = function() {
-    const cards = document.querySelectorAll('.card-wrapper');
-    cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        console.log(`📏 Carta ${index + 1}: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}px`);
-    });
-};
-
-window.checkGridLayout = function() {
-    const container = document.querySelector('.cards-container');
-    const cards = document.querySelectorAll('.card-wrapper');
-    
-    console.log('🔍 Verificación del Grid:');
-    console.log(`- Columnas CSS: ${getComputedStyle(container).gridTemplateColumns}`);
-    console.log(`- Número de cartas: ${cards.length}`);
-    console.log(`- Gap: ${getComputedStyle(container).gap}`);
-    
-    cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        console.log(`  Carta ${index + 1}: (${rect.left.toFixed(1)}, ${rect.top.toFixed(1)})`);
-    });
-};
-
-window.logCardPositions = function() {
-    const cards = document.querySelectorAll('.card-wrapper');
-    console.log('🎯 Posiciones de las cartas:');
-    
-    cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        const isFlipped = card.classList.contains('flipped');
-        console.log(`  ${index + 1}. ${isFlipped ? '🔄 VOLTEADA' : '📄 NORMAL'} | Pos: (${rect.left.toFixed(0)}, ${rect.top.toFixed(0)}) | Tamaño: ${rect.width.toFixed(0)}x${rect.height.toFixed(0)}`);
-    });
-};
-
-// Inicializar debugging cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(initDebugging, 1000);
-});
+console.log('⚽ Sistema de cartas iniciado');
+console.log('📋 Funciones disponibles:');
+console.log('   flipAll() - Voltea todas las cartas');
+console.log('   flipAllBack() - Devuelve todas las cartas');
+console.log('   changePlayerPhoto(dorsal, url) - Cambia la foto de un jugador');
+console.log('');
+console.log('🎨 Para cambiar fotos, edita el array "players" en el código');

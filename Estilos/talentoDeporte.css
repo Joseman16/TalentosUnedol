@@ -430,147 +430,38 @@ body {
     }
 }
 
-/* ============================================
-    SECCIÓN DE CARTAS DE JUGADORES - UNEDOL
-    CON DEBUGGING COMPLETO
-    ============================================ */
 
-.players-section {
-    background: linear-gradient(135deg, #0a1628 0%, #0e3e75 50%, #1a1a2e 100%);
-    padding: 100px 40px 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    position: relative;
-    z-index: 5;
-}
-
-.players-section h1 {
-    font-family: 'Orbitron', 'Georgia', serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    color: #BAA634;
-    text-align: center;
-    margin-bottom: 20px;
-    text-shadow: 
-        0 0 20px rgba(186, 166, 52, 0.8),
-        0 0 40px rgba(186, 166, 52, 0.5);
-    letter-spacing: 0.05em;
-}
-
-.instructions {
-    color: rgba(245, 244, 240, 0.8);
-    font-size: 1.2em;
-    text-align: center;
-    margin-bottom: 40px;
-    font-family: 'Georgia', serif;
-    max-width: 600px;
-}
-
-/* Contenedor de cartas - CON DEBUGGING */
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 25px;
-    max-width: 1600px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, var(--card-size, 180px)));
+    gap: 20px;
+    max-width: 1400px;
     width: 100%;
+    justify-content: center;
     padding: 20px;
-    position: relative;
-    z-index: 10;
-    /* DEBUG: Mostrar estructura del grid */
-    background: rgba(186, 166, 52, 0.05);
-    border: 2px dashed rgba(186, 166, 52, 0.3);
-    border-radius: 10px;
-    /* Asegurar filas consistentes */
-    grid-auto-rows: 1fr;
+    --card-size: 300px; /* Cambia este valor para ajustar el tamaño de todas las cartas */
 }
 
-.cards-container::before {
-    content: 'DEBUG: Grid Container (6 columnas)';
-    position: absolute;
-    top: -25px;
-    left: 20px;
-    background: #BAA634;
-    color: #0a1628;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    font-family: 'Courier New', monospace;
-    z-index: 100;
-}
-
-/* Card Flip Container - CON DEBUGGING COMPLETO */
+/* Card Flip Container */
 .card-wrapper {
-    perspective: 1200px;
+    perspective: 1000px;
     width: 100%;
-    aspect-ratio: 2.5/3.5;
-    cursor: pointer;
-    /* DEBUG: Mostrar contenedor de carta */
-    position: relative;
-    min-height: 350px;
-    height: 100%;
-}
-
-/* DEBUG: Mostrar información de la carta */
-.card-wrapper::before {
-    content: 'Carta ' attr(data-dorsal);
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff4444;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-size: 10px;
-    font-family: 'Courier New', monospace;
-    z-index: 50;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.card-wrapper.debug::before {
-    opacity: 1;
+    height: calc(var(--card-size, 180px) * 1.33);
+    max-width: var(--card-size, 180px);
 }
 
 .card-flip {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: transform 0.6s;
     transform-style: preserve-3d;
-    /* DEBUG: Mostrar área de flip */
-    border: 1px solid transparent;
-}
-
-.card-wrapper.debug .card-flip {
-    border: 1px solid #00ff00;
+    cursor: pointer;
+    transform-origin: center center;
 }
 
 .card-wrapper.flipped .card-flip {
     transform: rotateY(180deg);
-}
-
-/* DEBUG: Estado de animación */
-.card-wrapper.animating {
-    outline: 3px solid #ff9900 !important;
-    z-index: 100;
-}
-
-.card-wrapper.animating::after {
-    content: 'ANIMANDO';
-    position: absolute;
-    top: -25px;
-    right: 0;
-    background: #ff9900;
-    color: #0a1628;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 10px;
-    font-weight: bold;
-    font-family: 'Courier New', monospace;
-    z-index: 101;
 }
 
 .card-face {
@@ -578,455 +469,501 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid rgba(186, 166, 52, 0.3);
+    -webkit-backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    /* DEBUG: Mostrar dimensiones de las caras */
-    box-sizing: border-box;
 }
 
-/* DEBUG: Diferenciar frente y reverso */
+/* Front (Dorsal) - Colores del colegio */
 .card-front {
-    background: linear-gradient(135deg, 
-        #0a1628 0%, 
-        #1a1a2e 50%, 
-        #0e3e75 100%);
+    background: linear-gradient(135deg, #0E3E75 0%, #1A5490 50%, #0A2B52 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 3px solid #BAA634;
     position: relative;
-    transform: rotateY(0deg);
-}
-
-.card-wrapper.debug .card-front {
-    border: 2px solid #00ff00;
-}
-
-.card-wrapper.debug .card-front::after {
-    content: 'FRENTE';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #00ff00;
-    color: #0a1628;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 10px;
-    font-weight: bold;
-    font-family: 'Courier New', monospace;
+    overflow: hidden;
 }
 
 .card-front::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 50% 50%, rgba(186, 166, 52, 0.1) 0%, transparent 70%);
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(186, 166, 52, 0.1) 0%, transparent 70%);
     pointer-events: none;
 }
 
-.card-front::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(135deg, 
-        rgba(186, 166, 52, 0.5), 
-        rgba(14, 62, 117, 0.3),
-        rgba(186, 166, 52, 0.5));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.6;
-}
-
-.dorsal-container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    /* DEBUG: Mostrar contenedor del dorsal */
-    border: 1px solid transparent;
-}
-
-.card-wrapper.debug .dorsal-container {
-    border: 1px dashed #ff00ff;
-}
-
-.logo-container {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid rgba(186, 166, 52, 0.5);
-    box-shadow: 0 0 20px rgba(186, 166, 52, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(10, 22, 40, 0.8);
-    /* DEBUG: Mostrar contenedor del logo */
-    position: relative;
-}
-
-.card-wrapper.debug .logo-container::after {
-    content: 'Logo';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff00ff;
-    color: white;
-    padding: 1px 4px;
-    border-radius: 2px;
-    font-size: 8px;
-    font-family: 'Courier New', monospace;
-}
-
-.logo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .dorsal-number {
-    font-size: clamp(3em, 8vw, 4.5em);
-    font-weight: 900;
-    font-family: 'Orbitron', 'Georgia', serif;
+    font-size: 3.5em;
+    font-weight: bold;
     color: #BAA634;
     text-shadow: 
-        0 0 20px rgba(186, 166, 52, 0.8),
-        0 0 40px rgba(186, 166, 52, 0.5),
-        4px 4px 8px rgba(0, 0, 0, 0.8);
-    letter-spacing: 0.05em;
-    animation: dorsalPulse 2s ease-in-out infinite;
-    /* DEBUG: Mostrar número del dorsal */
+        2px 2px 4px rgba(0,0,0,0.8),
+        0 0 10px rgba(186, 166, 52, 0.5);
     position: relative;
+    z-index: 2;
 }
 
-.card-wrapper.debug .dorsal-number::after {
-    content: 'Dorsal';
+.college-logo {
     position: absolute;
-    bottom: -15px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    background: #ff00ff;
-    color: white;
-    padding: 1px 4px;
-    border-radius: 2px;
-    font-size: 8px;
-    font-family: 'Courier New', monospace;
-}
-
-@keyframes dorsalPulse {
-    0%, 100% {
-        transform: scale(1);
-        text-shadow: 
-            0 0 20px rgba(186, 166, 52, 0.8),
-            0 0 40px rgba(186, 166, 52, 0.5),
-            4px 4px 8px rgba(0, 0, 0, 0.8);
-    }
-    50% {
-        transform: scale(1.05);
-        text-shadow: 
-            0 0 30px rgba(186, 166, 52, 1),
-            0 0 60px rgba(186, 166, 52, 0.7),
-            4px 4px 8px rgba(0, 0, 0, 0.8);
-    }
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    opacity: 0.15;
+    z-index: 1;
 }
 
 .jersey-icon {
-    position: relative;
+    margin-top: 12px;
+    font-size: 1.5em;
+    opacity: 0.5;
+    color: #BAA634;
     z-index: 2;
-    margin-top: 15px;
-    font-size: 2em;
-    opacity: 0.7;
-    filter: drop-shadow(0 0 10px rgba(186, 166, 52, 0.5));
-    animation: jerseyFloat 3s ease-in-out infinite;
 }
 
-@keyframes jerseyFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-/* Back (Player Photo) - CON DEBUGGING */
+/* Back (Player Photo) - Colores del colegio */
 .card-back {
-    background: linear-gradient(135deg, 
-        #0a1628 0%, 
-        #0e3e75 50%, 
-        #1a1a2e 100%);
+    background: linear-gradient(135deg, #1A5490 0%, #0E3E75 100%);
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
-    position: relative;
-}
-
-.card-wrapper.debug .card-back {
-    border: 2px solid #ff4444;
-}
-
-.card-wrapper.debug .card-back::after {
-    content: 'REVERSO';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #ff4444;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 10px;
-    font-weight: bold;
-    font-family: 'Courier New', monospace;
-}
-
-.card-back::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(135deg, 
-        rgba(186, 166, 52, 0.6), 
-        rgba(14, 62, 117, 0.4),
-        rgba(186, 166, 52, 0.6));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.8;
-}
-
-.photo-container {
-    height: 70%;
     overflow: hidden;
-    flex-shrink: 0;
-    /* DEBUG: Mostrar contenedor de foto */
-    border: 1px solid transparent;
-    position: relative;
-}
-
-.card-wrapper.debug .photo-container {
-    border: 1px dashed #0099ff;
-}
-
-.card-wrapper.debug .photo-container::after {
-    content: 'Foto (70%)';
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: #0099ff;
-    color: white;
-    padding: 1px 4px;
-    border-radius: 2px;
-    font-size: 8px;
-    font-family: 'Courier New', monospace;
+    border: 3px solid #BAA634;
 }
 
 .player-photo {
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
-    object-position: center;
-    border-bottom: 3px solid rgba(186, 166, 52, 0.5);
-    filter: brightness(0.9) contrast(1.1);
-    display: block;
+    border-bottom: 3px solid #BAA634;
 }
 
 .player-info {
-    padding: 20px 15px;
+    padding: 10px;
     text-align: center;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(10, 22, 40, 0.8);
-    backdrop-filter: blur(10px);
-    position: relative;
-    /* DEBUG: Mostrar área de información */
-    border: 1px solid transparent;
-    min-height: 30%;
-    box-sizing: border-box;
-}
-
-.card-wrapper.debug .player-info {
-    border: 1px dashed #ff9900;
-}
-
-.card-wrapper.debug .player-info::after {
-    content: 'Info (30%)';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    background: #ff9900;
-    color: #0a1628;
-    padding: 1px 4px;
-    border-radius: 2px;
-    font-size: 8px;
-    font-family: 'Courier New', monospace;
-}
-
-.player-info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(186, 166, 52, 0.8), 
-        transparent);
+    background: rgba(10, 22, 40, 0.7);
 }
 
 .player-name {
-    font-size: clamp(1em, 2vw, 1.3em);
+    font-size: 1em;
     font-weight: bold;
-    font-family: 'Orbitron', 'Georgia', serif;
     color: #BAA634;
-    margin-bottom: 8px;
-    text-shadow: 
-        0 0 10px rgba(186, 166, 52, 0.6),
-        2px 2px 4px rgba(0, 0, 0, 0.8);
-    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .player-position {
-    font-size: clamp(0.85em, 1.5vw, 1em);
-    color: rgba(245, 244, 240, 0.8);
-    font-family: 'Georgia', serif;
-    font-style: italic;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.9);
 }
 
-/* Efecto de brillo en hover */
-.card-wrapper:hover .card-front::after,
-.card-wrapper:hover .card-back::before {
-    opacity: 1;
-    animation: borderGlow 2s ease-in-out infinite;
+/* Hover effect */
+.card-flip:hover {
+    transform: scale(1.08);
 }
 
-@keyframes borderGlow {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+.card-wrapper.flipped .card-flip:hover {
+    transform: rotateY(180deg) scale(1.08);
 }
 
-/* CONTROLES DE DEBUGGING */
-.debug-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(10, 22, 40, 0.9);
-    padding: 15px;
-    border-radius: 10px;
-    border: 2px solid #BAA634;
-    z-index: 1000;
-    font-family: 'Courier New', monospace;
+.card-wrapper:not(.flipped) .card-flip:hover {
+    transform: scale(1.08);
 }
 
-.debug-controls h3 {
-    color: #BAA634;
-    margin-bottom: 10px;
-    font-size: 14px;
+.card-front:hover {
+    box-shadow: 0 0 30px rgba(186, 166, 52, 0.6);
 }
 
-.debug-controls button {
-    background: #BAA634;
-    color: #0a1628;
-    border: none;
-    padding: 8px 12px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.debug-controls button:hover {
-    background: #d4c44a;
-}
-
-/* Responsive adaptado a UNEDOL */
-@media (max-width: 1600px) {
-    .cards-container {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-    }
-    .card-wrapper {
-        min-height: 320px;
-    }
-}
-
+/* Responsive */
 @media (max-width: 1400px) {
     .cards-container {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-    }
-    .card-wrapper {
-        min-height: 300px;
+        --card-size: 160px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, var(--card-size)));
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
     .cards-container {
-        grid-template-columns: repeat(3, 1fr);
+        --card-size: 150px;
+        grid-template-columns: repeat(auto-fit, minmax(130px, var(--card-size)));
         gap: 15px;
     }
-    .card-wrapper {
-        min-height: 280px;
+    
+    .dorsal-number {
+        font-size: 3em;
     }
 }
 
-@media (max-width: 900px) {
-    .players-section {
-        padding: 80px 30px 60px;
-    }
+@media (max-width: 768px) {
     .cards-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
+        --card-size: 140px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, var(--card-size)));
+        gap: 12px;
     }
-    .card-wrapper {
-        min-height: 250px;
+    
+    .dorsal-number {
+        font-size: 2.5em;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 500px) {
+    .cards-container {
+        --card-size: 130px;
+        grid-template-columns: repeat(auto-fit, minmax(110px, var(--card-size)));
+        gap: 10px;
+    }
+    
+    .dorsal-number {
+        font-size: 2.2em;
+    }
+}
+
+/* Instructions */
+.instructions {
+    color: #BAA634;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Sección de jugadores */
+.players-section {
+    background: #0a1628;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.players-section h1 {
+    color: #BAA634;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* ========================================
+    CSS del Banner Motivacional
+    ======================================== */
+
+/* Sección del banner motivacional */
+.banner-motivacional {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #0A2B52 0%, #0E3E75 50%, #1A5490 100%);
+}
+
+.banner-container-moti {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.banner-content-moti {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem 4rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decoración de fondo amarillo */
+.banner-content-moti::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to top, #BAA634 0%, rgba(186, 166, 52, 0.3) 50%, transparent 100%);
+    z-index: 0;
+}
+
+.banner-content-moti > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Sección de la imagen del equipo */
+.team-image-section {
+    flex-shrink: 0;
+}
+
+.team-image-wrapper {
+    width: 400px;
+    height: 280px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(14, 62, 117, 0.3);
+    border: 4px solid #BAA634;
+    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, #0E3E75, #1A5490);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.team-image-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección del texto central */
+.text-section {
+    flex: 1;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.quote-text {
+    font-family: 'Brush Script MT', 'Segoe Script', cursive;
+    font-size: 3.5rem;
+    line-height: 1.3;
+    color: #0E3E75;
+    margin-bottom: 1rem;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.author {
+    font-size: 1.8rem;
+    color: #BAA634;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección del trofeo */
+.trophy-section {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trophy-wrapper {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* SVG del Trofeo */
+.trophy-icon {
+    width: 180px;
+    height: 180px;
+    filter: drop-shadow(0 10px 20px rgba(186, 166, 52, 0.4));
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) scale(1.05);
+    }
+}
+
+/* Sección de descripción de la selección */
+.descripcion-seleccion {
+    margin-top: 2rem;
+    padding: 2.5rem 3rem;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-left: 5px solid #BAA634;
+}
+
+.descripcion-titulo {
+    font-size: 2.5rem;
+    color: #0E3E75;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.descripcion-texto {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .banner-content-moti {
+        padding: 2rem 3rem;
+    }
+
+    .team-image-wrapper {
+        width: 350px;
+        height: 240px;
+    }
+
+    .quote-text {
+        font-size: 3rem;
+    }
+
+    .trophy-wrapper {
+        width: 160px;
+        height: 160px;
+    }
+
+    .trophy-icon {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 968px) {
+    .banner-motivacional {
+        padding: 2rem 0;
+    }
+
+    .banner-content-moti {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .team-image-wrapper {
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+    }
+
+    .text-section {
+        padding: 1rem 0;
+    }
+
+    .quote-text {
+        font-size: 2.5rem;
+    }
+
+    .author {
+        font-size: 1.5rem;
+    }
+
+    .trophy-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+
+    .trophy-icon {
+        width: 130px;
+        height: 130px;
+    }
+
+    .descripcion-seleccion {
+        padding: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .descripcion-titulo {
+        font-size: 2rem;
+    }
+
+    .descripcion-texto {
+        font-size: 1.1rem;
+        text-align: left;
     }
 }
 
 @media (max-width: 600px) {
-    .players-section {
-        padding: 80px 20px 50px;
+    .banner-motivacional {
+        padding: 1.5rem 0;
     }
-    .cards-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-    .card-wrapper {
-        min-height: 220px;
-    }
-    .debug-controls {
-        bottom: 10px;
-        right: 10px;
-        padding: 10px;
-    }
-}
 
-@media (max-width: 400px) {
-    .cards-container {
-        gap: 10px;
+    .banner-container-moti {
+        padding: 0 1rem;
     }
-    .card-wrapper {
-        min-height: 200px;
+
+    .banner-content-moti {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .quote-text {
+        font-size: 2rem;
+    }
+
+    .author {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .team-image-wrapper {
+        height: 250px;
+        border: 3px solid #BAA634;
+    }
+
+    .trophy-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+
+    .trophy-icon {
+        width: 110px;
+        height: 110px;
+    }
+
+    .descripcion-seleccion {
+        padding: 1.5rem;
+        margin-top: 1rem;
+        border-left-width: 3px;
+    }
+
+    .descripcion-titulo {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .descripcion-texto {
+        font-size: 1rem;
+        line-height: 1.6;
     }
 }

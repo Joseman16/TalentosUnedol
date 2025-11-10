@@ -1,7 +1,3 @@
-// ============================================
-// ARTEEXPRESION.JS - Script para carrusel vertical
-// ============================================
-
 (function() {
     'use strict';
 
@@ -227,3 +223,22 @@
     }
 
 })();
+
+// Este archivo JS es opcional, solo necesario si necesitas
+// funcionalidad adicional o compatibilidad con navegadores antiguos
+
+// Si necesitas pausar la rotación al hacer hover:
+/*
+const gallery = document.getElementById('gallery');
+const images = gallery.querySelectorAll('img');
+
+images.forEach(img => {
+  img.addEventListener('mouseenter', () => {
+    gallery.style.animationPlayState = 'paused';
+  });
+  
+  img.addEventListener('mouseleave', () => {
+    gallery.style.animationPlayState = 'running';
+  });
+});
+*/

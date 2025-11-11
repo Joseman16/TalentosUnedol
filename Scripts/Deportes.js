@@ -211,31 +211,31 @@ animateBubbles();
 // Aquí defines tus 21 jugadores con dorsal, nombre, posición y foto
 const players = [
     // Fila 1 (Dorsales 1-7)
-    { dorsal: 1, name: "Juan Pérez", position: "Portero", photo: "https://via.placeholder.com/300x400/4CAF50/ffffff?text=Jugador+1" },
-    { dorsal: 2, name: "Carlos López", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+2" },
-    { dorsal: 3, name: "Miguel Sánchez", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+3" },
-    { dorsal: 4, name: "David Martínez", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+4" },
-    { dorsal: 5, name: "Roberto García", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+5" },
-    { dorsal: 6, name: "Antonio Ruiz", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+6" },
-    { dorsal: 7, name: "Luis Fernández", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+7" },
+    { dorsal: 1, name: "Juan Pérez", position: "Portero", photo: "../img/imgDeporte/SeleccionF/j1.jpeg" },
+    { dorsal: 2, name: "Carlos López", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j2.jpeg" },
+    { dorsal: 3, name: "Miguel Sánchez", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j3.jpeg" },
+    { dorsal: 4, name: "David Martínez", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j4.jpeg" },
+    { dorsal: 5, name: "Roberto García", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j5.jpeg" },
+    { dorsal: 6, name: "Antonio Ruiz", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j6.jpeg" },
+    { dorsal: 7, name: "Luis Fernández", position: "Delantero", photo: "../img/imgDeporte/SeleccionF/j7.jpeg" },
     
     // Fila 2 (Dorsales 8-14)
-    { dorsal: 8, name: "José Torres", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+8" },
-    { dorsal: 9, name: "Manuel Díaz", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+9" },
-    { dorsal: 10, name: "Francisco Moreno", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+10" },
-    { dorsal: 11, name: "Javier Álvarez", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+11" },
-    { dorsal: 12, name: "Pedro Romero", position: "Portero", photo: "https://via.placeholder.com/300x400/4CAF50/ffffff?text=Jugador+12" },
-    { dorsal: 13, name: "Sergio Jiménez", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+13" },
-    { dorsal: 14, name: "Rafael Muñoz", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+14" },
+    { dorsal: 8, name: "José Torres", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j8.jpeg" },
+    { dorsal: 9, name: "Manuel Díaz", position: "Delantero", photo: "../img/imgDeporte/SeleccionF/j9.jpeg" },
+    { dorsal: 10, name: "Francisco Moreno", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j10.jpeg" },
+    { dorsal: 11, name: "Javier Álvarez", position: "Delantero", photo: "../img/imgDeporte/SeleccionF/j11.jpeg" },
+    { dorsal: 12, name: "Pedro Romero", position: "Portero", photo: "../img/imgDeporte/SeleccionF/j12.jpeg" },
+    { dorsal: 13, name: "Sergio Jiménez", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j13.jpeg" },
+    { dorsal: 14, name: "Rafael Muñoz", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j14.jpeg" },
     
     // Fila 3 (Dorsales 15-21)
-    { dorsal: 15, name: "Daniel Castro", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+15" },
-    { dorsal: 16, name: "Pablo Ortiz", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+16" },
-    { dorsal: 17, name: "Andrés Navarro", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+17" },
-    { dorsal: 18, name: "Marcos Delgado", position: "Defensa", photo: "https://via.placeholder.com/300x400/2196F3/ffffff?text=Jugador+18" },
-    { dorsal: 19, name: "Alberto Vega", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+19" },
-    { dorsal: 20, name: "Hugo Ramos", position: "Centrocampista", photo: "https://via.placeholder.com/300x400/FF9800/ffffff?text=Jugador+20" },
-    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "https://via.placeholder.com/300x400/F44336/ffffff?text=Jugador+21" }
+    { dorsal: 15, name: "Daniel Castro", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j15.jpeg" },
+    { dorsal: 16, name: "Pablo Ortiz", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j16.jpeg" },
+    { dorsal: 17, name: "Andrés Navarro", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j17.jpeg" },
+    { dorsal: 18, name: "Marcos Delgado", position: "Defensa", photo: "../img/imgDeporte/SeleccionF/j18.jpeg" },
+    { dorsal: 19, name: "Alberto Vega", position: "Delantero", photo: "../img/imgDeporte/SeleccionF/j19.jpeg" },
+    { dorsal: 20, name: "Hugo Ramos", position: "Centrocampista", photo: "../img/imgDeporte/SeleccionF/j20.jpeg" },
+    { dorsal: 21, name: "Óscar Gil", position: "Delantero", photo: "../img/imgDeporte/SeleccionF/dt.jpg" }
 ];
 
 // 🎨 Función para crear una carta
@@ -309,3 +309,53 @@ console.log('   flipAllBack() - Devuelve todas las cartas');
 console.log('   changePlayerPhoto(dorsal, url) - Cambia la foto de un jugador');
 console.log('');
 console.log('🎨 Para cambiar fotos, edita el array "players" en el código');
+
+
+class AccordionSlider {
+    constructor() {
+        this.slides = document.querySelectorAll(".slide");
+        this.prevBtn = document.querySelector(".nav-prev");
+        this.nextBtn = document.querySelector(".nav-next");
+        this.currentIndex = -1;
+        this.init();
+    }
+    
+    init() {
+        this.slides.forEach((slide, index) => {
+            slide.addEventListener("click", () => this.setActiveSlide(index));
+        });
+        
+        this.prevBtn.addEventListener("click", () => this.previousSlide());
+        this.nextBtn.addEventListener("click", () => this.nextSlide());
+        
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") this.previousSlide();
+            if (e.key === "ArrowRight") this.nextSlide();
+        });
+    }
+    
+    setActiveSlide(index) {
+        if (this.currentIndex === index) {
+            this.slides.forEach((slide) => slide.classList.remove("active"));
+            this.currentIndex = -1;
+        } else {
+            this.slides.forEach((slide) => slide.classList.remove("active"));
+            this.slides[index].classList.add("active");
+            this.currentIndex = index;
+        }
+    }
+    
+    nextSlide() {
+        const nextIndex = this.currentIndex === -1 ? 0 : (this.currentIndex + 1) % this.slides.length;
+        this.setActiveSlide(nextIndex);
+    }
+    
+    previousSlide() {
+        const prevIndex = this.currentIndex === -1 ? this.slides.length - 1 : (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        this.setActiveSlide(prevIndex);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    new AccordionSlider();
+});

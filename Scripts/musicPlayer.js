@@ -46,14 +46,14 @@ const playlist = [
   {
     title: "Lloraras.",
     artist: "Zamir Vera",
-    duration: "3:00",
+    duration: "3:41",
     image: "../Musica/artistas/Zamir Vera.jpeg",
     src: "../Musica/Zamir Vera - Mix.mp3"
   },
   {
     title: "Paloma Negra.",
     artist: "Emi Navarro",
-    duration: "3:00",
+    duration: "3:28",
     image: "../Musica/artistas/Emi Navarro.jpg",
     src: "../Musica/EmiNavarro - Mix.mp3"
   }

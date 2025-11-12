@@ -42,7 +42,22 @@ const playlist = [
     duration: "8:00",
     image: "https://albaciudad.org/wp-content/uploads/2024/01/Canserbero.jpg",
     src: "../Musica/Canserbero - De la vida como una película y su tragedia, comedia y ficción..mp3"
+  },
+  {
+    title: "Lloraras.",
+    artist: "Zamir Vera",
+    duration: "3:00",
+    image: "../Musica/artistas/Zamir Vera.jpeg",
+    src: "../Musica/Zamir Vera - Mix.mp3"
+  },
+  {
+    title: "Paloma Negra.",
+    artist: "Emi Navarro",
+    duration: "3:00",
+    image: "../Musica/artistas/Emi Navarro.jpg",
+    src: "../Musica/EmiNavarro - Mix.mp3"
   }
+
 ];
 
 let currentSongIndex = 0;

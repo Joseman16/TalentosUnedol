@@ -16,34 +16,6 @@ const playlistContainer = document.getElementById('playlistContainer');
 // Lista de canciones de ejemplo (usar URLs reales de música)
 const playlist = [
   {
-    title: "Bohemian Rhapsody",
-    artist: "Queen",
-    duration: "5:55",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBhgQNe1b-bir69_OkNdrRhtC7KBDsm0Oc0Q&s",
-    src: "../Musica/Queen – Bohemian Rhapsody (Official Video Remastered).mp3" // Agregar URL de audio
-  },
-  {
-    title: "I'm Still Standing",
-    artist: "Elton John",
-    duration: "3:02",
-    image: "https://www.eltonjohn.com/cms/wp-content/uploads/2023/10/1504913569greatest-1.jpg",
-    src: "../Musica/Elton John - I'm Still Standing.mp3"
-  },
-  {
-    title: "Oh que será?",
-    artist: "Willie Colón",
-    duration: "6:08",
-    image: "https://fania.com/wp-content/uploads/2020/02/FANIA__2654_-_WILLIE_COLON-1200.jpg",
-    src: "../Musica/Willie Colón - Oh que será？.mp3"
-  },
-  {
-    title: " De la vida como una película y su tragedia, comedia y ficción.",
-    artist: "Canserbero",
-    duration: "8:00",
-    image: "https://albaciudad.org/wp-content/uploads/2024/01/Canserbero.jpg",
-    src: "../Musica/Canserbero - De la vida como una película y su tragedia, comedia y ficción..mp3"
-  },
-  {
     title: "Lloraras.",
     artist: "Zamir Vera",
     duration: "3:41",
@@ -53,9 +25,23 @@ const playlist = [
   {
     title: "Paloma Negra.",
     artist: "Emi Navarro",
-    duration: "3:28",
+    duration: "3:15",
     image: "../Musica/artistas/Emi Navarro.jpg",
-    src: "../Musica/EmiNavarro - Mix.mp3"
+    src: "../Musica/Emilia Navarro.mp3"
+  },
+  {
+    title: "Todos Me Miran y A Quien Le Importa",
+    artist: "Dalia Zurita",
+    duration: "4:27",
+    image: "../Musica/artistas/Dalia Zurita.jpeg",
+    src: "../Musica/Dalia Zurita.mp3"
+  },
+  {
+    title: "Fatalidad",
+    artist: "Anthony Desintonio",
+    duration: "3:11",
+    image: "../Musica/artistas/Anthony Desintonio.jpeg",
+    src: "../Musica/Desintonio - Mix.mp3"
   }
 
 ];

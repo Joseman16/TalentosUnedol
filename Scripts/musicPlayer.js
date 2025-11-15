@@ -42,6 +42,13 @@ const playlist = [
     duration: "3:11",
     image: "../Musica/artistas/Anthony Desintonio.jpeg",
     src: "../Musica/Desintonio - Mix.mp3"
+  },
+  {
+    title: "Chica Linda",
+    artist: "Gaby Navarro",
+    duration: "2:57",
+    image: "../Musica/artistas/Gaby Navarro.jpeg",
+    src: "../Musica/Gaby Navarro - Mix.mp3"
   }
 
 ];

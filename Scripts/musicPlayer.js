@@ -27,7 +27,7 @@ const playlist = [
     artist: "Emi Navarro",
     duration: "3:15",
     image: "../Musica/artistas/Emi Navarro.jpg",
-    src: "../Musica/Emilia Navarro.mp3"
+    src: "../Musica/EmiNavarro - Mix.mp3"
   },
   {
     title: "Todos Me Miran y A Quien Le Importa",
@@ -49,6 +49,13 @@ const playlist = [
     duration: "2:57",
     image: "../Musica/artistas/Gaby Navarro.jpeg",
     src: "../Musica/Gaby Navarro - Mix.mp3"
+  },
+  {
+    title: "No Me Se Rajar",
+    artist: "Anahí Azpiazu",
+    duration: "3:31",
+    image: "../Musica/artistas/Anahí Azpiazu.jpeg",
+    src: "../Musica/Anahi Azpiasu - Mix.mp3"
   }
 
 ];

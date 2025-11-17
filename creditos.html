@@ -3,111 +3,773 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créditos - UNEDOL</title>
-    <link rel="stylesheet" href="Estilos/creditos.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Vina+Sans&display=swap" rel="stylesheet">
+    <title>Créditos - Diseño Innovador</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0e3e75 0%, #1a5490 50%, #4a7ba7 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 90px; /* Espacio para el header fijo */
+        }
+
+        /* ============================================
+           HEADER CORREGIDO
+           ============================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(14, 62, 117, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            z-index: 9999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            overflow: visible;
+        }
+
+        /* Canvas para las burbujas - AHORA SOLO EN EL HEADER */
+        .bubble-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 1.8rem;
+            color: #BAA634;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(186, 166, 52, 0.5);
+            z-index: 10;
+            position: relative;
+        }
+
+        .logo-text img {
+            height: 50px;
+            width: 130px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(186, 166, 52, 0.3);
+        }
+
+        /* 🔹 NAV y enlaces principales */
+        .nav {
+            display: flex;
+            gap: 40px;
+            z-index: 10;
+            position: relative;
+            align-items: center;
+        }
+
+        .nav a {
+            color: #F5F4F0;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #BAA634;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav a:hover {
+            color: #BAA634;
+            text-shadow: 0 0 10px rgba(186, 166, 52, 0.6);
+        }
+
+        /* 🔹 Submenú */
+        .submenu {
+            position: relative;
+        }
+
+        .submenu-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(14, 62, 117, 0.95);
+            backdrop-filter: blur(10px);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            z-index: 99999;
+        }
+
+        /* Mostrar submenú con animación */
+        .submenu:hover .submenu-list {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Estilo de los enlaces dentro del submenú */
+        .submenu-list li a {
+            display: block;
+            padding: 12px 16px;
+            color: #F5F4F0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .submenu-list li a:hover {
+            background: rgba(186, 166, 52, 0.2);
+            color: #BAA634;
+            text-shadow: 0 0 10px rgba(186, 166, 52, 0.5);
+        }
+
+        /* ============================================
+           CONTENEDOR PRINCIPAL
+           ============================================ */
+        .credits-container {
+            width: 1000px;
+            min-height: 700px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            margin: 0 auto; /* Centrar el contenedor */
+        }
+
+        /* ============================================
+           FONDO ANIMADO
+           ============================================ */
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #BAA634 0%, #d4b850 100%);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        .circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 80%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* ============================================
+           HEADER DEL CONTENIDO (NO CONFUNDIR CON EL HEADER PRINCIPAL)
+           ============================================ */
+        .content-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 40px 40px;
+            background: linear-gradient(135deg, #BAA634 0%, #d4b850 100%);
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .content-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease;
+        }
+
+        .content-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           CONTENIDO PRINCIPAL
+           ============================================ */
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 60px 60px;
+        }
+
+        /* ============================================
+           SECCIÓN DE EQUIPO
+           ============================================ */
+        .team-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #BAA634;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #BAA634, #d4b850);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ============================================
+           TARJETAS DE MIEMBROS
+           ============================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .member-card:nth-child(1) { animation-delay: 0.2s; }
+        .member-card:nth-child(2) { animation-delay: 0.4s; }
+        .member-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #BAA634, #d4b850);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .member-icon {
+            width: 120px;
+            height: 120px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(186, 166, 52, 0.4);
+            transition: all 0.3s ease;
+            border: 4px solid #BAA634;
+        }
+
+        .member-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-card:hover .member-icon {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(186, 166, 52, 0.6);
+        }
+
+        .member-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .member-role {
+            font-size: 0.95em;
+            color: #BAA634;
+            text-align: center;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           SECCIÓN DE INSTITUCIÓN
+           ============================================ */
+        .institution-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+            animation: slideInRight 0.8s ease 1s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .institution-logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .institution-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .institution-description {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #eee;
+            margin-top: 40px;
+            animation: fadeIn 1s ease 1.2s both;
+        }
+
+        .footer-year {
+            font-weight: 600;
+            color: #BAA634;
+        }
+
+        /* ============================================
+           PARTÍCULAS FLOTANTES
+           ============================================ */
+        .particle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #BAA634;
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: particleFloat 10s infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .credits-container {
+                width: 90%;
+            }
+
+            .content-header h1 {
+                font-size: 2.5em;
+            }
+
+            .content {
+                padding: 30px 40px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 20px;
+            }
+            
+            .nav {
+                gap: 20px;
+            }
+            
+            .content-header h1 {
+                font-size: 2em;
+            }
+
+            .content-header p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 20px 30px 30px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .institution-name {
+                font-size: 1.8em;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <section class="header">
+    <!-- ============================================
+         HEADER PRINCIPAL FIJADO ARRIBA
+         ============================================ -->
+    <header class="header">
         <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
 
         <div class="logo-text">
-            <img height="50" width="100" src="img/logo.jpeg" alt="Logo UNEDOL" />
+            <img
+                height="50px"
+                width="100px"
+                src="img/logo.jpeg"
+                alt="Logo UNEDOL"
+            />
         </div>
 
         <nav class="nav">
             <a href="index.html">Inicio</a>
             <a href="galeria.html">Galería</a>
-            <div class="submenu">
+
+            <div class="submenu">   
                 <a href="#talentos">Talentos ▾</a>
                 <ul class="submenu-list">
                     <li><a href="talentoMusica.html">Música y Canto</a></li>
                     <li><a href="talentoDeporte.html">Deporte</a></li>
                     <li><a href="ArtesExpresion.html">Arte y Expresión</a></li>
+                    <li><a href="Wakani.html">Wakani</a></li>
                 </ul>
             </div>
+
             <a href="ExcelenciaAcademica.html">Excelencia Académica</a>
-            <a href="creditos.html">Créditos</a>
+            <a href="creditos.html">Creditos</a>
         </nav>
-    </section>
+        <script src="Scripts/burbuja.js"></script>
+    </header>
+    <!-- ============================================
+         CONTENIDO PRINCIPAL
+         ============================================ -->
+    <main>
+        <div class="credits-container">
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="main-container">
-        <center>
-            <div class="sfondo">
+            <div class="animated-bg">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
 
-                <!-- Luces animadas -->
-                <div class="box_light">
-                    <div class="light"></div>
-                    <div class="darker"></div>
-                    <div class="lighter"></div>
-                </div>
+            <div class="content-header">
+                <h1>Créditos del Proyecto</h1>
+                <p>Un homenaje a quienes hicieron posible este trabajo</p>
+            </div>
 
-                <!-- Imágenes GIF -->
-                <div class="contenitoregiffine">
-                    <img class="giffine gif1" src="https://i.postimg.cc/tgC2dFn4/SCHEDA-5-GIF-2.gif" alt="Gif 1">
-                    <img class="giffine gif2" src="https://i.postimg.cc/jdqFsVv1/SCHEDA-5-GIF-1.gif" alt="Gif 2">
-                    <img class="giffine gif3" src="https://i.postimg.cc/Gt8ybm8R/SCHEDA-5-GIF-3.gif" alt="Gif 3">
-                </div>
+            <div class="content">
+                <div class="team-section">
+                    <h2 class="section-title">Equipo de Estudiantes</h2>
 
-                <!-- Información extra -->
-                <div class="extra">
-                    <div class="cornicettaextra">
-                        <div style="height: 114px; padding-top: 1px; overflow: auto;">
-                            <c>Agradecimiento especial:</c> a los estudiantes <e>Dennise Saltos</e>, <e>Mateo García</e> y <e>Carmen Gonzales</e><br>
-                            <c>Unidad Educativa:</c> <f>Olmedo (Unedol)</f><br>
-                            <c>Dirección del proyecto:</c> <k>Msc. Mariuxi Pluas</k><br>
-                            <c>Reconocimiento:</c> por su dedicación al investigar, entrevistar y desarrollar esta página que conmemora el talento y esfuerzo de la comunidad educativa.<br>
-                            <c>Objetivo:</c> brindar el mejor servicio a ustedes con creatividad, compromiso y trabajo en equipo.
-                        </div>
-                    </div>
-                </div>
+                    <div class="team-grid">
 
-                <!-- Galería principal -->
-                <div id="mmgallery">
-                    <titletext>Gracias por hacer brillar el talento de Unedol</titletext>
-                    <titletext>El esfuerzo y la pasión dejan huellas imborrables</titletext>
-                    <titletext1>Detrás de cada logro hay compromiso y trabajo conjunto</titletext1>
-                    <titletext1>La educación florece cuando se comparte conocimiento</titletext1>
-                    <randoletters>Unidos por la excelencia</randoletters>
-                    
-                    <div class="mmmainover"></div>
-                    
-                    <div class="mmaintainer">
-                        <input type="radio" id="mintro" name="content" checked>
-                        <div class="mmainin">
-                            <div class="cornicetta">
-                                <div class="tit">
-                                    "Este proyecto fue posible gracias al compromiso y la creatividad de los estudiantes de la Unidad Educativa Olmedo (Unedol), quienes con entusiasmo y esfuerzo lograron dar vida a esta página conmemorativa."
-                                </div>
-
-                                <div class="contenitoregiflunga">
-                                    <div class="gif_lunga"></div>
-                                </div>
-
-                                <div style="height: 175px; overflow: auto; padding: 10px;">
-                                    Agradecemos profundamente a <c>Dennise Saltos</c>, <c>Mateo García</c> y <c>Carmen Gonzales</c> por su participación activa en la creación de esta página. Bajo la guía y apoyo de la profesora <d>Msc. Mariuxi Pluas</d>, los estudiantes investigaron, entrevistaron y aportaron valiosas ideas que permitieron diseñar un espacio que celebra los talentos de nuestra comunidad educativa.<br><br>
-
-                                    Su compromiso, esfuerzo y pasión reflejan el verdadero espíritu de <e>Unedol</e>: formar jóvenes con visión, creatividad y responsabilidad social. Cada sección, cada detalle, es testimonio del trabajo en equipo y de la dedicación puesta en ofrecer el mejor servicio a ustedes, nuestros visitantes.<br><br>
-
-                                    <div style="text-align: right">
-                                        <i>Gracias por formar parte de este homenaje al esfuerzo, la educación y el talento.</i>
-                                    </div>
-                                </div>
+                        <div class="member-card">
+                            <div class="member-icon">
+                                <img src="desarrolladores/Dennise.jpeg" alt="Dennise Saltos">
                             </div>
+                            <h3 class="member-name">Dennise Saltos</h3>
+                            <p class="member-role">Investigadora & Desarrolladora</p>
                         </div>
+
+                        <div class="member-card">
+                            <div class="member-icon">
+                                <img src="desarrolladores/Mateo.jpeg" alt="Mateo García">
+                            </div>
+                            <h3 class="member-name">Mateo García</h3>
+                            <p class="member-role">Investigador & Desarrollador</p>
+                        </div>
+
+                        <div class="member-card">
+                            <div class="member-icon">
+                                <img src="desarrolladores/Carmen.jpeg" alt="Carmen Gonzales">
+                            </div>
+                            <h3 class="member-name">Carmen Gonzales</h3>
+                            <p class="member-role">Investigadora & Desarrolladora</p>
+                        </div>
+
                     </div>
+                </div>
+
+                <div class="institution-section">
+                    <div class="institution-logo">🏫</div>
+                    <h3 class="institution-name">Unidad Educativa Olmedo</h3>
+                    <p class="institution-description">
+                        Este proyecto nace del compromiso de Unedol con la formación integral de sus estudiantes, 
+                        promoviendo la investigación, la creatividad y el trabajo en equipo...
+                    </p>
                 </div>
             </div>
-        </center>
-    </div>
 
-    <script src="Scripts/burbuja.js"></script>
-    
+            <div class="footer">
+                <p>Proyecto realizado con dedicación y esfuerzo</p>
+                <p class="footer-year">© 2025 - Unidad Educativa Olmedo (Unedol)</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================
+         SCRIPT DE BURBUJAS MODIFICADO PARA SOLO AFECTAR EL HEADER
+         ============================================ -->
+    <script>
+        // Script de burbujas limitado al header
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('bubbleCanvas');
+            const ctx = canvas.getContext('2d');
+            const header = document.querySelector('.header');
+            
+            // Ajustar el tamaño del canvas al header
+            function resizeCanvas() {
+                canvas.width = header.offsetWidth;
+                canvas.height = header.offsetHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Configuración de las burbujas
+            const bubbles = [];
+            const bubbleCount = 15;
+            
+            class Bubble {
+                constructor() {
+                    this.radius = Math.random() * 10 + 5;
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    // Rebotar en los bordes del header
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(186, 166, 52, ${this.opacity})`;
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+            
+            // Crear burbujas
+            for (let i = 0; i < bubbleCount; i++) {
+                bubbles.push(new Bubble());
+            }
+            
+            // Animación
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                bubbles.forEach(bubble => {
+                    bubble.update();
+                    bubble.draw();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        });
+
+        // Partículas flotantes para toda la página (opcional)
+        function createParticles() {
+            const particleCount = 15;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+
 </body>
 </html>

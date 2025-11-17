@@ -636,13 +636,55 @@ body {
 }
 
 /* Instructions */
+
+/* Instructions */
 .instructions {
     color: #BAA634;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 1.1em;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
+
+/* Botón de Toggle */
+.toggle-button {
+    display: block;
+    margin: 0 auto 30px;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #0E3E75 0%, #1A5490 100%);
+    border: 3px solid #BAA634;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(186, 166, 52, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.toggle-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(186, 166, 52, 0.5);
+    background: linear-gradient(135deg, #1A5490 0%, #0E3E75 100%);
+}
+
+.toggle-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(186, 166, 52, 0.4);
+}
+
+.toggle-button.hide-mode {
+    background: linear-gradient(135deg, #BAA634 0%, #D4C254 100%);
+    color: #0A2B52;
+    border-color: #0E3E75;
+}
+
+.toggle-button.hide-mode:hover {
+    background: linear-gradient(135deg, #D4C254 0%, #BAA634 100%);
+}
+
 
 /* Sección de jugadores */
 .players-section {

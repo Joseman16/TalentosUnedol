@@ -26,8 +26,9 @@
           <a href="#talentos">Talentos ▾</a>
           <ul class="submenu-list">
             <li><a href="talentoMusica.html">Música y Canto</a></li>
-            <li><a href="talentoDeporte.html">Deporte y Cultura</a></li>
+            <li><a href="talentoDeporte.html">Deporte</a></li>
             <li><a href="ArtesExpresion.html">Arte y Expresión</a></li>
+            <li><a href="Wakani.html">Wakani</a></li>
           </ul>
         </div>
         <a href="ExcelenciaAcademica.html">Excelencia Académica</a>
@@ -140,14 +141,19 @@
         </div>
     </section>
 
-     <!-- SECCIÓN DE CARTAS DE JUGADORES - CORREGIDA -->
+    <!-- SECCIÓN DE CARTAS DE JUGADORES - CORREGIDA -->
     <section class="players-section">
         <h1>⚽ PLANTILLA DEL EQUIPO</h1>
         <p class="instructions">Haz click en cualquier carta para voltearla y conocer al jugador</p>
         
+        <!-- Botón de control -->
+        <button id="toggleButton" class="toggle-button" onclick="toggleAllCards()">
+            👁️ Mostrar Todos los Jugadores
+        </button>
+        
         <div class="cards-container" id="cardsContainer" style="--card-size: 300px;"></div>
     </section>
-
+    <script src="Scripts/Deportes.js"></script>
 
     <!-- Sección Cheerleaders -->
     <section class="cheerleader-section">
@@ -177,7 +183,7 @@
                 <div class="slide-content">
                     <div class="slide-number">01</div>
                     <div class="car-brand">Presentación Institucional</div>
-                    <div class="car-name">Acto Cívico 2025</div>
+                    <div class="car-name">Pasión y Esfuerzo</div>
                     <div class="car-subtitle">Demostrando energía, disciplina y talento ante la comunidad educativa</div>
                 </div>
                 <div class="add-button"></div>
@@ -187,8 +193,8 @@
             <div class="slide" style="background-image: url('./img/imgDeporte/Cheeleader/img2.jpg')">
                 <div class="slide-content">
                     <div class="slide-number">02</div>
-                    <div class="car-brand">Competencia Intercolegial</div>
-                    <div class="car-name">Festival Deportivo Daule</div>
+                    <div class="car-brand">Competencia de Cheeleader</div>
+                    <div class="car-name">Festival Deportivo</div>
                     <div class="car-subtitle">Una actuación llena de pasión, coordinación y espíritu olmedino</div>
                 </div>
                 <div class="add-button"></div>
@@ -221,7 +227,7 @@
                 <div class="slide-content">
                     <div class="slide-number">05</div>
                     <div class="car-brand">Orgullo Olmedino</div>
-                    <div class="car-name">Equipo Ganador 2024</div>
+                    <div class="car-name">Equipo Ganador 2025</div>
                     <div class="car-subtitle">El grupo completo celebrando sus logros con la medalla de campeón</div>
                 </div>
                 <div class="add-button"></div>
@@ -231,8 +237,6 @@
         <button class="navigation-arrows nav-prev">‹</button>
         <button class="navigation-arrows nav-next">›</button>
     </section>
-
-    <script src="Scripts/Deportes.js"></script>
     <script src="Scripts/burbuja.js"></script>
 
 </body>

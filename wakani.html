@@ -1,12 +1,801 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+    <title>Semilleros de Wakani</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Georgia', serif;
+            background: radial-gradient(ellipse at center, #001b84 0%, #000 70%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: explode 2s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #001b84;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #001b84, 0 0 20px #001b84;
+            animation: sparkle-float 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkle-float {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+
+        .header-section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 4px solid #e8c201;
+            box-shadow: 0 4px 30px rgba(232, 194, 1, 0.5);
+        }
+
+        .pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image:
+                repeating-linear-gradient(45deg, #e8c201 0px, #e8c201 2px, transparent 2px, transparent 20px),
+                repeating-linear-gradient(-45deg, #e8c201 0px, #e8c201 2px, transparent 2px, transparent 20px);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 3rem;
+            max-width: 1200px;
+        }
+
+        .decorative-top {
+            width: 150px;
+            height: 4px;
+            background: #e8c201;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .decorative-top::before,
+        .decorative-top::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #e8c201;
+            border-radius: 50%;
+            top: -4px;
+        }
+
+        .decorative-top::before {
+            left: -20px;
+        }
+
+        .decorative-top::after {
+            right: -20px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            text-shadow:
+                3px 3px 0px #e8c201,
+                6px 6px 20px rgba(232, 194, 1, 0.8),
+                0 0 40px rgba(232, 194, 1, 0.5),
+                0 0 80px rgba(0, 27, 132, 0.3);
+            animation: fadeInScale 1.5s ease-out, glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow:
+                    3px 3px 0px #e8c201,
+                    6px 6px 20px rgba(232, 194, 1, 0.8),
+                    0 0 40px rgba(232, 194, 1, 0.5),
+                    0 0 80px rgba(0, 27, 132, 0.3);
+            }
+            50% {
+                text-shadow:
+                    3px 3px 0px #e8c201,
+                    6px 6px 30px rgba(232, 194, 1, 1),
+                    0 0 60px rgba(232, 194, 1, 0.8),
+                    0 0 100px rgba(0, 27, 132, 0.5);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #e8c201;
+            font-style: italic;
+            margin-bottom: 3rem;
+            animation: fadeIn 2s ease-out, subtleGlow 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(232, 194, 1, 0.6);
+        }
+
+        @keyframes subtleGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(232, 194, 1, 0.6);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(232, 194, 1, 0.9);
+            }
+        }
+
+        .decorative-bottom {
+            width: 200px;
+            height: 4px;
+            background: #e8c201;
+            margin: 2rem auto 3rem;
+            position: relative;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .corner-decor {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 3px solid #e8c201;
+            z-index: 2;
+        }
+
+        .corner-decor.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-decor.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-decor.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-decor.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Estilos de la galería */
+        .gallery-section {
+            width: 100%;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            padding: 4rem 0 2rem 0;
+        }
+
+        .gallery-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 20px;
+            animation: scroll 20s linear infinite;
+        }
+
+        .gallery-item {
+            min-width: 350px;
+            height: 250px;
+            background: transparent;
+            border: 2px solid #e8c201;
+            border-radius: 5px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow:
+                0 0 20px rgba(232, 194, 1, 0.3),
+                inset 0 0 20px rgba(0, 27, 132, 0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow:
+                0 0 40px rgba(232, 194, 1, 0.6),
+                inset 0 0 30px rgba(0, 27, 132, 0.2);
+            border-color: #ffd700;
+        }
+
+        .gallery-item.placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8c201;
+            font-size: 1rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Sección de Historia */
+        .historia-section {
+            width: 100%;
+            background: #000;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .historia-container {
+            max-width: 1200px;
+            max-height: 600px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            width: 100%;
+            background: rgba(0, 27, 132, 0.3);
+            border: 3px solid #e8c201;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow:
+                0 0 40px rgba(232, 194, 1, 0.4),
+                inset 0 0 30px rgba(0, 27, 132, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .historia-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #e8c201;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(232, 194, 1, 0.6);
+        }
+
+        .historia-content {
+            color: white;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .historia-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Sección de Personajes Destacados */
+        .personajes-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            background: #000;
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .personajes-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #e8c201;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(232, 194, 1, 0.6);
+        }
+
+        .personajes-grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .personaje-card {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid #e8c201;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(232, 194, 1, 0.3);
+        }
+
+        .personaje-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(232, 194, 1, 0.6);
+            border-color: #ffd700;
+        }
+
+        .personaje-card.placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e8c201;
+            font-size: 1.2rem;
+        }
+
+        .personaje-info {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: rgba(232, 194, 1, 0.9);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 2px solid #e8c201;
+            backdrop-filter: blur(5px);
+        }
+
+        .personaje-nombre {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #001b84;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Scrollbar personalizado para la sección de historia */
+        .historia-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .historia-container::-webkit-scrollbar-track {
+            background: rgba(0, 27, 132, 0.3);
+            border-radius: 10px;
+        }
+
+        .historia-container::-webkit-scrollbar-thumb {
+            background: #e8c201;
+            border-radius: 10px;
+        }
+
+        .historia-container::-webkit-scrollbar-thumb:hover {
+            background: #ffd700;
+        }
+    </style>
+
+    <link rel="stylesheet" href="Estilos/estilo.css">
+</head>
+
+<body>
+
+    <section class="header">
+      <canvas class="bubble-canvas" id="bubbleCanvas"></canvas>
+
+      <div class="logo-text">
+        <img
+          height="50px"
+          width="100px"
+          src="img/logo.jpeg"
+          alt="Logo UNEDOL"
+        />
+      </div>
+      <nav class="nav">
+        <a href="index.html">Inicio</a>
+        <a href="galeria.html">Galería</a>
+        <div class="submenu">   
+          <a href="#talentos">Talentos ▾</a>
+          <ul class="submenu-list">
+            <li><a href="talentoMusica.html">Música y Canto</a></li>
+            <li><a href="talentoDeporte.html">Deporte</a></li>
+            <li><a href="ArtesExpresion.html">Arte y Expresión</a></li>
+            <li><a href="Wakani.html">Wakani</a></li>
+          </ul>
+        </div>
+        <a href="ExcelenciaAcademica.html">Excelencia Académica</a>
+        <a href="creditos.html">Creditos</a>
+      </nav>
+    </section>
+
+    <script src="Scripts/burbuja.js"></script>
+
+
+    <div class="fireworks-container" id="fireworksContainer"></div>
+
+    <!-- SECCIÓN DEL TÍTULO -->
+    <div class="header-section">
+        <div class="pattern"></div>
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+
+        <div class="container">
+            <div class="decorative-top"></div>
+            <h1>Semilleros<br>de Wakani</h1>
+            <p class="subtitle">Somos talento, Somos UNEDOL</p>
+            <div class="decorative-bottom"></div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE LA GALERÍA (Carrusel) -->
+    <div class="gallery-section">
+        <div class="gallery-container">
+            <div class="gallery-track" id="galleryTrack">
+                <div class="gallery-item placeholder" data-index="0">Imagen 1<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="1">Imagen 2<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="2">Imagen 3<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="3">Imagen 4<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="4">Imagen 5<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="5">Imagen 6<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="6">Imagen 7<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="7">Imagen 8<br>350x250</div>
+                <!-- Duplicado para efecto de bucle infinito -->
+                <div class="gallery-item placeholder" data-index="0">Imagen 1<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="1">Imagen 2<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="2">Imagen 3<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="3">Imagen 4<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="4">Imagen 5<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="5">Imagen 6<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="6">Imagen 7<br>350x250</div>
+                <div class="gallery-item placeholder" data-index="7">Imagen 8<br>350x250</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE HISTORIA -->
+    <div class="historia-section">
+        <div class="historia-container">
+            <h2 class="historia-title">Historia de los Semilleros de Wakani</h2>
+            <div class="historia-content">
+                <p>
+                    El profesor Rubén León Naranjo: Uno de los fundadores y actual vicerrector, de nuestra querida
+                    institución, apasionado de la música nacional y local ecuatoriana además de la danza folclórica y
+                    tradicional, fundó el grupo folclórico escolar que inicialmente se llamaba "semilleros" para después
+                    de unos años y actualmente llamarse "semilleros de wakani", junto a la profesora Rosalva Bolaños,
+                    una de las primeras profesoras de esa época y actual vicerrectora administrativa, este grupo fue
+                    fundado en el año 2000.
+                </p>
+                <p>
+                    Ambos tenían una gran inspiración y motivación, preservar un poco de la historia cultural que
+                    guardaban las canciones y no querían que el alumnado pierda la esencia de la música típica.
+                </p>
+                <p>
+                    El nombre se dio debido a que un día una promotora cultural, llamada María Ester Arias, amiga del
+                    profesor Rubén la cual dirigía un grupo llamado "Wakani" (Espíritu libre en Shuar) le ofreció
+                    fusionar ambos grupos "semilleros" y "Wakani". Algo que favoreció mucho la identidad de nuestro
+                    actual grupo folclórico estudiantil. Al día de hoy los semilleros de wakani han tenido gran éxito a
+                    nivel nacional e incluso internacional, ganando incluso ciertos premios, debido a la dedicación y
+                    amor que ponen cada uno de sus integrantes.
+                </p>
+                <p>
+                    Desde el año 2000, fomentamos la práctica del folclor, sin pensar que nos convertiríamos en icono de
+                    la cultura en nuestro cantón siempre llevando en alto el nombre de la Capital Arrocera del Ecuador,
+                    representándolo en diversas jornadas culturales como por ejemplo el Inti-raimi en la provincia del
+                    Cañar, al cual asistimos año a año, gracias a la invitación de sus organizadores; quienes han visto
+                    con agrado que jóvenes dauleños conserven sus raíces folclóricas.
+                </p>
+                <p>
+                    Anualmente nuestro grupo folclórico concurre a la invitación realizada por el Municipio del Cantón
+                    Samborondón y lleva a cabo su presentación cultural en el Festival Folclórico, donde participan
+                    reconocidas agrupaciones folclóricas.
+                </p>
+                <p>
+                    Nuestro Semillero folclórico, ha logrado incluso reconocimiento Internacional, al haber participado
+                    en la Feria Binacional, organizada por la Universidad César Vallejo – Campus Tumbes, en donde no
+                    solo hicimos conocer nuestro folklor sino que también promocionamos a Daule, como destino turístico
+                    y aprovechamos la oportunidad para que se conozca entre nuestros hermanos Peruanos, acerca de la
+                    gramínea icono de nuestra ciudad; mediante la degustación de productos elaborados a base de Arroz.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE PERSONAJES DESTACADOS -->
+    <div class="personajes-section">
+        <h2 class="personajes-title">Personajes Destacados de Wakani</h2>
+        <div class="personajes-grid" id="personajesContainer1"></div>
+        <div class="personajes-grid" id="personajesContainer2"></div>
+    </div>
+
+    <script>
+        // ===== CONFIGURACIÓN DE IMÁGENES =====
+        const carouselImages = [
+            './imgW/r.jpg',
+            './imgW/e.jpg',
+            './imgW/w.jpg',
+            './imgW/u.jpg',
+            './imgW/t.jpg',
+            './imgW/dann.jpg',
+            './imgW/l.jpg',
+            './img/Wq.jpg'
+        ];
+
+        const personajesDestacados1 = [
+            {
+                nombre: 'Meylin Castro',
+                imagen: './imgW/me.jpg'
+            },
+            {
+                nombre: 'Dana González',
+                imagen: './imgW/dann.jpg'
+            },
+            {
+                nombre: 'Kristel Castro',
+                imagen: './imgW/kr.jpg'
+            }
+        ];
+
+        const personajesDestacados2 = [
+            {
+                nombre: 'Angie Lozano',
+                imagen: './imgW/an.jpg'
+            },
+            {
+                nombre: 'Jesús Morán',
+                imagen: './imgW/je.jpg'
+            },
+            {
+                nombre: 'Keily Lavayen',
+                imagen: './imgW/ke.jpg'
+            }
+        ];
+
+        // ===== CARGAR IMÁGENES DEL CARRUSEL =====
+        function loadCarouselImages() {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach((item, index) => {
+                const imageIndex = index % carouselImages.length;
+                if (carouselImages[imageIndex]) {
+                    item.style.backgroundImage = `url('${carouselImages[imageIndex]}')`;
+                    item.textContent = '';
+                    item.classList.remove('placeholder');
+
+                    const img = new Image();
+                    img.onerror = function () {
+                        console.error(`❌ Error cargando: ${carouselImages[imageIndex]}`);
+                        item.classList.add('placeholder');
+                        item.textContent = `Imagen ${imageIndex + 1}\nNo encontrada`;
+                    };
+                    img.onload = function () {
+                        console.log(`✅ Cargada: ${carouselImages[imageIndex]}`);
+                    };
+                    img.src = carouselImages[imageIndex];
+                }
+            });
+        }
+
+        // ===== CARGAR PERSONAJES FILA 1 =====
+        function loadPersonajes1() {
+            const container = document.getElementById('personajesContainer1');
+            if (!container) {
+                console.error('❌ No se encontró personajesContainer1');
+                return;
+            }
+            
+            container.innerHTML = '';
+
+            personajesDestacados1.forEach((personaje, index) => {
+                const card = document.createElement('div');
+                card.className = 'personaje-card';
+                
+                const img = new Image();
+                img.onload = function () {
+                    console.log(`✅ Personaje 1-${index + 1} cargado: ${personaje.nombre}`);
+                    card.style.backgroundImage = `url('${personaje.imagen}')`;
+                };
+                img.onerror = function () {
+                    console.error(`❌ Error personaje 1-${index + 1}: ${personaje.imagen}`);
+                    card.classList.add('placeholder');
+                    card.innerHTML = `<div style="text-align: center; padding: 20px;">Imagen no encontrada<br><strong>${personaje.nombre}</strong></div>`;
+                };
+                img.src = personaje.imagen;
+
+                card.innerHTML = `
+                    <div class="personaje-info">
+                        <div class="personaje-nombre">${personaje.nombre}</div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // ===== CARGAR PERSONAJES FILA 2 =====
+        function loadPersonajes2() {
+            const container = document.getElementById('personajesContainer2');
+            if (!container) {
+                console.error('❌ No se encontró personajesContainer2');
+                return;
+            }
+            
+            container.innerHTML = '';
+
+            personajesDestacados2.forEach((personaje, index) => {
+                const card = document.createElement('div');
+                card.className = 'personaje-card';
+                
+                const img = new Image();
+                img.onload = function () {
+                    console.log(`✅ Personaje 2-${index + 1} cargado: ${personaje.nombre}`);
+                    card.style.backgroundImage = `url('${personaje.imagen}')`;
+                };
+                img.onerror = function () {
+                    console.error(`❌ Error personaje 2-${index + 1}: ${personaje.imagen}`);
+                    card.classList.add('placeholder');
+                    card.innerHTML = `<div style="text-align: center; padding: 20px;">Imagen no encontrada<br><strong>${personaje.nombre}</strong></div>`;
+                };
+                img.src = personaje.imagen;
+
+                card.innerHTML = `
+                    <div class="personaje-info">
+                        <div class="personaje-nombre">${personaje.nombre}</div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // ===== FUEGOS ARTIFICIALES =====
+        function createFirework() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.6);
+            const colors = ['#001b84', '#0a2fa0', '#1e40af', '#3b82f6', '#e8c201'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            for (let i = 0; i < 12; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                firework.style.background = color;
+                firework.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}`;
+
+                const angle = (Math.PI * 2 * i) / 12;
+                const velocity = 50 + Math.random() * 50;
+
+                firework.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+                firework.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+
+                document.getElementById('fireworksContainer').appendChild(firework);
+                setTimeout(() => firework.remove(), 2000);
+            }
+        }
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+            document.getElementById('fireworksContainer').appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 5000);
+        }
+
+        // ===== INICIALIZACIÓN =====
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🚀 Iniciando carga de la página...');
+            console.log('📁 Carrusel: ' + carouselImages.length + ' imágenes configuradas');
+            console.log('👥 Fila 1: ' + personajesDestacados1.length + ' personajes');
+            console.log('👥 Fila 2: ' + personajesDestacados2.length + ' personajes');
+            
+            loadCarouselImages();
+            loadPersonajes1();
+            loadPersonajes2();
+            
+            setInterval(createFirework, 1500);
+            setInterval(createSparkle, 200);
+            
+            console.log('✅ Página inicializada correctamente');
+        });
+    </script>
+</body>
+
+</html>

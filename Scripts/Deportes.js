@@ -206,7 +206,6 @@ function animateBubbles() {
 
 animateBubbles();
 
-
 // 🎮 CONFIGURACIÓN DE JUGADORES
 // Aquí defines tus 21 jugadores con dorsal, nombre, posición y foto
 const players = [
@@ -241,7 +240,7 @@ const players = [
 // 🎨 Función para crear una carta
 function createCard(player) {
     return `
-        <div class="card-wrapper" onclick="this.classList.toggle('flipped')">
+        <div class="card-wrapper" data-card>
             <div class="card-flip">
                 <!-- Front: Dorsal -->
                 <div class="card-face card-front">
@@ -268,7 +267,52 @@ function createCard(player) {
 // 🚀 Inicializar las cartas
 function initCards() {
     const container = document.getElementById('cardsContainer');
+    if (!container) {
+        console.error('❌ No se encontró el contenedor de cartas');
+        return;
+    }
+    
     container.innerHTML = players.map(player => createCard(player)).join('');
+    
+    // Agregar event listeners a cada carta individualmente
+    document.querySelectorAll('.card-wrapper').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
+    
+    console.log('✅ Cartas inicializadas correctamente');
+}
+
+// Variable global para controlar el estado del botón
+let allCardsVisible = false;
+
+// 🔘 Control del botón de toggle
+function toggleAllCards() {
+    const cards = document.querySelectorAll('.card-wrapper');
+    const button = document.getElementById('toggleButton');
+    
+    if (!cards.length) {
+        console.error('❌ No se encontraron cartas');
+        return;
+    }
+    
+    // Alternar el estado
+    allCardsVisible = !allCardsVisible;
+    
+    if (allCardsVisible) {
+        // MOSTRAR todos los jugadores (voltear las cartas)
+        cards.forEach(card => card.classList.add('flipped'));
+        button.textContent = '🔒 OCULTAR TODOS LOS JUGADORES';
+        button.classList.add('hide-mode');
+        console.log('✅ Mostrando todos los jugadores');
+    } else {
+        // OCULTAR jugadores (mostrar dorsales)
+        cards.forEach(card => card.classList.remove('flipped'));
+        button.textContent = '👁️ MOSTRAR TODOS LOS JUGADORES';
+        button.classList.remove('hide-mode');
+        console.log('✅ Mostrando dorsales');
+    }
 }
 
 // Inicializar al cargar la página
@@ -276,18 +320,34 @@ initCards();
 
 // 🎮 FUNCIONES ÚTILES PARA LA CONSOLA
 
-// Voltear todas las cartas
+// Voltear todas las cartas (mostrar jugadores)
 window.flipAll = function() {
     document.querySelectorAll('.card-wrapper').forEach(card => {
         card.classList.add('flipped');
     });
+    console.log('✅ Todas las cartas volteadas - Mostrando jugadores');
 };
 
-// Voltear todas de vuelta
+// Voltear todas de vuelta (mostrar dorsales)
 window.flipAllBack = function() {
     document.querySelectorAll('.card-wrapper').forEach(card => {
         card.classList.remove('flipped');
     });
+    console.log('✅ Todas las cartas reiniciadas - Mostrando dorsales');
+};
+
+// Resetear cartas: voltea todas para que muestren el mismo lado
+window.resetCards = function(showPlayers = false) {
+    const cards = document.querySelectorAll('.card-wrapper');
+    if (showPlayers) {
+        // Mostrar todos los jugadores
+        cards.forEach(card => card.classList.add('flipped'));
+        console.log('🔄 Reset completado - Mostrando todos los jugadores');
+    } else {
+        // Mostrar todos los dorsales
+        cards.forEach(card => card.classList.remove('flipped'));
+        console.log('🔄 Reset completado - Mostrando todos los dorsales');
+    }
 };
 
 // Cambiar foto de un jugador
@@ -304,8 +364,10 @@ window.changePlayerPhoto = function(dorsal, newPhotoUrl) {
 
 console.log('⚽ Sistema de cartas iniciado');
 console.log('📋 Funciones disponibles:');
-console.log('   flipAll() - Voltea todas las cartas');
-console.log('   flipAllBack() - Devuelve todas las cartas');
+console.log('   flipAll() - Voltea todas las cartas para mostrar jugadores');
+console.log('   flipAllBack() - Devuelve todas las cartas para mostrar dorsales');
+console.log('   resetCards(true) - Resetea mostrando jugadores');
+console.log('   resetCards(false) - Resetea mostrando dorsales');
 console.log('   changePlayerPhoto(dorsal, url) - Cambia la foto de un jugador');
 console.log('');
 console.log('🎨 Para cambiar fotos, edita el array "players" en el código');
@@ -325,8 +387,13 @@ class AccordionSlider {
             slide.addEventListener("click", () => this.setActiveSlide(index));
         });
         
-        this.prevBtn.addEventListener("click", () => this.previousSlide());
-        this.nextBtn.addEventListener("click", () => this.nextSlide());
+        if (this.prevBtn) {
+            this.prevBtn.addEventListener("click", () => this.previousSlide());
+        }
+        
+        if (this.nextBtn) {
+            this.nextBtn.addEventListener("click", () => this.nextSlide());
+        }
         
         document.addEventListener("keydown", (e) => {
             if (e.key === "ArrowLeft") this.previousSlide();
@@ -358,4 +425,5 @@ class AccordionSlider {
 
 document.addEventListener("DOMContentLoaded", () => {
     new AccordionSlider();
+    console.log('✅ Sistema completamente inicializado');
 });

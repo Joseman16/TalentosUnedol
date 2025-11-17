@@ -45,7 +45,7 @@ const playlist = [
   },
   {
     title: "Chica Linda",
-    artist: "Gaby Navarro",
+    artist: "Gabriela Navarro",
     duration: "2:57",
     image: "../Musica/artistas/Gaby Navarro.jpeg",
     src: "../Musica/Gaby Navarro - Mix.mp3"
